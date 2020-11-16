@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - registration3</title>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="fix-rel" style="z-index:5;">
+    <nav class="navbar navbar-default navbar-custom ">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle icon" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="inner-icon">
+                        <span class="bar1"></span>
+                        <span class="bar2"></span>
+                        <span class="bar3"></span>
+                    </span>
+                </button>
+                <a class="navbar-brand" href="#">INet Restaurant </a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <div class="flex-container">
+                    <div class="flex-main" style="">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="index.html">
+                                    <span class="glyphicon glyphicon-home"></span> Home</a></li>
+                            <li><a href="aboutus.html">About Us</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                    <span class="glyphicon glyphicon-earphone"></span> Contact Us <span class="caret"></span></a>
+                                <ul class="dropdown-menu dropdown-menu1">
+                                    <li><a href="contactus.html">On our site</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">On Facebook</a></li>
+                                    <li><a href="#">On Twitter</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="table.html">Table</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <span class="glyphicon glyphicon-menu-hamburger"></span> Menu <span class="caret"></span></a>
+                                <ul class="dropdown-menu dropdown-menu2">
+                                    <li class="dropdown-header "></li>
+                                    <li><a href="table.html"> Table</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="./maincourse/pizza.html"> Pizza</a></li>
+                                    <li><a href="./maincourse/pasta.html"> Pasta</a></li>
+                                    <li class=" main1"><a href="./maincourse/lazagna.html"> Lasagna</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="./options/appetizer.html"> Appetizers</a></li>
+                                    <li><a href="./options/sallad.html"> Sallads</a></li>
+                                    <li><a href="./options/dessert.html">Desserts</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="./drinks/alcoholicdrink.html"> Alcoholic Drinks</a></li>
+                                    <li><a href="./drinks/nonalcoholicdrink.html"> Non Alcoholic Drinks</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="lunchbuffet.html"> Lunch Buﬀet</a></li>
+                                    <li><a href="weekendbrunch.html"> Weekend Brunch</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="order.html">Order</a></li>
+                            <li><a href="news.html">News</a></li>
+                        </ul>
+                    </div>
+                    <div class="flex-side" style="">
+                        <ul class="nav navbar-nav navbar-right navbar-navside1">
+                            <li><a href="registration2.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                            <li><a href="#myModal" id="myBtn"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container-fluid" style="z-index:2;">
+    <div class="jumbotron jumbo toppadding" style="z-index:1;">
+        <a href="#">
+            <h2 class="center1">INET Restaurant</h2>
+        </a>
+        
+        <p class="center1">Bootstrap is the most popular HTML, CSS, and JS framework for
+            developing responsive, mobile-first projects on the web.</p>
+        <p class="center1">The home of the INET Restaurant</p>
+        <p class="center1">Registration</p>
+        
+    </div>
+    
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+            <div class="row main-content">
+                
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="panel panel-default headcustomsd bodycustomsd">
+                        <div class="panel-heading ">
+                            <h1>Registration Form</h1>
+                        </div>
+                        <div class="panel-body">
+                            <div class="bs-example">
+                              <!--  
+                                <form class="form-horizontal register registration" 
+                                action="/examples/actions/confirmation.php" method="post" style="z-index:1;"> -->
+                                <form class="form-horizontal register registration">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="fname">
+                                            <span id="fnameRequired" class="glyphicon glyphicon-star starrq"></span> First Name :</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group inputGr">
+                                                <span class="input-group-addon glyph3 fst-name-glyph inputHdr">
+                                                    <i class="glyphicon glyphicon-user"></i></span>
+                                                <input type="text" class="form-control check inputbgr_reg fst-name-field" id="fname" placeholder="Enter First Name" name="First Name">
+                                            </div>
+                                            <div class="inputstatus">
+                                                <span class="error">Please enter your First name</span>
+                                                <span class="feedback"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="lastName3">
+                                            <span id="lnameRequired" class="glyphicon glyphicon-star starrq"></span> Last Name :</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group">
+                                                <span class="input-group-addon glyph3 lst-name-glyph">
+                                                    <i class="glyphicon glyphicon-user"></i></span>
+                                                <input type="text" class="form-control check inputbgr_reg lst-name-field" id="lastName3" placeholder="Enter Last Name" name="Last Name">
+                                            </div>
+                                            <div class="inputstatus">
+                                                <span class="error">Please enter your last or family name.</span>
+                                                <span class="feedback"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="email3">
+                                            <span id="emailRequired" class="glyphicon glyphicon-star starrq"></span> Email Address :</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group">
+                                                <span class="input-group-addon glyph3 email-glyph">
+                                                
+                                                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                                </span>
+                                                
+                                                <input id="email3" type="email" class="form-control check inputbgr_reg email-field" name="E-mail" placeholder="E-mail">
+                                            </div>
+                                            <div class="inputstatus">
+                                                <span class="error">Please enter your E-mail.</span>
+                                                <span class="feedback"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="phoneNumber3">
+                                            <span id="phoneRequired" class="glyphicon glyphicon-star starrq"></span> Phone Number :</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group">
+                                                <span class="input-group-addon glyph3 phone-glyph">
+                                                
+                                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                                </span>
+                                                
+                                                <input type="tel" class="form-control check inputbgr_reg phone-field" 
+                                                       id="phoneNumber3" placeholder="Phone Number" name="Phone Number">
+                                            </div>
+                                            <div class="inputstatus">
+                                                <span class="error">Please enter your phone number.</span>
+                                                <span class="feedback"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <!--    <label class="control-label col-sm-3" for="areacode3 telnum3">Contact Tel. :</label> -->
+                                        <label class="control-label col-sm-3" for="areacode3">Contact Tel. :</label>
+                                            <div class="col-sm-9">
+                                                
+                                                <div class="input-group group-3">
+                                                    <span class="input-group-addon glyph3 phone2-glyph">
+                                                      <i class="fa fa-phone widthHeader" aria-hidden="true"></i>
+                                                    </span>
+                                                    <input id="areacode3" type="tel" name="areacode" class="form-control inputbgr_reg phone2-field" placeholder="Area code">
+
+                                                    <input id="telnum3" type="tel" name="phone" class="form-control inputbgr_reg phone2-field" placeholder="Phone number">
+                                                </div>
+                                                
+                                            </div>
+                                        <div class="col-xs-12 col-sm-12">
+                                            <!--    <div class="control-label col-xs-3" for="telnum3">&nbsp;</div>-->
+                                            <div class="control-label col-xs-3">&nbsp;</div>
+                                            <div class="col-xs-12 col-sm-9">
+                                                <div class="help-block with-errors texttel1" style="width:34%;float:left;">Please enter your areacode</div>
+                                                <div class="help-block with-errors texttel1" style="width:60%;float:left;">Please enter your phone</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="postalAddress">
+                                            <span id="postalRequired" class="glyphicon glyphicon-star starrq"></span> Postal Address :</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group">
+                                                <span class="input-group-addon glyph3 address-glyph">Postal :</span>
+                                                <textarea rows="3" class="form-control check inputbgr_reg address-field" 
+                                                          id="postalAddress" name="Postal Address" placeholder="Postal Address"></textarea>
+                                            </div>
+                                            <div class="inputstatus">
+                                                <span class="error">Please enter your postal address.</span>
+                                                <span class="feedback"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="ZipCode3">
+                                            <span id="zipRequired" class="glyphicon glyphicon-star starrq"></span> Zip Code :</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group">
+                                                <span class="input-group-addon glyph3 zip-glyph">zip code</span>
+                                                <input type="text" class="form-control check inputbgr_reg zip-field" id="ZipCode3" name="zip code" placeholder="Zip Code">
+                                                
+                                            </div>
+                                            <div class="inputstatus">
+                                                <span class="error">Please enter your ZIP code.</span>
+                                                <span class="feedback"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="your-city">
+                                            <span id="cityRequired" class="glyphicon glyphicon-star starrq"></span> City:</label>
+                                                <div class="col-sm-9">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon glyph3 city-glyph">City</span>
+                                                        <div data-toggle="collapse" data-target="#demo2">
+                                                            <input type="text" class="form-control check inputbgr_reg city-field" 
+                                                                   id="your-city" placeholder="Enter your City" name="Your City">
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="inputstatus">
+                                                        <span id="errorid" class="error">Please click on the input field for the list of cities.</span>
+                                                        <span id="feedbackid" class="feedback"></span>
+                                                    </div>
+                                                    <div id="demo2" class="collapse">
+                                                        <h4>List of available cities</h4>
+                                                        <ul class="list-group citylist">
+                                                            <li class="list-group-item">London</li>
+                                                            <li class="list-group-item">Cardiff</li>
+                                                            <li class="list-group-item">Manchester</li>
+                                                            <li class="list-group-item">Brighton</li>
+                                                            <li class="list-group-item">Bristol</li>
+                                                            <li class="list-group-item">Birmingham</li>
+                                                            <li class="list-group-item">Swansea</li>
+                                                        </ul>
+                                                        <h4>Close: click on input field</h4>
+                                                    </div>
+                                                    
+                                                </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="pwd1">
+                                            <span id="pwdRequired" class="glyphicon glyphicon-star starrq"></span> Password :</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group">
+                                                <span class="input-group-addon glyph3 pwd-glyph">
+                                                    <i class="fa fa-lock"></i>
+                                                </span>
+                                                <input id="pwd1" type="text" class="form-control check inputbgr_reg pwd-field" name="Password" placeholder="Enter Password">
+                                            </div>
+                                            <div class="inputstatus">
+                                                <span class="error">Please enter your password.</span>
+                                                <span class="feedback"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="pwdre">
+                                            <span id="pwreRequired" class="glyphicon glyphicon-star starrq"></span> Retype Password:</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group">
+                                                <span class="input-group-addon glyph3 re-glyph">
+                                                    <i class="fa fa-lock"></i>
+                                                </span>
+                                                <input id="pwdre" type="text" class="form-control check inputbgr_reg re-field" name="Retype Password" placeholder="Retype Password">
+                                            </div>
+                                            <div class="inputstatus">
+                                                <span class="error">Please retype your password.</span>
+                                                <span class="feedback"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                                
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3">Please Choose </label>
+                                        
+                                         <div class="col-sm-9 dropdown">
+                                            
+                                                <div class="row">
+                                                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                                        <div class="btn-group dropdown1">
+                                                        
+                                                        <button type="button" data-toggle="dropdown" 
+														        class="btn btn-default buttonchoice dropdown-toggle btncolor1"> 
+																Lay-out Style <span class="caret"></span></button>
+                                                        <ul class="dropdown-menu dropdwn1">
+                                                            <li><a href="#">Style-1</a></li>
+                                                            <li class="divider"></li>
+                                                            <li><a href="#">Style-2</a></li>
+                                                            <li><a href="#">Style-3</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    </div>
+                                                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                                        <div class="btn-group dropdown2">
+                                                            
+                                                            <button type="button" data-toggle="dropdown" 
+                                                                    class="btn btn-default buttonchoice dropdown-toggle  btncolor2"> Font size<span class="caret"></span></button>
+                                                            <ul class="dropdown-menu dropdwn2">
+                                                                <li><a href="#">Font size-1</a></li>
+                                                                <li class="divider"></li>
+                                                                <li><a href="#">Font size-2</a></li>
+                                                                <li><a href="#">Font size-3</a></li>
+                                                            </ul>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                                        <div class="btn-group dropdown1">
+                                                            
+                                                            <button type="button" data-toggle="dropdown" 
+															        class="btn btn-default buttonchoice dropdown-toggle btncolor1"> Language <span class="caret"></span></button>
+                                                            <ul class="dropdown-menu dropdwn1">
+                                                                <li><a href="#">English</a></li>
+                                                                <li class="divider"></li>
+                                                                <li><a href="#">Hungarian</a></li>
+                                                                <li><a href="#">Romanian</a></li>
+                                                            </ul>
+                                                        </div>
+                                                   </div>
+                                                   <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                                        <div class="btn-group dropdown2">
+                                                            
+                                                            <button type="button" data-toggle="dropdown" 
+															        class="btn btn-default buttonchoice dropdown-toggle btncolor2"> Font style <span class="caret"></span></button>
+                                                            <ul class="dropdown-menu dropdwn2">
+                                                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Font style-1</a></li>
+                                                                <li role="presentation" class="divider"></li>
+                                                                <li><a href="#">Font style-2</a></li>
+                                                                <li><a href="#">Font style-3</a></li>
+                                                                
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <h5><label class="control-label col-sm-3">How can we contact you ?</label></h5>
+                                        
+                                        <div class="col-sm-9">
+                                            <div class="input-group">
+                                                <label class="container">
+                                                    <input type="checkbox" checked="checked">
+                                                    Phone
+                                                </label>
+                                                
+                                                <label class="container"> 
+                                                    <input type="checkbox">
+                                                    E-mail
+                                                </label>
+                                                
+                                                <label class="container"> 
+                                                    <input type="checkbox">
+                                                    Post
+                                                </label>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3">Gender :</label>
+                                        <div class="col-sm-3">
+                                            <label class="gender radio-inline">
+                                                <input type="radio" name="genderRadios" value="male"> Male
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label class="gender radio-inline">
+                                                <input type="radio" name="genderRadios" value="female"> Female
+                                            </label>
+                                        </div>
+										<div class="col-sm-3">
+                                            <label class="gender radio-inline">
+                                                <input type="radio" name="genderRadios" value="notDeclared"> 
+													Not declared.
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <div class="col-xs-offset-3 col-xs-9">
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" value="news">
+                                                <span class="error">Send me latest news and updates.</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-offset-3 col-xs-9">
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" class="check" id="terms" name="termsConditions" value="agree" > 
+                                            		<span id="termcheck" class="error2">I agree to the <a href="#">Terms and Conditions</a>.</span>
+													<span id="termsRequired" class="glyphicon glyphicon-star starrq termleft"></span>
+                                                    <span class="feedback"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-offset-3 col-xs-9">
+                                            <label class="checkbox-inline">
+                                                <span class="glyphicon glyphicon-star"></span>
+                                                The fields marked with star are required.
+                                                
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <div class="col-xs-offset-3 col-xs-9">
+                                            <input class="regsmt btn1" type="submit" value="Submit">
+                                            <input class="regreset btn2" type="reset" onclick="myFunction()" value="Reset form">
+                                        </div>
+                                    </div>
+                                
+                                
+                             </form> 
+                        </div>   
+                        </div>
+                        <div class="panel-footer footercustomsd"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+            <!--Nested rows within a column-->
+            <div class="row ">
+                <div class="col-xs-12 col-sm-6 col-md-12">
+                    <div class="sidebar-content">
+                        <div class="panel panel-default headcustomsd bodycustomsd">
+                            <div class="panel-heading ">
+                                <h2>Offer of the Week</h2>
+                            </div>
+                            
+                            <div class="panel-body ">
+                                Try our wonderful <span class="red">new</span> Margherita.<br />
+                                A better recipe and virtually tastier than ever. <br />
+                                Enjoy every byte!
+                            </div>
+                            
+                            <div class="panel-footer footercustomsd"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="col-xs-12 col-sm-6 col-md-12">
+                    <div class="sidebar-content">
+                        <div class="panel panel-default headcustomsd bodycustomsd">
+                            <div class="panel-heading">
+                                <h2>Social Media</h2>
+                            </div>
+                            <div class="panel-body">
+                               
+                                <!-- <div style="width:176px;height:280px;float:left;border:2px solid transparent;"></div>-->
+                                
+                                    <ul class="nolistmark socialButtons">
+                                        <li>
+                                                                                        
+                                            <a class="button button01" href="#">
+                                                <i class="fa fa-facebook i">  
+                                                <span class="btnName">Facebook</span></i></a>
+                                        </li>
+                                        <li>
+                                            <!--<button type="button" class="btn btn-tw">-->
+                                            
+                                            <a class="button button01" href="#">
+                                            <i class="fa fa-twitter i">  
+                                            <span class="btnName">Twitter</span></i></a>
+                                        </li>
+                                        <li>
+                                            <!--<button type="button" class="btn btn-li">-->
+                                            
+                                            <a class="button button01" href="#">
+                                            <i class="fa fa-linkedin i">  
+                                            <span class="btnName">Linkedin</span></i></a>
+                                        </li>
+                                        <li>
+                                            <!--<button type="button" class="btn btn-ins">-->
+                                           
+                                            <a class="button button01" href="#">
+                                            <i class="fa fa-instagram i">  
+                                            <span class="btnName">Instagram</span></i></a>
+
+                                        </li>
+                                        <li>
+                                            
+                                            <a class="button button01" href="#">
+                                            <i class="fa fa-wordpress i">  
+                                            <span class="btnName">Wordpress</span></i></a>
+                                        </li>
+                                    </ul>
+                                
+                            </div>
+                            <div class="panel-footer footercustomsd"></div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<div class="row" style="z-index:2;">
+    
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 fluid bottompadding">
+        
+        <div class="sidebar-content bottommargin">
+            <div class="panel panel-default headcustomsd bodycustomsd">
+                <div class="panel-heading headcustomsd">
+                    <h2>Address</h2>
+                </div>
+                <div class="panel-body bodycustomsd">
+                    <address>Virtual Pizza Restaurant Ltd.<br>
+                        1, Pizza Avenue<br>
+                        Pizza House, London<br>
+                        PI1 2ZA<br>
+                        Great Britain<br>
+                        Tel.: +44 1234 5678<br>
+                        Fax: +44 8765 4321<br>
+                        Email: info<code>&commat;</code>vpp.com
+                    </address>
+                </div>
+                <div class="panel-footer footercustomsd"></div>
+            </div>
+            
+        </div>
+    </div>
+</div> <!-- end row -->
+</div>
+<footer class="row" style="z-index:2;">
+    
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 footerdiv">
+        <p>2017 &copy; INET Restaurant. All Rights Reserved.</p>
+        
+    </div>
+    <!-- end row -->
+</footer>
+
+<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header headcustom">
+            <button type="btnclose" class="close stylecls" data-dismiss="modal" style="">&times;</button>
+            <span class="glyphicon headiconlabelmain glyphicon-user centergl"></span>     
+            <h2 class="centerttl"> Restasurant Virtually</h2>    
+         
+        </div>
+        <div class="modal-body backgroundbody">
+          
+        <!--<div class="container"></div>
+        <div class="container"> </div>
+             <form class="container-fluid" action="/action_page.php">-->
+
+            
+            <form id="login" class="form-horizontal container-fluid modallogin modalform">
+                <div class="row">
+                    <div class="form-group">
+                    <label class="control-label col-sm-3"> </label>
+                    <div class="col-sm-9">
+                        <h3 class="modal-title headtextlabel2 titleh3">
+                        <span class="glyphicon glyphicon-log-in headiconlabel"></span> Log in</h3>
+                    </div>
+                    </div>
+                    
+                    <div class="form-group form-groupmodal inputboxmodal1">
+                    
+                      <label class="control-label textlabel col-sm-3" for="emailm1">
+                      <span class="glyphicon iconlabel glyphicon-envelope"></span>  Email :</label>
+                      <div class="col-sm-9">
+                        <input type="email" class="form-control borderbottom input-check" id="emailm1" placeholder="Enter email" name="E-mail">
+                        <!--<span class="glyphicon glyphicon-remove fielderror" style=""></span>-->
+                              <div class="inputstatusmodal">
+                                    <span class="glyphicon  glyphicon-star star"></span>
+                                    <span class="error">Your email</span>
+                                    <span class="feedback"></span>
+                              </div>
+                      </div>
+                      
+                    </div>
+                    <div class="form-group form-groupmodal inputboxmodal1">
+                      <label class="control-label textlabel col-sm-3" for="pwdm1">
+                      <span class="glyphicon iconlabel glyphicon-lock"></span>  Password :</label>
+                      <div class="col-sm-9">          
+                        <input type="password" class="form-control borderbottom input-check" id="pwdm1" placeholder="Enter password" name="Password">
+                        <!--<span class="glyphicon glyphicon-ok fielderror" style=""></span>-->
+                            <div class="inputstatusmodal">
+                                <span class="glyphicon  glyphicon-star star"></span>
+                                <span class="error">Your password</span>
+                                <span class="feedback"></span>
+                            </div>
+                     </div>
+                    </div>
+                    <div class="form-group">        
+                      <div class="col-sm-offset-3 col-sm-9">
+                        <div class="checkbox textlabel">
+                          <label><input type="checkbox" name="remember"> Remember me</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+						<div class="col-xs-offset-3 col-xs-9">
+							<label class="checkbox-inline textlabel">
+								<span class="glyphicon glyphicon-star"> 
+								The fields marked with star are required.
+								</span>
+							</label>
+						</div>
+					</div>
+                    <div class="form-group">        
+                      <div class="col-sm-offset-3 col-sm-9">
+                        <button type="reset" class="btn btn-default button1 button1color">Reset</button>
+                      
+                        <button type="submit" class="btn btn-default button1 button1color1">Submit</button>
+                        <!--<div class="divchangepw" ></div>-->
+                                                
+                      </div>
+                    </div>
+                    <div class="form-group">        
+                      <div class="col-sm-offset-3 col-sm-9">
+                        
+                        <!--<div class="divchangepw" ></div>-->
+                        <p class="paragraph othertext">Forgot password ?<a href="#" id="changepsw"> Change password</a></p>
+                        
+                      </div>
+                    </div>
+                </div>
+            </form>
+            
+            <!--<form id="changepw" class="form-horizontal container-fluid modalresetpw" action="/action_page.php">-->
+            <form id="changepw" class="form-horizontal register container-fluid modalresetpw modalform">
+                <div class="row">
+                    <div class="form-group">
+                    <label class="control-label col-sm-3"> </label>
+                    <div class="col-sm-9">
+                        <h3 class="modal-title headtextlabel2 titleh3">
+                        <span class="glyphicon headiconlabel glyphicon-lock"></span> Change password</h3>
+                    </div>
+                    </div>
+                    <div class="form-group form-groupmodal inputboxmodal2">
+                      <label class="control-label textlabel col-sm-3" for="emailm2">
+                      <span class="glyphicon iconlabel glyphicon-envelope"></span>  Email :</label>
+                      <div class="col-sm-9">
+                        <input type="email" class="form-control borderbottom input-check" id="emailm2" placeholder="Enter email" name="E-mail">
+                         <div class="inputstatusmodal">
+                            <span class="glyphicon  glyphicon-star star"></span>
+                            <span class="error">Your email</span>
+                            <span class="feedback"></span>
+                        </div>   
+                      </div>
+                      
+                    </div>
+                    <div class="form-group form-groupmodal inputboxmodal2">
+                      <label class="control-label textlabel col-sm-3" for="pwdm2">
+                      <span class="glyphicon iconlabel glyphicon-eye-open"></span>  Password :</label>
+                      <div class="col-sm-9">          
+                        <input type="password" class="form-control borderbottom input-check" id="pwdm2" 
+                        placeholder="Type password" name="Password">
+                            <div class="inputstatusmodal">
+                                 <span class="glyphicon  glyphicon-star star"></span>
+                                 <span class="error">Your password</span>
+                                 <span class="feedback"></span>
+                            </div>
+                      </div>
+                    </div>
+                    <div class="form-group form-groupmodal inputboxmodal2">
+                      <label class="control-label textlabel col-sm-3" for="pwdmre2">
+                      <span class="glyphicon iconlabel glyphicon-eye-open"></span>  Password Retype :</label>
+                      <div class="col-sm-9">          
+                        <input type="password" class="form-control borderbottom input-check" id="pwdmre2" 
+                        placeholder="Retype password" name="Password Retype">
+                            <div class="inputstatusmodal">
+                                 <span class="glyphicon  glyphicon-star star"></span>
+                                 <span class="error">Your password retype</span>
+                                 <span class="feedback"></span>
+                            </div>
+                      </div>
+                    </div>
+                    <div class="form-group">        
+                      <div class="col-sm-offset-3 col-sm-9">
+                        <div class="checkbox textlabel">
+                          <label><input type="checkbox" name="remember"> Remember me</label>
+                                
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+						<div class="col-xs-offset-3 col-xs-9">
+							<label class="checkbox-inline textlabel">
+								<span class="glyphicon glyphicon-star"> 
+								The fields marked with star are required.
+								</span>
+							</label>
+						</div>
+					</div>
+                    <div class="form-group">        
+                      <div class="col-sm-offset-3 col-sm-9">
+                        <button type="reset" class="btn btn-default button1 button2color">Reset</button>
+                      
+                        <button type="submit" class="btn btn-default button1 button1color2">Submit</button>
+                        
+                     </div>
+                    </div>
+                    
+                    <div class="form-group">        
+                      <div class="col-sm-offset-3 col-sm-9">
+                        
+                        <p class="othertext"><a href="#" id="login2"> Log in</a> here
+                        </p>
+                     </div>
+                    </div>
+                </div>  
+            </form>
+        
+        </div>
+        <div class="modal-footer footer">
+          <button type="button" class="btn btn-default cancel1" data-dismiss="modal">Close</button>
+          <p class="othertext">Forgot password?<a href="#" id="changepsw2"> Change password</a></p>
+           <p class="othertext">Not member?<a href="#"> Sign up</a></p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+<!-- partial -->
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+<script src="./setup.js"></script>
+<script src="./validate.js"></script>
+<script src="./change-password.js"></script>
+<script src="./login.js"></script>
+
+</body>
+</html>
