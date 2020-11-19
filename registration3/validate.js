@@ -1,4 +1,11 @@
-  $(document)
+function replaceClass(el, oldClass, newClass) {
+    $(el).removeClass(oldClass).addClass(newClass);
+}
+function removeError(el) {
+   $(el).find(".error").html(name).removeClass("warning").addClass("ok");
+}
+
+$(document)
     .ready(function () {
         $(".icon")
             .click(function () {
@@ -1860,6 +1867,19 @@
 			} */
                 //alert(name);  
             });
+    function removeTermWarning(el) {
+        $(el).find(".feedback").removeClass("glyphicon glyphicon-ok").removeClass("glyphicon glyphicon-remove").removeClass("warning");
+        replaceClass($(el).find(".starrq"), "warning", "ok");
+        replaceClass($("#termcheck"), "ok", "warning");
+        replaceClass($("#termsRequired"), "ok", "warning");
+    }
+    function addTermWarning(el) {
+        $(el).find(".feedback").removeClass("glyphicon glyphicon-ok").removeClass("glyphicon glyphicon-ok").removeClass("ok");
+        replaceClass($(el).find(".starrq"), "ok", "warning");
+        replaceClass($("#termcheck"), "warning", "ok");
+        replaceClass($("#termsRequired"), "warning", "ok");
+    }
+
 	// terms and conditions check
        //  $('input[type="checkbox"]').click(function(){
 	   $('#terms').click(function(){
@@ -1923,35 +1943,24 @@
         /* document ready end */
 		     
         $(".btn2").click(function () {
-            //console.log(' $(this).find(".check,textarea")
-                            //.attr("name")');
-        /*  */  /*  */        /*     */
-                                            
-                $(".form-group").each(function() {
-                        var $requiredField = $(this).find(".check,check2");
-                            if ($requiredField.length === 0) {
-                                return;
-                            }
-                        if ( $(".inputstatus .warning").length != 0) {
-                            event.preventDefault();
-                        }   
-                            var name = $requiredField.attr("name");
-                            var value = $requiredField.val().trim();
-                         if (value == "") {
-                            $(this).find(".error").html(name).removeClass("warning").addClass("ok");
-                            $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").removeClass("glyphicon glyphicon-remove").removeClass("warning");
-                            $(this).find(".starrq").removeClass("warning").addClass("ok");
-						    $("#termcheck").removeClass('ok').addClass('warning');
-				            $("#termsRequired").removeClass('ok').addClass('warning');
-                        } else {
-							$(this).find(".error").html(name).removeClass("warning").addClass("ok");
-                            $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").removeClass("glyphicon glyphicon-ok").removeClass("ok");
-                            $(this).find(".starrq").removeClass("warning").addClass("ok");
-							$("#termcheck").addClass('ok').removeClass('warning');
-				            $("#termsRequired").addClass('ok').removeClass('warning');
-						}
-                    
-                });
+            $(".form-group").each(function() {
+                var $requiredField = $(this).find(".check,check2");
+                if ($requiredField.length === 0) {
+                    return;
+                }
+                if ( $(".inputstatus .warning").length != 0) {
+                    event.preventDefault();
+                }   
+                var name = $requiredField.attr("name");
+                var value = $requiredField.val().trim();
+                if (value == "") {
+                    removeError(this);
+                    removeWarning(this);
+                } else {
+                    removeError(this);
+                    addWarning(this);
+                }
             });
+        });
         /* document ready end */
     });
