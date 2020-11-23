@@ -1,10 +1,9 @@
 function replaceClass(el, oldClass, newClass) {
     $(el).removeClass(oldClass).addClass(newClass);
 }
-function removeError(el) {
-   $(el).find(".error").html(name).removeClass("warning").addClass("ok");
+function resetWarning($el) {
+    replaceClass($el, "warning", "ok");
 }
-
 $(document)
     .ready(function () {
         $(".icon")
@@ -1867,18 +1866,6 @@ $(document)
 			} */
                 //alert(name);  
             });
-    function removeTermWarning(el) {
-        $(el).find(".feedback").removeClass("glyphicon glyphicon-ok").removeClass("glyphicon glyphicon-remove").removeClass("warning");
-        replaceClass($(el).find(".starrq"), "warning", "ok");
-        replaceClass($("#termcheck"), "ok", "warning");
-        replaceClass($("#termsRequired"), "ok", "warning");
-    }
-    function addTermWarning(el) {
-        $(el).find(".feedback").removeClass("glyphicon glyphicon-ok").removeClass("glyphicon glyphicon-ok").removeClass("ok");
-        replaceClass($(el).find(".starrq"), "ok", "warning");
-        replaceClass($("#termcheck"), "warning", "ok");
-        replaceClass($("#termsRequired"), "warning", "ok");
-    }
 
 	// terms and conditions check
        //  $('input[type="checkbox"]').click(function(){
@@ -1940,27 +1927,28 @@ $(document)
 			  //alert(inputattr);
 			});
 		});
-        /* document ready end */
 		     
-        $(".btn2").click(function () {
-            $(".form-group").each(function() {
-                var $requiredField = $(this).find(".check,check2");
-                if ($requiredField.length === 0) {
-                    return;
-                }
-                if ( $(".inputstatus .warning").length != 0) {
-                    event.preventDefault();
-                }   
-                var name = $requiredField.attr("name");
-                var value = $requiredField.val().trim();
-                if (value == "") {
-                    removeError(this);
-                    removeWarning(this);
-                } else {
-                    removeError(this);
-                    addWarning(this);
-                }
-            });
+        function resetFeedback($el) {
+            $el.removeClass("glyphicon glyphicon-ok glyphicon-remove warning ok");
+        }
+        function resetMessages(i, formGroup) {
+            const $error = $(formGroup).find(".error");
+            const name = $(formGroup).find(".check").attr("name");
+            $error.html(name);
+            resetWarning($error);
+            resetFeedback($(formGroup).find(".feedback"));
+            resetWarning($(formGroup).find(".starrq"));
+        }
+        function removeTermWarning() {
+            const $termsGroup = $("#terms").closest(".form-group");
+            resetFeedback($termsGroup.find(".feedback"));
+            resetWarning($("#termcheck"));
+            resetWarning($("#termsRequired"));
+        }
+
+        $(".btn2").click(function (evt) {
+            $(".form-group").each(resetMessages);
+            removeTermWarning();
         });
         /* document ready end */
     });
