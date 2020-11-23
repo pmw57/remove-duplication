@@ -765,5 +765,21 @@
 <script src="./change-password.js"></script>
 <script src="./login.js"></script>
 
+<!-- tests -->
+<script src="../node_modules/mocha/mocha.js"></script>
+<script src="../node_modules/chai/chai.js"></script>
+<script>
+    mocha.setup({
+        ui: "bdd",
+        reporter: "spec"
+//        reporter: "dot"
+    });
+    const expect = chai.expect;
+</script>
+<script src="../tests/validate.test.js"></script>
+<script>
+    const delayms = 0;
+    setTimeout(mocha.run, delayms);
+</script>
 </body>
 </html>
