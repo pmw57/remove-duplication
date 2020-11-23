@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>CodePen - registration3</title>
-  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="./style.css">
+  <link rel='stylesheet' href='lib/bootstrap.min.css'>
+  <link rel='stylesheet' href='lib/font-awesome.min.css'>
+  <link rel="stylesheet" href="./style.css">
 
 </head>
 <body>
@@ -438,7 +439,7 @@
                                     <div class="form-group">
                                         <div class="col-xs-offset-3 col-xs-9">
                                             <input class="regsmt btn1" type="submit" value="Submit">
-                                            <input class="regreset btn2" type="reset" onclick="myFunction()" value="Reset form">
+                                            <input class="regreset btn2" type="reset" value="Reset form">
                                         </div>
                                     </div>
                                 
@@ -758,12 +759,28 @@
     </div>
   </div>
 <!-- partial -->
-<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+<script src="./lib/jquery.min.js"></script>
+<script src="./lib/bootstrap.min.js"></script>
 <script src="./setup.js"></script>
 <script src="./validate.js"></script>
 <script src="./change-password.js"></script>
 <script src="./login.js"></script>
 
+<!-- tests -->
+<script src="../node_modules/mocha/mocha.js"></script>
+<script src="../node_modules/chai/chai.js"></script>
+<script>
+    mocha.setup({
+        ui: "bdd",
+        reporter: "spec"
+//        reporter: "dot"
+    });
+    const expect = chai.expect;
+</script>
+<script src="../tests/validate.test.js"></script>
+<script>
+    const delayms = 0;
+    setTimeout(mocha.run, delayms);
+</script>
 </body>
 </html>

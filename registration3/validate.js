@@ -1,4 +1,10 @@
-  $(document)
+function replaceClass(el, oldClass, newClass) {
+    $(el).removeClass(oldClass).addClass(newClass);
+}
+function resetWarning($el) {
+    replaceClass($el, "warning", "ok");
+}
+$(document)
     .ready(function () {
         $(".icon")
             .click(function () {
@@ -1860,6 +1866,7 @@
 			} */
                 //alert(name);  
             });
+
 	// terms and conditions check
        //  $('input[type="checkbox"]').click(function(){
 	   $('#terms').click(function(){
@@ -1920,38 +1927,28 @@
 			  //alert(inputattr);
 			});
 		});
-        /* document ready end */
 		     
-        $(".btn2").click(function () {
-            //console.log(' $(this).find(".check,textarea")
-                            //.attr("name")');
-        /*  */  /*  */        /*     */
-                                            
-                $(".form-group").each(function() {
-                        var $requiredField = $(this).find(".check,check2");
-                            if ($requiredField.length === 0) {
-                                return;
-                            }
-                        if ( $(".inputstatus .warning").length != 0) {
-                            event.preventDefault();
-                        }   
-                            var name = $requiredField.attr("name");
-                            var value = $requiredField.val().trim();
-                         if (value == "") {
-                            $(this).find(".error").html(name).removeClass("warning").addClass("ok");
-                            $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").removeClass("glyphicon glyphicon-remove").removeClass("warning");
-                            $(this).find(".starrq").removeClass("warning").addClass("ok");
-						    $("#termcheck").removeClass('ok').addClass('warning');
-				            $("#termsRequired").removeClass('ok').addClass('warning');
-                        } else {
-							$(this).find(".error").html(name).removeClass("warning").addClass("ok");
-                            $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").removeClass("glyphicon glyphicon-ok").removeClass("ok");
-                            $(this).find(".starrq").removeClass("warning").addClass("ok");
-							$("#termcheck").addClass('ok').removeClass('warning');
-				            $("#termsRequired").addClass('ok').removeClass('warning');
-						}
-                    
-                });
-            });
+        function resetFeedback($el) {
+            $el.removeClass("glyphicon glyphicon-ok glyphicon-remove warning ok");
+        }
+        function resetMessages(i, formGroup) {
+            const $error = $(formGroup).find(".error");
+            const name = $(formGroup).find(".check").attr("name");
+            $error.html(name);
+            resetWarning($error);
+            resetFeedback($(formGroup).find(".feedback"));
+            resetWarning($(formGroup).find(".starrq"));
+        }
+        function removeTermWarning() {
+            const $termsGroup = $("#terms").closest(".form-group");
+            resetFeedback($termsGroup.find(".feedback"));
+            resetWarning($("#termcheck"));
+            resetWarning($("#termsRequired"));
+        }
+
+        $(".btn2").click(function (evt) {
+            $(".form-group").each(resetMessages);
+            removeTermWarning();
+        });
         /* document ready end */
     });
