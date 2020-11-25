@@ -1,6 +1,7 @@
-        /* modal change*/
-		$(".inputboxmodal2").on("focusin focusout input", function() {
-             console.log("changed");
+        /* */
+        
+        $(".inputboxmodal1").on("focusin focusout input", function() {
+             console.log("changed");   
     
              var inputattr = $(this)
                           .find(".input-check")
@@ -10,46 +11,44 @@
                           .find(".input-check")
                           .val()
                           .trim();
-             var value  = inputstr;       
-            //alert(inputstr);
              var fakeReg = /(.)\1{2,}/;
              var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
              var pswReglow = /^([a-zA-Z0-9]{6,})+$/;
              var pswRegheigh = /^([a-zA-Z0-9]{13,})+$/;//13 or more occurences
              
-             var $form = $("form.modalresetpw");
-             var inputs = $form[0].elements;
-        
+            // var $form = $("form.register");
+            // var inputs = $form[0].elements;
+                
        //alert(inputattr+inputstr);
         if (inputstr != "") {
                $(this).find(".error").html(inputattr+'  is ok').removeClass("warning").addClass("ok");
                $(this).find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
               
               if(fakeReg.test(inputstr)) {
-                        $(this).find(".error").html(inputattr + " is Fake text: Please remove repetition ");
+                    $(this).find(".error").html(inputattr + " is Fake text: Please remove repetition ");
                         $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                         $(this).find(".error").addClass('warning').removeClass('ok');
                         //$(this).css("border","2px solid red");
-                    } else {
-                 /* E-mail*/
+                    } else {    
+               //$(this).find(".error").html(inputattr+'  is ok');
+               /* E-mail filter */
                         if (inputattr === "E-mail") {   
                                if(emailReg.test(inputstr)) {
                                     $(this).find(".error").html(inputattr + " is Ok : Your data has been entered correctly ");
-                                    $(this).find(".error").addClass('ok').removeClass('warning');
+                                    $(this).find(".error").removeClass('warning').addClass('ok');
                                     $(this).find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
                                     //$(this).css("border","2px solid green");
                                
                                } else {
-                                    $(this).find(".error").html(inputattr + " is Incorrect: Please enter it correctly ").removeClass('ok').addClass('warning');
+                                    $(this).find(".error").html(inputattr + " is Incorrect: Please enter it correctly ").addClass('warning').removeClass('ok');
                                     $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                                     //$(this).find(".error");
                                     //$(this).css("border","2px solid red");
-                                        }
+                               }
+                 /* Password filter */             
                                                     }
-                            }                         
-                /*Password  */        
+                                                    
                         if (inputattr === "Password") {
-                            
                             if(fakeReg.test(inputstr)) {
                                 $(this).find(".error").html(inputattr + " is Fake text: Please remove repetition ");
                                 $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
@@ -72,53 +71,25 @@
                                                 //$(this).css("border","2px solid green");   
                                                  } else {
                                                     $(this).find(".error").html(inputattr + " is Incorrect: Please enter no more than 12 character "+inputstr);
-                                                    $(this).find(".error").addClass('warning').removeClass('ok');
+                                                    $(this).find(".error").addClass('warning').removeClass('ok');    
                                                     $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                                                     //$(this).css("border","2px solid red");
                                                     }
                                                }
-                                        }
-                                    }   
-                                        
-                                  //  console.log("inputattr at password retype : ", inputattr);  
-                        if (inputattr === "Password Retype") {
-									//alert(inputattr);
-										//if (inputstr.length > 0) {
-										   if (inputstr !== inputs.Password.value)  {
-												$(this).find(".error").html(inputattr + " is Incorrect: Password doesn't match retyped password ");
-												$(this).find(".error").addClass('warning').removeClass('ok');
-												$(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-												//$(this).css("border","2px solid red");
-												} else {
-												$(this).find(".error").html(inputattr+" is OK: Your data has been entered correctly "+inputstr);
-												$(this).find(".error").addClass('ok').removeClass('warning');
-												$(this).find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
-												//$(this).css("border","2px solid green");
-												}			
-											 
-											  								  
-											 // var pswReglow = /^([a-zA-Z0-9]{6,})+$/;
-											 // var pswRegheigh = /^([a-zA-Z0-9]{13,})+$/;//13 or more occurences
-													
-										/*   }else{
-												$(this).find(".error").html(inputattr+" is EMPTY: Please enter data into this input");
-												$(this).find(".error").addClass('warning').removeClass('ok');
-												$(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-												//$(this).css("border","2px solid red");
-											} */
-											
-										}
-                          
-            } else {    
-               $(this).find(".error").html(inputattr+' is empty').removeClass("ok").addClass("warning");    
+                                                         
+                                        }                            
+                                    }                   
+                            }     
+            } else{ 
+               $(this).find(".error").html(inputattr+'is empty').removeClass("ok").addClass("warning"); 
                $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                 
             }
-        /*          */
-            });
             
-            $(".button1color2").click(function() {
-                  $(".inputboxmodal2").each(function() {
+        })
+        /* modal check*/
+            $(".button1color1").click(function() {
+                  $(".inputboxmodal1").each(function() {
                     var st = $(this)
                       .find(".input-check")
                       .attr("name");
@@ -146,10 +117,10 @@
                         //.next()
                         .find(".feedback")
                         //.html("Your " + st + " is OK ")
-                        .removeClass("glyphicon glyphicon-remove warning")
+                        .removeClass("glyphicon glyphicon-remove")
                         .addClass("glyphicon glyphicon-ok ok");
                       $(this)
-                        .next()
+                        //.next()
                         .find(".error")
                         .removeClass("warning")
                         .addClass("ok");
@@ -181,11 +152,10 @@
 
                     //alert("The " + st +  " was clicked. it is " + st2);
                   });
-				  
             });
-
-        $(".button2color").click(function() {
-                  $(".inputboxmodal2").each(function() {
+			/**/
+            $(".button1color").click(function() {
+                  $(".inputboxmodal1").each(function() {
                     var st = $(this)
                       .find(".input-check")
                       .attr("name");
@@ -216,7 +186,7 @@
                         //.removeClass("glyphicon glyphicon-remove warning")
                           .removeClass("glyphicon glyphicon-ok ok");
                       $(this)
-                        .next()
+                      //  .next()
                         .find(".error")
                         .removeClass("warning")
                         .addClass("ok");
@@ -237,11 +207,11 @@
                         .find(".feedback")
                         .removeClass("glyphicon glyphicon-remove")
                         //.addClass("glyphicon glyphicon-remove warning");
-                      $(this)
+                     // $(this)
                         //.next()
-                        .find(".error")
+                     //   .find(".error")
                         //.removeClass("ok")
-                        .addClass("ok");
+                     //   .addClass("ok");
 
                      // event.preventDefault();
                     }
@@ -249,4 +219,3 @@
                     //alert("The " + st +  " was clicked. it is " + st2);
                   });
             });
-      
