@@ -87,72 +87,32 @@
             }
             
         })
-        /* modal check*/
-            $(".button1color1").click(function() {
-                  $(".inputboxmodal1").each(function() {
-                    var st = $(this)
-                      .find(".input-check")
-                      .attr("name");
-                    var st2 = $(this)
-                      .find(".input-check")
-                      .val()
-                      .trim();
-                    if (
-                      $(this)
-                        .find(".input-check")
-                        .val()
-                        .trim() != ""
-                    ) {
-                      //$($(this).nextAll(".inputstatus")).find(".fielderror").text("Your " + st + " is OK ");
-                      //$(this).find(".fielderror").text("Your " + st + " is OK ");
-                      $(this)
-                        //.next()
-                        .find(".error")
-                        .html("Your " + st + " is OK ");
-                      $(this)
-                        .find(".error")
-                        .css("color", "green");
-                      
-                      $(this)
-                        //.next()
-                        .find(".feedback")
-                        //.html("Your " + st + " is OK ")
-                        .removeClass("glyphicon glyphicon-remove")
-                        .addClass("glyphicon glyphicon-ok ok");
-                      $(this)
-                        //.next()
-                        .find(".error")
-                        .removeClass("warning")
-                        .addClass("ok");
-                     
-                      //alert(st2);
-                    } else {
-                      //$($(this).nextAll(".inputstatus")).find(".fielderror").text("Your " + st + " is empty");
-                      $(this)
-                        //.next()
-                        .find(".error")
-                        .html("Your " + st + " is empty ");
-                      $(this)
-                        .find(".error")
-                        //.css("background-color", "pink");
-                        .css("color", "red");
-                      $(this)
-                        //.next()
-                        .find(".feedback")
-                        .removeClass("glyphicon glyphicon-ok ok")
-                        .addClass("glyphicon glyphicon-remove warning");
-                      $(this)
-                        //.next()
-                        .find(".error")
-                        .removeClass("ok")
-                        .addClass("warning");
-
-                      event.preventDefault();
-                    }
-
-                    //alert("The " + st +  " was clicked. it is " + st2);
-                  });
-            });
+function removeError(inputGroup, message) {
+    $(inputGroup).find(".error").html(message);
+    $(inputGroup).find(".error").css("color", "green");
+    $(inputGroup).find(".error").removeClass("warning").addClass("ok");
+    $(inputGroup).find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok ok");
+}
+function addError(inputGroup, message) {
+    $(inputGroup).find(".error").html(message);
+    $(inputGroup).find(".error").css("color", "red");
+    $(inputGroup).find(".error").removeClass("ok").addClass("warning");
+    $(inputGroup).find(".feedback").removeClass("glyphicon glyphicon-ok ok").addClass("glyphicon glyphicon-remove warning");
+}
+/* modal check*/
+function loginSubmitHandler(evt) {
+    $(".inputboxmodal1").each(function validateInputField() {
+        var inputName = $(this).find(".input-check").attr("name");
+        var trimmedValue = $(this).find(".input-check").val().trim();
+        if (trimmedValue !== "") {
+            removeError(this, "Your " + inputName + " is OK");
+        } else {
+            addError(this, "Your " + inputName + " is empty");
+            evt.preventDefault();
+        }
+    });
+}
+$("#login [type=submit]").click(loginSubmitHandler);
 			/**/
             $(".button1color").click(function() {
                   $(".inputboxmodal1").each(function() {
