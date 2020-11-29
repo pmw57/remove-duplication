@@ -60,19 +60,18 @@ const login = (function() {
     })
     /* modal check*/
     function removeError(inputGroup, message) {
-        $(inputGroup).find(".error").html(message);
-        $(inputGroup).find(".error").css("color", "green");
-        $(inputGroup).find(".error").removeClass("warning").addClass("ok");
-        $(inputGroup).find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok ok");
+        inputStatus.errorOk(inputGroup, message);
+        inputStatus.feedbackOk(inputGroup);
     }
     function addError(inputGroup, message) {
-        $(inputGroup).find(".error").html(message);
-        $(inputGroup).find(".error").css("color", "red");
-        $(inputGroup).find(".error").removeClass("ok").addClass("warning");
-        $(inputGroup).find(".feedback").removeClass("glyphicon glyphicon-ok ok").addClass("glyphicon glyphicon-remove warning");
+        inputStatus.errorWarning(inputGroup, message);
+        inputStatus.feedbackWarning(inputGroup);
     }
     function loginSubmitHandler(evt) {
-        $(".inputboxmodal1").each(function validateInputField() {
+        $("#login .form-group").each(function validateInputField() {
+            if (!$(this).find(".input-check").length) {
+                return;
+            }
             var inputName = $(this).find(".input-check").attr("name");
             var trimmedValue = $(this).find(".input-check").val().trim();
             if (trimmedValue !== "") {

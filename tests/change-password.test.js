@@ -1,6 +1,8 @@
 describe("When change-password form is reset, update input messages", function () {
     const passwordResetHandler = changePassword.eventHandler.passwordReset;
-    const fakeEvt = {};
+    const fakeEvt = {
+        preventDefault: function fakeFunc() {}
+    };
     describe("email error", function () {
         const $emailGroup = $("#changepw .form-group").eq(1);
         const $emailError = $emailGroup.find(".error");

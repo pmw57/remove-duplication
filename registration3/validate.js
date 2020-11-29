@@ -834,17 +834,12 @@ const validate = (function() {
         });
     });
 
-    function resetFeedback($el) {
-        $el.removeClass("glyphicon glyphicon-ok glyphicon-remove warning ok");
-    }
-
-    function resetMessages(i, formGroup) {
-        const $error = $(formGroup).find(".error");
-        const name = $(formGroup).find(".check").attr("name");
-        $error.html(name);
-        resetWarning($error);
-        resetFeedback($(formGroup).find(".feedback"));
-        resetWarning($(formGroup).find(".starrq"));
+    function resetMessages() {
+        const $error = $(this).find(".error");
+        const name = $(this).find(".check").attr("name");
+        inputStatus.errorOk(this, name);
+        inputStatus.feedbackNone(this);
+        resetWarning($(this).find(".starrq"));
     }
 
     function removeTermWarning() {
