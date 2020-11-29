@@ -5,6 +5,7 @@ describe("When login form is submitted", function () {
     const $emailFeedback = $inputGroup.find(".feedback");
     const CSSred = "rgb(255, 0, 0)";
     const CSSgreen = "rgb(0, 128, 0)";
+    const loginSubmitHandler = login.eventHandler.loginSubmit;
     const fakeEvt = {
         preventDefault: function fakeFunc() {}
     };
