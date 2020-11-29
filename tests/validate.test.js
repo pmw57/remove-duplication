@@ -1,9 +1,9 @@
 describe("When form is reset, reset input classes", function () {
-    const formGroup = $(".form-group")[0];
-    const field = $(formGroup).find(".check")[0];
-    const $error = $(formGroup).find(".error");
-    const $feedback = $(formGroup).find(".feedback");
-    const $starrq = $(formGroup).find(".starrq");
+    const $firstnameGroup = $(".form-group").first();
+    const firstnameInput = $firstnameGroup.find(".check");
+    const $firstnameError = $firstnameGroup.find(".error");
+    const $firstnameFeedback = $firstnameGroup.find(".feedback");
+    const $firstnameRequired = $firstnameGroup.find(".starrq");
     const $termcheck = $("#termcheck");
     const $termsRequired = $("#termsRequired");
     
@@ -16,44 +16,44 @@ describe("When form is reset, reset input classes", function () {
         resetValues();
     });
     it("updates the error name", function () {
-        $error.html("");
+        $firstnameError.html("");
         $(".btn2").trigger("click");
-        expect($error.html()).to.equal(field.name);
+        expect($firstnameError.html()).to.equal(firstnameInput.attr("name"));
     });
     it("removes warning from error", function () {
-        $error.addClass("warning");
+        $firstnameError.addClass("warning");
         $(".btn2").trigger("click");
-        expect($error.attr("class")).to.not.contain("warning");
+        expect($firstnameError.attr("class")).to.not.contain("warning");
     });
     it("adds ok to error", function () {
-        $error.removeClass("ok");
+        $firstnameError.removeClass("ok");
         $(".btn2").trigger("click");
-        expect($error.attr("class")).to.contain("ok");
+        expect($firstnameError.attr("class")).to.contain("ok");
     });
     it("removes glyphicon from feedback", function () {
-        $feedback.addClass("glyphicon");
+        $firstnameFeedback.addClass("glyphicon");
         $(".btn2").trigger("click");
-        expect($feedback.attr("class")).to.not.contain("glyphicon");
+        expect($firstnameFeedback.attr("class")).to.not.contain("glyphicon");
     });
     it("removes glyphicon-ok from feedback", function () {
-        $feedback.addClass("glyphicon-ok");
+        $firstnameFeedback.addClass("glyphicon-ok");
         $(".btn2").trigger("click");
-        expect($feedback.attr("class")).to.not.contain("glyphicon-ok");
+        expect($firstnameFeedback.attr("class")).to.not.contain("glyphicon-ok");
     });
     it("removes warning from feedback", function () {
-        $feedback.addClass("warning");
+        $firstnameFeedback.addClass("warning");
         $(".btn2").trigger("click");
-        expect($feedback.attr("class")).to.not.contain("warning");
+        expect($firstnameFeedback.attr("class")).to.not.contain("warning");
     });
     it("removes warning from starrq", function () {
-        $starrq.addClass("warning");
+        $firstnameRequired.addClass("warning");
         $(".btn2").trigger("click");
-        expect($starrq.attr("class")).to.not.contain("warning");
+        expect($firstnameRequired.attr("class")).to.not.contain("warning");
     });
     it("adds ok to starrq", function () {
-        $starrq.removeClass("ok");
+        $firstnameRequired.removeClass("ok");
         $(".btn2").trigger("click");
-        expect($starrq.attr("class")).to.contain("ok");
+        expect($firstnameRequired.attr("class")).to.contain("ok");
     });
     describe("terms", function () {
         const $termsFormgroup = $termcheck.parentsUntil(".form-group");
