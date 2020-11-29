@@ -183,7 +183,7 @@
                   });
 				  
             });
-            $("#changepw [type=reset]").click(function passwordResetHandler() {
+            function passwordResetHandler() {
                 $(".inputboxmodal2").each(function resetInputMessages() {
                     var $inputField = $(this).find(".input-check");
                     var inputName = $inputField.attr("name");
@@ -192,4 +192,5 @@
                     $(this).find(".error").removeClass("warning").addClass("ok");
                     $(this).find(".feedback").removeClass("glyphicon glyphicon-remove glyphicon-ok ok");
                 });
-            });
+            }
+            $("#changepw").on("reset", passwordResetHandler);
