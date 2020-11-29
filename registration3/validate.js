@@ -1946,9 +1946,10 @@ $(document)
             resetWarning($("#termsRequired"));
         }
 
-        $(".btn2").click(function (evt) {
+        function registrationResetHandler(evt) {
             $(".form-group").each(resetMessages);
             removeTermWarning();
-        });
+        }
+        $("#registration").on("reset", registrationResetHandler);
         /* document ready end */
     });
