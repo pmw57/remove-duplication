@@ -1,10 +1,3 @@
-function replaceClass(el, oldClass, newClass) {
-    $(el).removeClass(oldClass).addClass(newClass);
-}
-
-function resetWarning($el) {
-    replaceClass($el, "warning", "ok");
-}
 const validate = (function() {
     $(".icon").click(function() {
         $(".bar1").toggleClass("blue");
@@ -834,24 +827,19 @@ const validate = (function() {
         });
     });
 
-    function resetFeedback($el) {
-        $el.removeClass("glyphicon glyphicon-ok glyphicon-remove warning ok");
-    }
-
-    function resetMessages(i, formGroup) {
-        const $error = $(formGroup).find(".error");
-        const name = $(formGroup).find(".check").attr("name");
-        $error.html(name);
-        resetWarning($error);
-        resetFeedback($(formGroup).find(".feedback"));
-        resetWarning($(formGroup).find(".starrq"));
+    function resetMessages() {
+        const $error = $(this).find(".error");
+        const name = $(this).find(".check").attr("name");
+        inputStatus.errorOk(this, name);
+        inputStatus.feedbackNone(this);
+        inputStatus.setOk($(this).find(".starrq"));
     }
 
     function removeTermWarning() {
         const $termsGroup = $("#terms").closest(".form-group");
-        resetFeedback($termsGroup.find(".feedback"));
-        resetWarning($("#termcheck"));
-        resetWarning($("#termsRequired"));
+        inputStatus.feedbackNone($termsGroup);
+        inputStatus.setOk($termsGroup.find("#termcheck"));
+        inputStatus.setOk($termsGroup.find("#termsRequired"));
     }
 
     function registrationResetHandler(evt) {

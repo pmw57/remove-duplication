@@ -94,13 +94,10 @@ const changePassword = (function() {
     });
 
     function passwordResetHandler() {
-        $(".inputboxmodal2").each(function resetInputMessages() {
-            var $inputField = $(this).find(".input-check");
-            var inputName = $inputField.attr("name");
-            $(this).find(".error").html("Your " + inputName);
-            $(this).find(".error").css("color", "green");
-            $(this).find(".error").removeClass("warning").addClass("ok");
-            $(this).find(".feedback").removeClass("glyphicon glyphicon-remove glyphicon-ok ok");
+        $("#changepw .form-group").each(function resetInputMessages() {
+            var inputName = $(this).find(".input-check").attr("name");
+            inputStatus.errorOk(this, "Your " + inputName);
+            inputStatus.feedbackNone(this);
         });
     }
     $("#changepw").on("reset", passwordResetHandler);

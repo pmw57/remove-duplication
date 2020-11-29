@@ -1,16 +1,14 @@
-describe("When login form is submitted", function () {
-    const $inputGroup = $(".inputboxmodal1");
-    const $emailInput = $inputGroup.find(".input-check").first();
-    const $emailError = $inputGroup.find(".error");
-    const $emailFeedback = $inputGroup.find(".feedback");
-    const CSSred = "rgb(255, 0, 0)";
-    const CSSgreen = "rgb(0, 128, 0)";
+describe("When login form is submitted, update input messages", function () {
     const loginSubmitHandler = login.eventHandler.loginSubmit;
     const fakeEvt = {
         preventDefault: function fakeFunc() {}
     };
-    describe("error message", function () {
-        describe("email has value", function () {
+    describe("email has value", function () {
+        const $emailGroup = $("#login .form-group").eq(1);
+        describe("email error", function () {
+            const $emailInput = $emailGroup.find("input");
+            const $emailError = $emailGroup.find(".error");
+            const CSSgreen = "rgb(0, 128, 0)";
             beforeEach(function () {
                 $emailInput.val("test value");
             });
@@ -35,34 +33,9 @@ describe("When login form is submitted", function () {
                 expect($emailError.attr("class")).to.contain("ok");
             });
         });
-        describe("email is empty", function () {
-            beforeEach(function () {
-                $emailInput.val("");
-            });
-            it("Gives an error message", function () {
-                $emailError.html("test content");
-                loginSubmitHandler(fakeEvt);
-                expect($emailError.html()).to.equal("Your E-mail is empty");
-            });
-            it("Gives error color", function () {
-                $emailError.css("color", "");
-                loginSubmitHandler(fakeEvt);
-                expect($emailError.css("color")).to.equal(CSSred);
-            });
-            it("Adds the error warning class", function () {
-                $emailError.removeClass("warning");
-                loginSubmitHandler(fakeEvt);
-                expect($emailError.attr("class")).to.contain("warning");
-            });
-            it("Removes the error ok class", function () {
-                $emailError.addClass("ok");
-                loginSubmitHandler(fakeEvt);
-                expect($emailError.attr("class")).to.not.contain("ok");
-            });
-        });
-    });
-    describe("feedback message", function () {
-        describe("email has value", function () {
+        describe("email feedback", function () {
+            const $emailInput = $emailGroup.find("input");
+            const $emailFeedback = $emailGroup.find(".feedback");
             beforeEach(function () {
                 $emailInput.val("test value");
             });
@@ -87,7 +60,40 @@ describe("When login form is submitted", function () {
                 expect($emailFeedback.attr("class")).to.contain("ok");
             });
         });
-        describe("email is empty", function () {
+    });
+    describe("email is empty", function () {
+        const $emailGroup = $("#login .form-group").eq(1);
+        describe("email error", function () {
+            const $emailInput = $emailGroup.find(".input-check").first();
+            const $emailError = $emailGroup.find(".error");
+            const CSSred = "rgb(255, 0, 0)";
+            beforeEach(function () {
+                $emailInput.val("");
+            });
+            it("Gives an error message", function () {
+                $emailError.html("test content");
+                loginSubmitHandler(fakeEvt);
+                expect($emailError.html()).to.equal("Your E-mail is empty");
+            });
+            it("Gives error color", function () {
+                $emailError.css("color", "");
+                loginSubmitHandler(fakeEvt);
+                expect($emailError.css("color")).to.equal(CSSred);
+            });
+            it("Adds the error warning class", function () {
+                $emailError.removeClass("warning");
+                loginSubmitHandler(fakeEvt);
+                expect($emailError.attr("class")).to.contain("warning");
+            });
+            it("Removes the error ok class", function () {
+                $emailError.addClass("ok");
+                loginSubmitHandler(fakeEvt);
+                expect($emailError.attr("class")).to.not.contain("ok");
+            });
+        });
+        describe("email feedback", function () {
+            const $emailInput = $emailGroup.find(".input-check").first();
+            const $emailFeedback = $emailGroup.find(".feedback");
             beforeEach(function () {
                 $emailInput.val("");
             });
