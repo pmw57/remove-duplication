@@ -16,7 +16,7 @@ describe("When login form is submitted", function () {
             it("Resets the error message", function () {
                 $emailError.html("test content");
                 loginSubmitHandler(fakeEvt);
-                expect($emailError.html()).to.equal("Your E-mail is OK ");
+                expect($emailError.html()).to.equal("Your E-mail is OK");
             });
             it("Resets the error color", function () {
                 $emailError.css("color", "");
@@ -41,7 +41,7 @@ describe("When login form is submitted", function () {
             it("Gives an error message", function () {
                 $emailError.html("test content");
                 loginSubmitHandler(fakeEvt);
-                expect($emailError.html()).to.equal("Your E-mail is empty ");
+                expect($emailError.html()).to.equal("Your E-mail is empty");
             });
             it("Gives error color", function () {
                 $emailError.css("color", "");

@@ -93,12 +93,12 @@ function loginSubmitHandler(evt) {
         var inputName = $(this).find(".input-check").attr("name");
         var trimmedValue = $(this).find(".input-check").val().trim();
         if (trimmedValue !== "") {
-            $(this).find(".error").html("Your " + inputName + " is OK ");
+            $(this).find(".error").html("Your " + inputName + " is OK");
             $(this).find(".error").css("color", "green");
             $(this).find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok ok");
             $(this).find(".error").removeClass("warning").addClass("ok");
         } else {
-            $(this).find(".error").html("Your " + inputName + " is empty ");
+            $(this).find(".error").html("Your " + inputName + " is empty");
             $(this).find(".error").css("color", "red");
             $(this).find(".feedback").removeClass("glyphicon glyphicon-ok ok").addClass("glyphicon glyphicon-remove warning");
             $(this).find(".error").removeClass("ok").addClass("warning");
