@@ -88,7 +88,7 @@
             
         })
         /* modal check*/
-$("#login [type=submit]").click(function(evt) {
+function loginSubmitHandler(evt) {
     $(".inputboxmodal1").each(function() {
         var st = $(this).find(".input-check").attr("name");
         var st2 = $(this).find(".input-check").val().trim();
@@ -105,7 +105,8 @@ $("#login [type=submit]").click(function(evt) {
             evt.preventDefault();
         }
     });
-});
+}
+$("#login").on("submit", loginSubmitHandler);
 			/**/
             $(".button1color").click(function() {
                   $(".inputboxmodal1").each(function() {
