@@ -88,20 +88,26 @@
             
         })
         /* modal check*/
+function removeError(inputGroup, message) {
+    $(inputGroup).find(".error").html(message);
+    $(inputGroup).find(".error").css("color", "green");
+    $(inputGroup).find(".error").removeClass("warning").addClass("ok");
+    $(inputGroup).find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok ok");
+}
+function addError(inputGroup, message) {
+    $(inputGroup).find(".error").html(message);
+    $(inputGroup).find(".error").css("color", "red");
+    $(inputGroup).find(".error").removeClass("ok").addClass("warning");
+    $(inputGroup).find(".feedback").removeClass("glyphicon glyphicon-ok ok").addClass("glyphicon glyphicon-remove warning");
+}
 function loginSubmitHandler(evt) {
     $(".inputboxmodal1").each(function validateInputField() {
         var inputName = $(this).find(".input-check").attr("name");
         var trimmedValue = $(this).find(".input-check").val().trim();
         if (trimmedValue !== "") {
-            $(this).find(".error").html("Your " + inputName + " is OK");
-            $(this).find(".error").css("color", "green");
-            $(this).find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok ok");
-            $(this).find(".error").removeClass("warning").addClass("ok");
+            removeError(this, "Your " + inputName + " is OK");
         } else {
-            $(this).find(".error").html("Your " + inputName + " is empty");
-            $(this).find(".error").css("color", "red");
-            $(this).find(".feedback").removeClass("glyphicon glyphicon-ok ok").addClass("glyphicon glyphicon-remove warning");
-            $(this).find(".error").removeClass("ok").addClass("warning");
+            addError(this, "Your " + inputName + " is empty");
             evt.preventDefault();
         }
     });
