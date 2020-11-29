@@ -1,10 +1,3 @@
-function replaceClass(el, oldClass, newClass) {
-    $(el).removeClass(oldClass).addClass(newClass);
-}
-
-function resetWarning($el) {
-    replaceClass($el, "warning", "ok");
-}
 const validate = (function() {
     $(".icon").click(function() {
         $(".bar1").toggleClass("blue");
@@ -839,14 +832,14 @@ const validate = (function() {
         const name = $(this).find(".check").attr("name");
         inputStatus.errorOk(this, name);
         inputStatus.feedbackNone(this);
-        resetWarning($(this).find(".starrq"));
+        inputStatus.setOk($(this).find(".starrq"));
     }
 
     function removeTermWarning() {
         const $termsGroup = $("#terms").closest(".form-group");
-        resetFeedback($termsGroup.find(".feedback"));
-        resetWarning($("#termcheck"));
-        resetWarning($("#termsRequired"));
+        inputStatus.feedbackNone($termsGroup);
+        inputStatus.setOk($termsGroup.find("#termcheck"));
+        inputStatus.setOk($termsGroup.find("#termsRequired"));
     }
 
     function registrationResetHandler(evt) {
