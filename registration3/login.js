@@ -88,71 +88,24 @@
             
         })
         /* modal check*/
-            $(".button1color1").click(function() {
-                  $(".inputboxmodal1").each(function() {
-                    var st = $(this)
-                      .find(".input-check")
-                      .attr("name");
-                    var st2 = $(this)
-                      .find(".input-check")
-                      .val()
-                      .trim();
-                    if (
-                      $(this)
-                        .find(".input-check")
-                        .val()
-                        .trim() != ""
-                    ) {
-                      //$($(this).nextAll(".inputstatus")).find(".fielderror").text("Your " + st + " is OK ");
-                      //$(this).find(".fielderror").text("Your " + st + " is OK ");
-                      $(this)
-                        //.next()
-                        .find(".error")
-                        .html("Your " + st + " is OK ");
-                      $(this)
-                        .find(".error")
-                        .css("color", "green");
-                      
-                      $(this)
-                        //.next()
-                        .find(".feedback")
-                        //.html("Your " + st + " is OK ")
-                        .removeClass("glyphicon glyphicon-remove")
-                        .addClass("glyphicon glyphicon-ok ok");
-                      $(this)
-                        //.next()
-                        .find(".error")
-                        .removeClass("warning")
-                        .addClass("ok");
-                     
-                      //alert(st2);
-                    } else {
-                      //$($(this).nextAll(".inputstatus")).find(".fielderror").text("Your " + st + " is empty");
-                      $(this)
-                        //.next()
-                        .find(".error")
-                        .html("Your " + st + " is empty ");
-                      $(this)
-                        .find(".error")
-                        //.css("background-color", "pink");
-                        .css("color", "red");
-                      $(this)
-                        //.next()
-                        .find(".feedback")
-                        .removeClass("glyphicon glyphicon-ok ok")
-                        .addClass("glyphicon glyphicon-remove warning");
-                      $(this)
-                        //.next()
-                        .find(".error")
-                        .removeClass("ok")
-                        .addClass("warning");
-
-                      event.preventDefault();
-                    }
-
-                    //alert("The " + st +  " was clicked. it is " + st2);
-                  });
-            });
+$("#login [type=submit]").click(function(evt) {
+    $(".inputboxmodal1").each(function() {
+        var st = $(this).find(".input-check").attr("name");
+        var st2 = $(this).find(".input-check").val().trim();
+        if ($(this).find(".input-check").val().trim() != "") {
+            $(this).find(".error").html("Your " + st + " is OK ");
+            $(this).find(".error").css("color", "green");
+            $(this).find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok ok");
+            $(this).find(".error").removeClass("warning").addClass("ok");
+        } else {
+            $(this).find(".error").html("Your " + st + " is empty ");
+            $(this).find(".error").css("color", "red");
+            $(this).find(".feedback").removeClass("glyphicon glyphicon-ok ok").addClass("glyphicon glyphicon-remove warning");
+            $(this).find(".error").removeClass("ok").addClass("warning");
+            evt.preventDefault();
+        }
+    });
+});
 			/**/
             $(".button1color").click(function() {
                   $(".inputboxmodal1").each(function() {
