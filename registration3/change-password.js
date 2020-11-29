@@ -1,3 +1,4 @@
+const changePassword = (function () {
         /* modal change*/
 		$(".inputboxmodal2").on("focusin focusout input", function() {
              console.log("changed");
@@ -194,3 +195,10 @@
                 });
             }
             $("#changepw").on("reset", passwordResetHandler);
+
+    return {
+        eventHandler: {
+            passwordReset: passwordResetHandler
+        }
+    };
+}());

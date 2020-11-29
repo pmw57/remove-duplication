@@ -1,3 +1,4 @@
+const login = (function () {
         /* */
         
         $(".inputboxmodal1").on("focusin focusout input", function() {
@@ -179,3 +180,9 @@ $("#login").on("submit", loginSubmitHandler);
                     //alert("The " + st +  " was clicked. it is " + st2);
                   });
             });
+    return {
+        eventHandler: {
+            loginSubmit: loginSubmitHandler
+        }
+    };
+}());

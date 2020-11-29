@@ -4,8 +4,7 @@ function replaceClass(el, oldClass, newClass) {
 function resetWarning($el) {
     replaceClass($el, "warning", "ok");
 }
-$(document)
-    .ready(function () {
+const validate = (function () {
         $(".icon")
             .click(function () {
                 $(".bar1")
@@ -1951,5 +1950,10 @@ $(document)
             removeTermWarning();
         }
         $("#registration").on("reset", registrationResetHandler);
-        /* document ready end */
-    });
+
+    return {
+        eventHandler: {
+            registrationReset: registrationResetHandler
+        }
+    };
+}());
