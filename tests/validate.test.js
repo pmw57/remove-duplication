@@ -115,14 +115,37 @@ describe("When form is reset, reset input messages", function () {
     });
     describe("registration submit", function () {
         const submitButton = $(".btn1");
+        const $firstnameGroup = $("#registration .form-group").first();
         const registrationSubmitHandler = validate.eventHandler.registrationSubmit;
-        const fakeEvt = {
-            preventDefault: function fakePreventDefault() {}
-        };
-        it("doesn't throw an error", function () {
-            expect(function () {
+        let fakeEvt;
+        beforeEach(function () {
+            fakeEvt = {
+                preventDefault: function fakePreventDefault() {}
+            };
+        });
+        describe("avoiding errors", function () {
+            it("doesn't throw an error", function () {
+                expect(function () {
+                    registrationSubmitHandler(fakeEvt);
+                }).to.not.throw("Cannot read property 'trim' of undefined");
+            });
+            it("doesn't call preventDefault when no fields have a warning", function () {
+                chai.spy.on(fakeEvt, "preventDefault");
+                $(".form-group .check").val("test value");
+                $(".inputstatus .warning").removeClass("warning");
+                $("#terms").prop("checked", true);
                 registrationSubmitHandler(fakeEvt);
-            }).to.not.throw("Cannot read property 'trim' of undefined");
+                expect(fakeEvt.preventDefault).to.not.have.been.called();
+            });
+            it("calls preventDefault when a field has a warning", function () {
+                chai.spy.on(fakeEvt, "preventDefault");
+                $(".form-group .check").val("test value");
+                $(".inputstatus .warning").removeClass("warning");
+                $(".inputstatus .error").eq(0).addClass("warning");
+                $("#terms").prop("checked", true);
+                registrationSubmitHandler(fakeEvt);
+                expect(fakeEvt.preventDefault).to.have.been.called();
+            });
         });
     });
     describe("terms reset", function () {
