@@ -782,7 +782,7 @@ const validate = (function() {
     });
 
     // terms and conditions check
-    $('#terms').click(function() {
+    function termsClickHandler() {
         if ($(this).is(":checked")) {
             $("#termcheck").addClass('ok').removeClass('warning');
             $("#termsRequired").addClass('ok').removeClass('warning');
@@ -790,7 +790,8 @@ const validate = (function() {
             $("#termcheck").removeClass('ok').addClass('warning');
             $("#termsRequired").removeClass('ok').addClass('warning');
         }
-    });
+    }
+    $('#terms').click(termsClickHandler);
 
     $(".btn1").click(function() {
         $('.form-group').each(function() {
@@ -845,7 +846,8 @@ const validate = (function() {
 
     return {
         eventHandler: {
-            registrationReset: registrationResetHandler
+            registrationReset: registrationResetHandler,
+            termsClick: termsClickHandler
         }
     };
 }());
