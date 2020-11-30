@@ -56,7 +56,7 @@ describe("When form is reset, reset input messages", function () {
             });
         });
     });
-    describe("terms submit", function () {
+    describe("terms click", function () {
         const $termsGroup = $("#terms").closest(".form-group");
         const $terms = $termsGroup.find("#terms");
         const $termsError = $termsGroup.find("#termcheck");
