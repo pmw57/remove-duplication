@@ -61,53 +61,54 @@ describe("When form is reset, reset input messages", function () {
         const $terms = $termsGroup.find("#terms");
         const $termsError = $termsGroup.find("#termcheck");
         const $termsRequired = $termsGroup.find("#termsRequired");
+        const termsClickHandler = validate.eventHandler.termsClick;
         describe("terms are checked", function () {
             beforeEach(function () {
-                $("#terms").prop("checked", false);
+                $("#terms").prop("checked", true);
             });
             it("adds ok to the checkbox", function () {
                 $termsError.removeClass("ok");
-                $("#terms").click();
+                termsClickHandler.call($terms);
                 expect($termsError.attr("class")).to.contain("ok");
             });
             it("removes warning from the checkbox", function () {
                 $termsError.addClass("warning");
-                $("#terms").click();
+                termsClickHandler.call($terms);
                 expect($termsError.attr("class")).to.not.contain("warning");
             });
             it("add ok to the required star", function () {
                 $termsRequired.removeClass("ok");
-                $("#terms").click();
+                termsClickHandler.call($terms);
                 expect($termsRequired.attr("class")).to.contain("ok");
             });
             it("removes warning from the required star", function () {
                 $termsRequired.addClass("warning");
-                $("#terms").click();
+                termsClickHandler.call($terms);
                 expect($termsRequired.attr("class")).to.not.contain("warning");
             });
         });
         describe("terms are unchecked", function () {
             beforeEach(function () {
-                $("#terms").prop("checked", true);
+                $("#terms").prop("checked", false);
             });
             it("removes ok from the checkbox", function () {
                 $termsError.addClass("ok");
-                $("#terms").click();
+                termsClickHandler.call($terms);
                 expect($termsError.attr("class")).to.not.contain("ok");
             });
             it("adds warning to the checkbox", function () {
                 $termsError.removeClass("warning");
-                $("#terms").click();
+                termsClickHandler.call($terms);
                 expect($termsError.attr("class")).to.contain("warning");
             });
             it("removes ok from the required star", function () {
                 $termsRequired.addClass("ok");
-                $("#terms").click();
+                termsClickHandler.call($terms);
                 expect($termsRequired.attr("class")).to.not.contain("ok");
             });
             it("adds warning to the required star", function () {
                 $termsRequired.removeClass("warning");
-                $("#terms").click();
+                termsClickHandler.call($terms);
                 expect($termsRequired.attr("class")).to.contain("warning");
             });
         });
