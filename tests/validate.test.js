@@ -113,6 +113,18 @@ describe("When form is reset, reset input messages", function () {
             });
         });
     });
+    describe("registration submit", function () {
+        const submitButton = $(".btn1");
+        const registrationSubmitHandler = validate.eventHandler.registrationSubmit;
+        const fakeEvt = {
+            preventDefault: function fakePreventDefault() {}
+        };
+        it("doesn't throw an error", function () {
+            expect(function () {
+                registrationSubmitHandler(fakeEvt);
+            }).to.not.throw("Cannot read property 'trim' of undefined");
+        });
+    });
     describe("terms reset", function () {
         const $termsFormgroup = $("#terms").closest(".form-group");
         describe("terms feedback", function () {
