@@ -782,14 +782,17 @@ const validate = (function() {
     });
 
     // terms and conditions check
-    function termsClickHandler() {
-        if ($(this).is(":checked")) {
-            $("#termcheck").addClass('ok').removeClass('warning');
-            $("#termsRequired").addClass('ok').removeClass('warning');
-        } else if ($(this).is(":not(:checked)")) {
-            $("#termcheck").removeClass('ok').addClass('warning');
-            $("#termsRequired").removeClass('ok').addClass('warning');
+    function updateTerms(terms) {
+        if ($(terms).is(":checked")) {
+            inputStatus.setOk($("#termcheck"));
+            inputStatus.setOk($("#termsRequired"));
+        } else {
+            inputStatus.setWarning($("#termcheck"));
+            inputStatus.setWarning($("#termsRequired"));
         }
+    }
+    function termsClickHandler() {
+        updateTerms(this);
     }
     $('#terms').click(termsClickHandler);
 
