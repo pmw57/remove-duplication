@@ -655,7 +655,6 @@ const validate = (function() {
     });
 
     $('.input-groupmodal').on('focusin focusout input', function() {
-        console.log('cnanged');
         var namem = $(this).find(".check,textarea").attr("name");
         var valuem = $(this).find(".check,textarea").val().trim();
 
@@ -783,17 +782,19 @@ const validate = (function() {
     });
 
     // terms and conditions check
-    $('#terms').click(function() {
-        if ($(this).is(":checked")) {
-            console.log("Checkbox is checked.");
-            $("#termcheck").addClass('ok').removeClass('warning');
-            $("#termsRequired").addClass('ok').removeClass('warning');
-        } else if ($(this).is(":not(:checked)")) {
-            console.log("Checkbox is unchecked.");
-            $("#termcheck").removeClass('ok').addClass('warning');
-            $("#termsRequired").removeClass('ok').addClass('warning');
+    function updateTerms(terms) {
+        if ($(terms).is(":checked")) {
+            inputStatus.setOk($("#termcheck"));
+            inputStatus.setOk($("#termsRequired"));
+        } else {
+            inputStatus.setWarning($("#termcheck"));
+            inputStatus.setWarning($("#termsRequired"));
         }
-    });
+    }
+    function termsClickHandler() {
+        updateTerms(this);
+    }
+    $('#terms').click(termsClickHandler);
 
     $(".btn1").click(function() {
         $('.form-group').each(function() {
@@ -815,12 +816,10 @@ const validate = (function() {
                 event.preventDefault();
             }
             if ($("#terms").is(":checked")) {
-                console.log("Checkbox is checked.");
                 $("#termcheck").addClass('ok').removeClass('warning');
                 $("#termsRequired").addClass('ok').removeClass('warning');
             } else if ($("#terms").is(":not(:checked)")) {
                 event.preventDefault();
-                console.log("Checkbox is unchecked.");
                 $("#termcheck").removeClass('ok').addClass('warning');
                 $("#termsRequired").removeClass('ok').addClass('warning');
             }
@@ -850,7 +849,8 @@ const validate = (function() {
 
     return {
         eventHandler: {
-            registrationReset: registrationResetHandler
+            registrationReset: registrationResetHandler,
+            termsClick: termsClickHandler
         }
     };
 }());

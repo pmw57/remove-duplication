@@ -24,5 +24,7 @@ Node modules are installed with:
 You can then follow along the article, with using jsinspect:
 
 ```text
-> npx jsinspect registration3
+> npx jsinspect registration3 --ignore lib
 ```
+
+or by running the inspect.bat batch file, which issues the above jsinspect command.
