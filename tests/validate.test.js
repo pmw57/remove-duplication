@@ -10,17 +10,17 @@ describe("When form is reset, reset input messages", function () {
             const firstnameName = $firstnameGroup.find("input").attr("name");
             it("updates the error name", function () {
                 $firstnameError.html("");
-                $(".btn2").trigger("click");
+                registrationResetHandler(fakeEvt);
                 expect($firstnameError.html()).to.equal(firstnameName);
             });
             it("removes warning from error", function () {
                 $firstnameError.addClass("warning");
-                $(".btn2").trigger("click");
+                registrationResetHandler(fakeEvt);
                 expect($firstnameError.attr("class")).to.not.contain("warning");
             });
             it("adds ok to error", function () {
                 $firstnameError.removeClass("ok");
-                $(".btn2").trigger("click");
+                registrationResetHandler(fakeEvt);
                 expect($firstnameError.attr("class")).to.contain("ok");
             });
         });
@@ -28,17 +28,17 @@ describe("When form is reset, reset input messages", function () {
             const $firstnameFeedback = $firstnameGroup.find(".feedback");
             it("removes glyphicon from feedback", function () {
                 $firstnameFeedback.addClass("glyphicon");
-                $(".btn2").trigger("click");
+                registrationResetHandler(fakeEvt);
                 expect($firstnameFeedback.attr("class")).to.not.contain("glyphicon");
             });
             it("removes glyphicon-ok from feedback", function () {
                 $firstnameFeedback.addClass("glyphicon-ok");
-                $(".btn2").trigger("click");
+                registrationResetHandler(fakeEvt);
                 expect($firstnameFeedback.attr("class")).to.not.contain("glyphicon-ok");
             });
             it("removes warning from feedback", function () {
                 $firstnameFeedback.addClass("warning");
-                $(".btn2").trigger("click");
+                registrationResetHandler(fakeEvt);
                 expect($firstnameFeedback.attr("class")).to.not.contain("warning");
             });
         });
@@ -46,33 +46,33 @@ describe("When form is reset, reset input messages", function () {
             const $firstnameRequired = $firstnameGroup.find(".starrq");
             it("removes warning from starrq", function () {
                 $firstnameRequired.addClass("warning");
-                $(".btn2").trigger("click");
+                registrationResetHandler(fakeEvt);
                 expect($firstnameRequired.attr("class")).to.not.contain("warning");
             });
             it("adds ok to starrq", function () {
                 $firstnameRequired.removeClass("ok");
-                $(".btn2").trigger("click");
+                registrationResetHandler(fakeEvt);
                 expect($firstnameRequired.attr("class")).to.contain("ok");
             });
         });
     });
-    describe("terms", function () {
+    describe("terms reset", function () {
         const $termsFormgroup = $("#terms").closest(".form-group");
         describe("terms feedback", function () {
             const $termsFeedback = $termsFormgroup.find(".feedback");
             it("removes glyphicon from terms", function () {
                 $termsFeedback.addClass("glyphicon");
-                $(".btn2").trigger("click");
+                registrationResetHandler(fakeEvt);
                 expect($termsFeedback.attr("class")).to.not.contain("glyphicon");
             });
             it("removes glyphicon-ok from terms", function () {
                 $termsFeedback.addClass("glyphicon-ok");
-                $(".btn2").trigger("click");
+                registrationResetHandler(fakeEvt);
                 expect($termsFeedback.attr("class")).to.not.contain("glyphicon-ok");
             });
             it("removes ok from terms", function () {
                 $termsFeedback.addClass("ok");
-                $(".btn2").trigger("click");
+                registrationResetHandler(fakeEvt);
                 expect($termsFeedback.attr("class")).to.not.contain("ok");
             });
         });
@@ -80,12 +80,12 @@ describe("When form is reset, reset input messages", function () {
             const $termcheck = $termsFormgroup.find("#termcheck");
             it("adds checkbox ok to termcheck", function () {
                 $termcheck.removeClass("ok");
-                $(".btn2").trigger("click");
+                registrationResetHandler(fakeEvt);
                 expect($termcheck.attr("class")).to.contain("ok");
             });
             it("removes checkbox warning from termcheck", function () {
                 $termcheck.addClass("warning");
-                $(".btn2").trigger("click");
+                registrationResetHandler(fakeEvt);
                 expect($termcheck.attr("class")).to.not.contain("warning");
             });
         });
@@ -93,12 +93,12 @@ describe("When form is reset, reset input messages", function () {
             const $termsRequired = $termsFormgroup.find("#termsRequired");
             it("adds required ok to termsRequired", function () {
                 $termsRequired.removeClass("ok");
-                $(".btn2").trigger("click");
+                registrationResetHandler(fakeEvt);
                 expect($termsRequired.attr("class")).to.contain("ok");
             });
             it("removes required warning from termsRequired", function () {
                 $termsRequired.addClass("warning");
-                $(".btn2").trigger("click");
+                registrationResetHandler(fakeEvt);
                 expect($termsRequired.attr("class")).to.not.contain("warning");
             });
         });
