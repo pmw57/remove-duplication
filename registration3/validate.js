@@ -796,14 +796,14 @@ const validate = (function() {
     }
     $('#terms').click(termsClickHandler);
 
-    $(".btn1").click(function() {
+    function registrationSubmitHandler(evt) {
         $('.form-group').each(function() {
             var $requiredField = $(this).find(".check");
             if ($requiredField.length === 0) {
                 return;
             }
             if ($(".inputstatus .warning").length != 0) {
-                event.preventDefault();
+                evt.preventDefault();
             }
             var name = $requiredField.attr("name");
             var value = $requiredField.val().trim();
@@ -813,18 +813,19 @@ const validate = (function() {
                 $(this).find(".starrq").removeClass("ok").addClass("warning");
                 $("#termcheck").removeClass('ok').addClass('warning');
                 $("#termsRequired").removeClass('ok').addClass('warning');
-                event.preventDefault();
+                evt.preventDefault();
             }
             if ($("#terms").is(":checked")) {
                 $("#termcheck").addClass('ok').removeClass('warning');
                 $("#termsRequired").addClass('ok').removeClass('warning');
             } else if ($("#terms").is(":not(:checked)")) {
-                event.preventDefault();
+                evt.preventDefault();
                 $("#termcheck").removeClass('ok').addClass('warning');
                 $("#termsRequired").removeClass('ok').addClass('warning');
             }
         });
-    });
+    }
+    $(".btn1").click(registrationSubmitHandler);
 
     function resetMessages() {
         const $error = $(this).find(".error");
@@ -849,6 +850,7 @@ const validate = (function() {
 
     return {
         eventHandler: {
+            registrationSubmit: registrationSubmitHandler,
             registrationReset: registrationResetHandler,
             termsClick: termsClickHandler
         }

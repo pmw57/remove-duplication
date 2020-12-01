@@ -770,6 +770,7 @@
 <!-- tests -->
 <script src="../node_modules/mocha/mocha.js"></script>
 <script src="../node_modules/chai/chai.js"></script>
+<script src="../node_modules/chai-spies/chai-spies.js"></script>
 <script>
     mocha.setup({
         ui: "bdd",
@@ -778,6 +779,10 @@
     });
     const expect = chai.expect;
 </script>
+<script src="../tests/validate-terms-click.test.js"></script>
+<script src="../tests/validate-registration-submit.test.js"></script>
+<script src="../tests/validate-registration-reset.test.js"></script>
+<script src="../tests/validate.test.js"></script>
 <script src="../tests/validate.test.js"></script>
 <script src="../tests/login.test.js"></script>
 <script src="../tests/change-password.test.js"></script>
