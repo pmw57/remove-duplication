@@ -815,14 +815,7 @@ const validate = (function() {
                 $("#termsRequired").removeClass('ok').addClass('warning');
                 evt.preventDefault();
             }
-            if ($("#terms").is(":checked")) {
-                $("#termcheck").addClass('ok').removeClass('warning');
-                $("#termsRequired").addClass('ok').removeClass('warning');
-            } else if ($("#terms").is(":not(:checked)")) {
-                evt.preventDefault();
-                $("#termcheck").removeClass('ok').addClass('warning');
-                $("#termsRequired").removeClass('ok').addClass('warning');
-            }
+            updateTerms($("#terms"));
         });
     }
     $(".btn1").click(registrationSubmitHandler);
