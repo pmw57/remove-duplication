@@ -817,7 +817,7 @@ const validate = (function() {
             evt.preventDefault();
         }
     }
-    $(".btn1").click(registrationSubmitHandler);
+    $("#registration").on("submit", registrationSubmitHandler);
 
     function resetMessages() {
         const $error = $(this).find(".error");

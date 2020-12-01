@@ -132,6 +132,13 @@ describe("registration submit", function () {
             registrationSubmitHandler(fakeEvt);
             expect(fakeEvt.preventDefault).to.have.been.called();
         });
+        it("runs the submit handler when submit is clicked", function () {
+            $firstnameGroup.find("input").val("");
+            const $error = $firstnameGroup.find(".error");
+            $error.removeClass("warning");
+            $("#registration").trigger("submit");
+            expect($error.attr("class")).to.contain("warning");
+        });
     });
     describe("terms and conditions", function () {
         const $termsGroup = $("#terms").closest(".form-group");
