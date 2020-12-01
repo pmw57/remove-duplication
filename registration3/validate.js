@@ -802,9 +802,6 @@ const validate = (function() {
             if ($requiredField.length === 0) {
                 return;
             }
-            if ($(".inputstatus .warning").length != 0) {
-                evt.preventDefault();
-            }
             var name = $requiredField.attr("name");
             var value = $requiredField.val().trim();
             if (value === "") {
@@ -813,10 +810,12 @@ const validate = (function() {
                 $(this).find(".starrq").removeClass("ok").addClass("warning");
                 $("#termcheck").removeClass('ok').addClass('warning');
                 $("#termsRequired").removeClass('ok').addClass('warning');
-                evt.preventDefault();
             }
             updateTerms($("#terms"));
         });
+        if ($(".inputstatus .warning").length !== 0) {
+            evt.preventDefault();
+        }
     }
     $(".btn1").click(registrationSubmitHandler);
 
