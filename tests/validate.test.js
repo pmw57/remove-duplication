@@ -94,7 +94,6 @@ describe("registration submit", function () {
         const firstnameName = $firstnameGroup.find("input").attr("name");
         beforeEach(function () {
             $firstnameInput.val("");
-            $("#terms").prop("checked", false);
         });
         describe("error", function () {
             const $firstnameError = $firstnameGroup.find(".error");
@@ -159,6 +158,9 @@ describe("registration submit", function () {
             const $termsGroup = $("#terms").closest(".form-group");
             const $termsError = $termsGroup.find(".error2");
             const $termsRequired = $termsGroup.find(".starrq");
+            beforeEach(function () {
+                $("#terms").prop("checked", false);
+            })
             it("removes ok from error", function () {
                 $termsError.addClass("ok");
                 registrationSubmitHandler(fakeEvt);
