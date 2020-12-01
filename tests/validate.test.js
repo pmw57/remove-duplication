@@ -147,6 +147,105 @@ describe("When form is reset, reset input messages", function () {
                 expect(fakeEvt.preventDefault).to.have.been.called();
             });
         });
+        describe("firstname is empty", function () {
+            const $firstnameInput = $firstnameGroup.find("input");
+            const firstnameName = $firstnameGroup.find("input").attr("name");
+            beforeEach(function () {
+                $firstnameInput.val("");
+            });
+            describe("error", function () {
+                const $firstnameError = $firstnameGroup.find(".error");
+                it("shows the error text", function () {
+                    $firstnameError.html("");
+                    registrationSubmitHandler(fakeEvt);
+                    expect($firstnameError.html()).to.equal("First Name is empty !");
+                });
+                it("removes ok", function () {
+                    $firstnameError.addClass("ok");
+                    registrationSubmitHandler(fakeEvt);
+                    expect($firstnameError.attr("class")).to.not.contain("ok");
+                });
+                it("adds warning", function () {
+                    $firstnameError.removeClass("warning");
+                    registrationSubmitHandler(fakeEvt);
+                    expect($firstnameError.attr("class")).to.contain("warning");
+                });
+            });
+            describe("feedback", function () {
+                const $firstnameFeedback = $firstnameGroup.find(".feedback");
+                it("adds glyphicon", function () {
+                    $firstnameFeedback.removeClass("glyphicon");
+                    registrationSubmitHandler(fakeEvt);
+                    expect($firstnameFeedback.attr("class")).to.contain("glyphicon");
+                });
+                it("removes glyphicon-ok", function () {
+                    $firstnameFeedback.addClass("glyphicon-ok");
+                    registrationSubmitHandler(fakeEvt);
+                    expect($firstnameFeedback.attr("class")).to.not.contain("glyphicon-ok");
+                });
+                it("adds glyphicon-remove", function () {
+                    $firstnameFeedback.removeClass("glyphicon-remove");
+                    registrationSubmitHandler(fakeEvt);
+                    expect($firstnameFeedback.attr("class")).to.contain("glyphicon-remove");
+                });
+                it("removes ok", function () {
+                    $firstnameFeedback.addClass("ok");
+                    registrationSubmitHandler(fakeEvt);
+                    expect($firstnameFeedback.attr("class")).to.not.contain("ok");
+                });
+                it("adds warning", function () {
+                    $firstnameFeedback.removeClass("warning");
+                    registrationSubmitHandler(fakeEvt);
+                    expect($firstnameFeedback.attr("class")).to.contain("warning");
+                });
+            });
+            describe("required star", function () {
+                const $firstnameRequired = $firstnameGroup.find(".starrq");
+                it("removes ok", function () {
+                    $firstnameRequired.addClass("ok");
+                    registrationSubmitHandler(fakeEvt);
+                    expect($firstnameRequired.attr("class")).to.not.contain("ok");
+                });
+                it("adds warning", function () {
+                    $firstnameRequired.removeClass("warning");
+                    registrationSubmitHandler(fakeEvt);
+                    expect($firstnameRequired.attr("class")).to.contain("warning");
+                });
+            });
+            describe("terms", function () {
+                const $termsGroup = $("#terms").closest(".form-group");
+                const $termsError = $termsGroup.find(".error2");
+                const $termsRequired = $termsGroup.find(".starrq");
+                it("removes ok from error", function () {
+                    $termsError.addClass("ok");
+                    registrationSubmitHandler(fakeEvt);
+                    expect($termsError.attr("class")).to.not.contain("ok");
+                });
+                it("adds warning from error", function () {
+                    $termsError.removeClass("warning");
+                    registrationSubmitHandler(fakeEvt);
+                    expect($termsError.attr("class")).to.contain("warning");
+                });
+                it("removes ok from required", function () {
+                    $termsRequired.addClass("ok");
+                    registrationSubmitHandler(fakeEvt);
+                    expect($termsRequired.attr("class")).to.not.contain("ok");
+                });
+                it("adds warning from required", function () {
+                    $termsRequired.removeClass("warning");
+                    registrationSubmitHandler(fakeEvt);
+                    expect($termsRequired.attr("class")).to.contain("warning");
+                });
+            });
+            it.only("prevents form submission", function () {
+                $firstnameGroup.find(".check").val("test value");
+                $firstnameGroup.find("input").val("");
+                $("#terms").prop("checked", true);
+                chai.spy.on(fakeEvt, "preventDefault");
+                registrationSubmitHandler(fakeEvt);
+                expect(fakeEvt.preventDefault).to.have.been.called();
+            });
+        });
     });
     describe("terms reset", function () {
         const $termsFormgroup = $("#terms").closest(".form-group");
