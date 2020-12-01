@@ -166,7 +166,7 @@ describe("registration submit", function () {
                 registrationSubmitHandler(fakeEvt);
                 expect($termsError.attr("class")).to.not.contain("ok");
             });
-            it("adds warning from error", function () {
+            it("adds warning to error", function () {
                 $termsError.removeClass("warning");
                 registrationSubmitHandler(fakeEvt);
                 expect($termsError.attr("class")).to.contain("warning");
@@ -176,7 +176,7 @@ describe("registration submit", function () {
                 registrationSubmitHandler(fakeEvt);
                 expect($termsRequired.attr("class")).to.not.contain("ok");
             });
-            it("adds warning from required", function () {
+            it("adds warning to required", function () {
                 $termsRequired.removeClass("warning");
                 registrationSubmitHandler(fakeEvt);
                 expect($termsRequired.attr("class")).to.contain("warning");
