@@ -1,6 +1,4 @@
 describe("registration submit", function () {
-    const submitButton = $(".btn1");
-    const $firstnameGroup = $("#registration .form-group").first();
     const registrationSubmitHandler = validate.eventHandler.registrationSubmit;
     let fakeEvt;
     beforeEach(function () {
@@ -33,6 +31,7 @@ describe("registration submit", function () {
         });
     });
     describe("firstname is empty", function () {
+        const $firstnameGroup = $("#registration .form-group").first();
         const $firstnameInput = $firstnameGroup.find("input");
         const firstnameName = $firstnameGroup.find("input").attr("name");
         beforeEach(function () {
