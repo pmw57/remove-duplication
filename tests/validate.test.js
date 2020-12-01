@@ -191,6 +191,61 @@ describe("registration submit", function () {
             expect(fakeEvt.preventDefault).to.have.been.called();
         });
     });
+    describe("terms and conditions", function () {
+        const $termsGroup = $("#terms").closest(".form-group");
+        const $termsError = $termsGroup.find(".error2");
+        const $termsRequired = $termsGroup.find(".starrq");
+        describe("terms are checked", function () {
+            beforeEach(function () {
+                $("#terms").prop("checked", true);
+            })
+            it("adds ok to error", function () {
+                $termsError.removeClass("ok");
+                registrationSubmitHandler(fakeEvt);
+                expect($termsError.attr("class")).to.contain("ok");
+            });
+            it("removes warning from error", function () {
+                $termsError.addClass("warning");
+                registrationSubmitHandler(fakeEvt);
+                expect($termsError.attr("class")).to.not.contain("warning");
+            });
+            it("adds ok to required", function () {
+                $termsRequired.removeClass("ok");
+                registrationSubmitHandler(fakeEvt);
+                expect($termsRequired.attr("class")).to.contain("ok");
+            });
+            it("removes warning from required", function () {
+                $termsRequired.addClass("warning");
+                registrationSubmitHandler(fakeEvt);
+                expect($termsRequired.attr("class")).to.not.contain("warning");
+            });
+        });
+        describe("terms are unchecked", function () {
+            beforeEach(function () {
+                $("#terms").prop("checked", false);
+            })
+            it("removes ok from error", function () {
+                $termsError.addClass("ok");
+                registrationSubmitHandler(fakeEvt);
+                expect($termsError.attr("class")).to.not.contain("ok");
+            });
+            it("adds warning to error", function () {
+                $termsError.removeClass("warning");
+                registrationSubmitHandler(fakeEvt);
+                expect($termsError.attr("class")).to.contain("warning");
+            });
+            it("removes ok from required", function () {
+                $termsRequired.addClass("ok");
+                registrationSubmitHandler(fakeEvt);
+                expect($termsRequired.attr("class")).to.not.contain("ok");
+            });
+            it("adds warning to required", function () {
+                $termsRequired.removeClass("warning");
+                registrationSubmitHandler(fakeEvt);
+                expect($termsRequired.attr("class")).to.contain("warning");
+            });
+        });
+    });
 });
 describe("registration reset", function () {
     const registrationResetHandler = validate.eventHandler.registrationReset;
