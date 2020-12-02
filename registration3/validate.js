@@ -802,11 +802,9 @@ const validate = (function() {
             var name = $requiredField.attr("name");
             var value = $requiredField.val().trim();
             if (value === "") {
-                $(this).find(".error").html(name + " is empty !").removeClass("ok").addClass("warning");
-                $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                $(this).find(".starrq").removeClass("ok").addClass("warning");
-                $("#termcheck").removeClass('ok').addClass('warning');
-                $("#termsRequired").removeClass('ok').addClass('warning');
+                inputStatus.errorWarning(this, name + " is empty !");
+                inputStatus.feedbackWarning(this);
+                inputStatus.setWarning($(this).find(".starrq"));
             }
             updateTerms($("#terms"));
         });
