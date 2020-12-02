@@ -1,5 +1,8 @@
 describe("When change-password form is reset, update input messages", function () {
-    const passwordResetHandler = changePassword.eventHandler.passwordReset;
+    function passwordResetHandler(fakeEvt) {
+        const resetHandler = changePassword.eventHandler.passwordReset;
+        resetHandler(fakeEvt);
+    }
     const fakeEvt = {
         preventDefault: function fakeFunc() {}
     };

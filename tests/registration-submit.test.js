@@ -1,5 +1,8 @@
 describe("registration submit", function () {
-    const registrationSubmitHandler = validate.eventHandler.registrationSubmit;
+    function registrationSubmitHandler(fakeEvt) {
+        const submitHandler = validate.eventHandler.registrationSubmit;
+        submitHandler(fakeEvt);
+    }
     let fakeEvt;
     beforeEach(function () {
         fakeEvt = {
