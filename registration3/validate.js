@@ -351,7 +351,7 @@ const validate = (function() {
         }
     });
 
-    $('.input-group').on('focusin focusout input', function() {
+    function registrationInputHandler(evt) {
         var name = $(this).find(".check,textarea").attr("name");
         var value = $(this).find(".check,textarea").val().trim();
 
@@ -652,7 +652,8 @@ const validate = (function() {
                 $("#pwreRequired").removeClass("warning").addClass("ok");
             }
         }
-    });
+    }
+    $('.input-group').on('focusin focusout input', registrationInputHandler);
 
     $('.input-groupmodal').on('focusin focusout input', function() {
         var namem = $(this).find(".check,textarea").attr("name");
@@ -837,6 +838,7 @@ const validate = (function() {
 
     return {
         eventHandler: {
+            registrationInput: registrationInputHandler,
             registrationSubmit: registrationSubmitHandler,
             registrationReset: registrationResetHandler,
             termsClick: termsClickHandler
