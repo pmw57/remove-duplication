@@ -1,5 +1,8 @@
 describe("When login form is submitted, update input messages", function () {
-    const loginSubmitHandler = login.eventHandler.loginSubmit;
+    function loginSubmitHandler(fakeEvt) {
+        const submitHandler = login.eventHandler.loginSubmit;
+        submitHandler(fakeEvt);
+    }
     const fakeEvt = {
         preventDefault: function fakeFunc() {}
     };

@@ -1,5 +1,8 @@
 describe("registration reset", function () {
-    const registrationResetHandler = validate.eventHandler.registrationReset;
+    function registrationResetHandler(fakeEvt) {
+        const resetHandler = validate.eventHandler.registrationReset;
+        resetHandler(fakeEvt);
+    }
     const fakeEvt = {
         preventDefault: function fakeFunc() {}
     };

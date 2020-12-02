@@ -351,7 +351,7 @@ const validate = (function() {
         }
     });
 
-    $('.input-group').on('focusin focusout input', function() {
+    function registrationInputHandler(evt) {
         var name = $(this).find(".check,textarea").attr("name");
         var value = $(this).find(".check,textarea").val().trim();
 
@@ -558,14 +558,15 @@ const validate = (function() {
         }
         /* city  */
         if (name === "Your City") {
+            const $formGroup = $(this).closest(".form-group");
             if (value === "") {
-                $(this).next().find(".error").html("Your " + name + " field is Empty !").removeClass("ok").addClass("warning");
-                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                $("#cityRequired").removeClass("ok").addClass("warning");
+                inputStatus.errorWarning($formGroup, "Your " + name + " field is Empty !");
+                inputStatus.feedbackWarning($formGroup);
+                inputStatus.requiredWarning($formGroup);
             } else {
-                $(this).next().find(".error").html("Your " + name + " field is OK !").removeClass("warning").addClass("ok");
-                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
-                $("#cityRequired").removeClass("warning").addClass("ok");
+                inputStatus.errorOk($formGroup, "Your " + name + " field is OK !");
+                inputStatus.feedbackOk($formGroup);
+                inputStatus.requiredOk($formGroup);
             }
         }
         /* password */
@@ -652,7 +653,8 @@ const validate = (function() {
                 $("#pwreRequired").removeClass("warning").addClass("ok");
             }
         }
-    });
+    }
+    $('.input-group').on('focusin focusout input', registrationInputHandler);
 
     $('.input-groupmodal').on('focusin focusout input', function() {
         var namem = $(this).find(".check,textarea").attr("name");
@@ -782,17 +784,19 @@ const validate = (function() {
     });
 
     // terms and conditions check
-    function updateTerms(terms) {
-        if ($(terms).is(":checked")) {
-            inputStatus.setOk($("#termcheck"));
-            inputStatus.setOk($("#termsRequired"));
+    function updateTerms() {
+        const $termsGroup = $(".form-group").has("#terms");
+        const $terms = $termsGroup.find("#terms");
+        if ($terms.is(":checked")) {
+            inputStatus.setOk($termsGroup.find(".error2"));
+            inputStatus.requiredOk($termsGroup);
         } else {
-            inputStatus.setWarning($("#termcheck"));
-            inputStatus.setWarning($("#termsRequired"));
+            inputStatus.setWarning($termsGroup.find(".error2"));
+            inputStatus.requiredWarning($termsGroup);
         }
     }
     function termsClickHandler() {
-        updateTerms(this);
+        updateTerms();
     }
     $('#terms').click(termsClickHandler);
 
@@ -807,7 +811,7 @@ const validate = (function() {
                 inputStatus.setWarning($(this).find(".starrq"));
             }
         });
-        updateTerms($("#terms"));
+        updateTerms();
         if ($(".inputstatus .warning").length !== 0) {
             evt.preventDefault();
         }
@@ -819,14 +823,14 @@ const validate = (function() {
         const name = $(this).find(".check").attr("name");
         inputStatus.errorOk(this, name);
         inputStatus.feedbackNone(this);
-        inputStatus.setOk($(this).find(".starrq"));
+        inputStatus.requiredOk(this);
     }
 
     function removeTermWarning() {
         const $termsGroup = $("#terms").closest(".form-group");
         inputStatus.feedbackNone($termsGroup);
         inputStatus.setOk($termsGroup.find("#termcheck"));
-        inputStatus.setOk($termsGroup.find("#termsRequired"));
+        inputStatus.requiredOk($termsGroup);
     }
 
     function registrationResetHandler(evt) {
@@ -837,6 +841,7 @@ const validate = (function() {
 
     return {
         eventHandler: {
+            registrationInput: registrationInputHandler,
             registrationSubmit: registrationSubmitHandler,
             registrationReset: registrationResetHandler,
             termsClick: termsClickHandler

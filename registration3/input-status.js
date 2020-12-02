@@ -41,6 +41,14 @@ const inputStatus = (function () {
         $feedback.addClass("glyphicon glyphicon-remove");
         setWarning($feedback);
     }
+    function requiredOk(inputGroup, message) {
+        const $required = $(inputGroup).find(".starrq");
+        setOk($required);
+    }
+    function requiredWarning(inputGroup, message) {
+        const $required = $(inputGroup).find(".starrq");
+        setWarning($required);
+    }
     return {
         setNone,
         setOk,
@@ -49,6 +57,8 @@ const inputStatus = (function () {
         errorWarning,
         feedbackNone,
         feedbackOk,
-        feedbackWarning
+        feedbackWarning,
+        requiredOk,
+        requiredWarning
     };
 }());
