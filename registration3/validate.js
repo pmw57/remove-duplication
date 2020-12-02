@@ -784,20 +784,19 @@ const validate = (function() {
     });
 
     // terms and conditions check
-    function updateTerms(terms) {
-        if ($(terms).is(":checked")) {
-            inputStatus.setOk($("#termcheck"));
-            inputStatus.setOk($("#termsRequired"));
+    function updateTerms() {
         const $termsGroup = $(".form-group").has("#terms");
+        const $terms = $termsGroup.find("#terms");
+        if ($terms.is(":checked")) {
+            inputStatus.setOk($termsGroup.find(".error2"));
             inputStatus.requiredOk($termsGroup);
         } else {
-            inputStatus.setWarning($("#termcheck"));
-            inputStatus.setWarning($("#termsRequired"));
+            inputStatus.setWarning($termsGroup.find(".error2"));
             inputStatus.requiredWarning($termsGroup);
         }
     }
     function termsClickHandler() {
-        updateTerms(this);
+        updateTerms();
     }
     $('#terms').click(termsClickHandler);
 
@@ -812,7 +811,7 @@ const validate = (function() {
                 inputStatus.setWarning($(this).find(".starrq"));
             }
         });
-        updateTerms($("#terms"));
+        updateTerms();
         if ($(".inputstatus .warning").length !== 0) {
             evt.preventDefault();
         }
