@@ -558,14 +558,15 @@ const validate = (function() {
         }
         /* city  */
         if (name === "Your City") {
+            const $formGroup = $(this).closest(".form-group");
             if (value === "") {
-                $(this).next().find(".error").html("Your " + name + " field is Empty !").removeClass("ok").addClass("warning");
-                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                $("#cityRequired").removeClass("ok").addClass("warning");
+                inputStatus.errorWarning($formGroup, "Your " + name + " field is Empty !");
+                inputStatus.feedbackWarning($formGroup);
+                inputStatus.setWarning($formGroup.find(".starrq"));
             } else {
-                $(this).next().find(".error").html("Your " + name + " field is OK !").removeClass("warning").addClass("ok");
-                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
-                $("#cityRequired").removeClass("warning").addClass("ok");
+                inputStatus.errorOk($formGroup, "Your " + name + " field is OK !");
+                inputStatus.feedbackOk($formGroup);
+                inputStatus.setOk($formGroup.find(".starrq"));
             }
         }
         /* password */
