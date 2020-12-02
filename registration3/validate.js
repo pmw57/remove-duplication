@@ -806,8 +806,8 @@ const validate = (function() {
                 inputStatus.feedbackWarning(this);
                 inputStatus.setWarning($(this).find(".starrq"));
             }
-            updateTerms($("#terms"));
         });
+        updateTerms($("#terms"));
         if ($(".inputstatus .warning").length !== 0) {
             evt.preventDefault();
         }
