@@ -562,11 +562,11 @@ const validate = (function() {
             if (value === "") {
                 inputStatus.errorWarning($formGroup, "Your " + name + " field is Empty !");
                 inputStatus.feedbackWarning($formGroup);
-                inputStatus.setWarning($formGroup.find(".starrq"));
+                inputStatus.requiredWarning($formGroup);
             } else {
                 inputStatus.errorOk($formGroup, "Your " + name + " field is OK !");
                 inputStatus.feedbackOk($formGroup);
-                inputStatus.setOk($formGroup.find(".starrq"));
+                inputStatus.requiredOk($formGroup);
             }
         }
         /* password */
@@ -788,9 +788,12 @@ const validate = (function() {
         if ($(terms).is(":checked")) {
             inputStatus.setOk($("#termcheck"));
             inputStatus.setOk($("#termsRequired"));
+        const $termsGroup = $(".form-group").has("#terms");
+            inputStatus.requiredOk($termsGroup);
         } else {
             inputStatus.setWarning($("#termcheck"));
             inputStatus.setWarning($("#termsRequired"));
+            inputStatus.requiredWarning($termsGroup);
         }
     }
     function termsClickHandler() {
@@ -821,14 +824,14 @@ const validate = (function() {
         const name = $(this).find(".check").attr("name");
         inputStatus.errorOk(this, name);
         inputStatus.feedbackNone(this);
-        inputStatus.setOk($(this).find(".starrq"));
+        inputStatus.requiredOk(this);
     }
 
     function removeTermWarning() {
         const $termsGroup = $("#terms").closest(".form-group");
         inputStatus.feedbackNone($termsGroup);
         inputStatus.setOk($termsGroup.find("#termcheck"));
-        inputStatus.setOk($termsGroup.find("#termsRequired"));
+        inputStatus.requiredOk($termsGroup);
     }
 
     function registrationResetHandler(evt) {
