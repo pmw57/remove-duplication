@@ -7,24 +7,24 @@ describe("registration submit", function () {
         };
     });
     describe("avoiding errors", function () {
-        it("doesn't throw an error", function () {
+        it("doesn't throw a trim error", function () {
             expect(function () {
                 registrationSubmitHandler(fakeEvt);
             }).to.not.throw("Cannot read property 'trim' of undefined");
         });
         it("doesn't call preventDefault when no fields have a warning", function () {
             chai.spy.on(fakeEvt, "preventDefault");
-            $(".form-group .check").val("test value");
-            $(".inputstatus .warning").removeClass("warning");
+            $(".form-group input").val("test value");
+            $(".form-group textarea").val("test value");
+            $(".form-group .warning").removeClass("warning");
             $("#terms").prop("checked", true);
             registrationSubmitHandler(fakeEvt);
             expect(fakeEvt.preventDefault).to.not.have.been.called();
         });
         it("calls preventDefault when a field has a warning", function () {
             chai.spy.on(fakeEvt, "preventDefault");
-            $(".form-group .check").val("test value");
-            $(".inputstatus .warning").removeClass("warning");
-            $(".inputstatus .error").eq(0).addClass("warning");
+            $(".form-group .check").eq(0).val("");
+            $(".inputstatus .error").removeClass("warning");
             $("#terms").prop("checked", true);
             registrationSubmitHandler(fakeEvt);
             expect(fakeEvt.preventDefault).to.have.been.called();
@@ -131,6 +131,13 @@ describe("registration submit", function () {
             chai.spy.on(fakeEvt, "preventDefault");
             registrationSubmitHandler(fakeEvt);
             expect(fakeEvt.preventDefault).to.have.been.called();
+        });
+        it("runs the submit handler when submit is clicked", function () {
+            $firstnameGroup.find("input").val("");
+            const $error = $firstnameGroup.find(".error");
+            $error.removeClass("warning");
+            $("#registration").trigger("submit");
+            expect($error.attr("class")).to.contain("warning");
         });
     });
     describe("terms and conditions", function () {

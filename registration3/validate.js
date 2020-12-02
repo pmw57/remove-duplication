@@ -797,35 +797,22 @@ const validate = (function() {
     $('#terms').click(termsClickHandler);
 
     function registrationSubmitHandler(evt) {
-        $('.form-group').each(function() {
-            var $requiredField = $(this).find(".check");
-            if ($requiredField.length === 0) {
-                return;
-            }
-            if ($(".inputstatus .warning").length != 0) {
-                evt.preventDefault();
-            }
+        $('.form-group').has(".check").each(function validateGroup() {
+            var $requiredField = $(this).find("input, textarea");
             var name = $requiredField.attr("name");
             var value = $requiredField.val().trim();
             if (value === "") {
-                $(this).find(".error").html(name + " is empty !").removeClass("ok").addClass("warning");
-                $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                $(this).find(".starrq").removeClass("ok").addClass("warning");
-                $("#termcheck").removeClass('ok').addClass('warning');
-                $("#termsRequired").removeClass('ok').addClass('warning');
-                evt.preventDefault();
-            }
-            if ($("#terms").is(":checked")) {
-                $("#termcheck").addClass('ok').removeClass('warning');
-                $("#termsRequired").addClass('ok').removeClass('warning');
-            } else if ($("#terms").is(":not(:checked)")) {
-                evt.preventDefault();
-                $("#termcheck").removeClass('ok').addClass('warning');
-                $("#termsRequired").removeClass('ok').addClass('warning');
+                inputStatus.errorWarning(this, name + " is empty !");
+                inputStatus.feedbackWarning(this);
+                inputStatus.setWarning($(this).find(".starrq"));
             }
         });
+        updateTerms($("#terms"));
+        if ($(".inputstatus .warning").length !== 0) {
+            evt.preventDefault();
+        }
     }
-    $(".btn1").click(registrationSubmitHandler);
+    $("#registration").on("submit", registrationSubmitHandler);
 
     function resetMessages() {
         const $error = $(this).find(".error");
