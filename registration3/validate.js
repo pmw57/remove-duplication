@@ -797,11 +797,8 @@ const validate = (function() {
     $('#terms').click(termsClickHandler);
 
     function registrationSubmitHandler(evt) {
-        $('.form-group').each(function() {
-            var $requiredField = $(this).find(".check");
-            if ($requiredField.length === 0) {
-                return;
-            }
+        $('.form-group').has(".check").each(function validateGroup() {
+            var $requiredField = $(this).find("input, textarea");
             var name = $requiredField.attr("name");
             var value = $requiredField.val().trim();
             if (value === "") {
