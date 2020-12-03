@@ -49,6 +49,16 @@ const inputStatus = (function () {
         const $required = $(inputGroup).find(".starrq");
         setWarning($required);
     }
+    function ok(inputGroup, message) {
+        errorOk($formGroup, message);
+        feedbackOk($formGroup);
+        requiredOk($formGroup);
+    }
+    function warning(inputGroup, message) {
+        errorWarning($formGroup, message);
+        feedbackWarning($formGroup);
+        requiredWarning($formGroup);
+    }
     return {
         setNone,
         setOk,
@@ -59,6 +69,8 @@ const inputStatus = (function () {
         feedbackOk,
         feedbackWarning,
         requiredOk,
-        requiredWarning
+        requiredWarning,
+        ok,
+        warning
     };
 }());
