@@ -560,13 +560,9 @@ const validate = (function() {
         if (name === "Your City") {
             const $formGroup = $(this).closest(".form-group");
             if (value === "") {
-                inputStatus.errorWarning($formGroup, "Your " + name + " field is Empty !");
-                inputStatus.feedbackWarning($formGroup);
-                inputStatus.requiredWarning($formGroup);
+                inputStatus.warning($formGroup, "Your " + name + " field is Empty!");
             } else {
-                inputStatus.errorOk($formGroup, "Your " + name + " field is OK !");
-                inputStatus.feedbackOk($formGroup);
-                inputStatus.requiredOk($formGroup);
+                inputStatus.ok($formGroup, "Your " + name + " field is OK!");
             }
         }
         /* password */
@@ -633,12 +629,10 @@ const validate = (function() {
         /* retype password  */
         if (name === "Retype Password") {
             const $formGroup = $(this).closest(".form-group");
-            if (value.length > 0) {
-                if (inputstr !== inputs.Password.value) {
-                    inputStatus.warning($formGroup, name + " is Incorrect: Password doesn't match retyped pwd ");
-                } else {
-                    inputStatus.ok($formGroup, name + " is OK: Your data has been entered correctly " + inputstr);
-                }
+            if (inputstr === inputs.Password.value) {
+                inputStatus.ok($formGroup, name + " is OK: Your data has been entered correctly");
+            } else if (value.length > 0) {
+                inputStatus.warning($formGroup, name + " is Incorrect: Password doesn't match retyped pwd");
             } else {
                 inputStatus.warning($formGroup, name + " is EMPTY: Please enter data into this input");
                 inputStatus.requiredOk($formGroup);
@@ -670,9 +664,7 @@ const validate = (function() {
             var name = $requiredField.attr("name");
             var value = $requiredField.val().trim();
             if (value === "") {
-                inputStatus.errorWarning(this, name + " is empty !");
-                inputStatus.feedbackWarning(this);
-                inputStatus.setWarning($(this).find(".starrq"));
+                inputStatus.warning(this, name + " is empty!");
             }
         });
         updateTerms();

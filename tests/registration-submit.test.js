@@ -45,7 +45,7 @@ describe("registration submit", function () {
             it("shows the error text", function () {
                 $firstnameError.html("");
                 registrationSubmitHandler(fakeEvt);
-                expect($firstnameError.html()).to.equal("First Name is empty !");
+                expect($firstnameError.html()).to.equal("First Name is empty!");
             });
             it("removes ok", function () {
                 $firstnameError.addClass("ok");
