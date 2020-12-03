@@ -50,14 +50,14 @@ const inputStatus = (function () {
         setWarning($required);
     }
     function ok(inputGroup, message) {
-        errorOk($formGroup, message);
-        feedbackOk($formGroup);
-        requiredOk($formGroup);
+        errorOk(inputGroup, message);
+        feedbackOk(inputGroup);
+        requiredOk(inputGroup);
     }
     function warning(inputGroup, message) {
-        errorWarning($formGroup, message);
-        feedbackWarning($formGroup);
-        requiredWarning($formGroup);
+        errorWarning(inputGroup, message);
+        feedbackWarning(inputGroup);
+        requiredWarning(inputGroup);
     }
     return {
         setNone,

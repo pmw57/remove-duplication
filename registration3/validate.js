@@ -635,17 +635,12 @@ const validate = (function() {
             const $formGroup = $(this).closest(".form-group");
             if (value.length > 0) {
                 if (inputstr !== inputs.Password.value) {
-                    inputStatus.errorWarning($formGroup, name + " is Incorrect: Password doesn't match retyped pwd ");
-                    inputStatus.feedbackWarning($formGroup);
-                    inputStatus.requiredWarning($formGroup);
+                    inputStatus.warning($formGroup, name + " is Incorrect: Password doesn't match retyped pwd ");
                 } else {
-                    inputStatus.errorOk($formGroup, name + " is OK: Your data has been entered correctly " + inputstr);
-                    inputStatus.feedbackOk($formGroup);
-                    inputStatus.requiredOk($formGroup);
+                    inputStatus.ok($formGroup, name + " is OK: Your data has been entered correctly " + inputstr);
                 }
             } else {
-                inputStatus.errorWarning($formGroup, name + " is EMPTY: Please enter data into this input");
-                inputStatus.feedbackWarning($formGroup);
+                inputStatus.warning($formGroup, name + " is EMPTY: Please enter data into this input");
                 inputStatus.requiredOk($formGroup);
             }
         }
