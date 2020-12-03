@@ -361,6 +361,8 @@ const validate = (function() {
         var pswRegheigh = /^([a-zA-Z0-9]{13,})+$/; //13 or more occurences
         var $form = $("form.register");
         var inputs = $form[0].elements;
+        const $formGroup = $(this).closest(".form-group");
+        
         /* The regex for ensuring that letters aren’t used, can just be a simple regex for numbers and separators.
 /^[0-9 .-]+$/ */
 
@@ -386,10 +388,7 @@ const validate = (function() {
                     $("#fnameRequired").removeClass("ok").addClass("warning");
                 } else {
                     if (fakeReg.test(value)) {
-                        $(this).next().find(".error").html(name + " is Fake text: Please remove repetition");
-                        $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                        $(this).next().find(".error").addClass('warning').removeClass('ok');
-                        $("#fnameRequired").removeClass("ok").addClass("warning");
+                        inputStatus.warning($formGroup, name + " is Fake text: Please remove repetition");
                     } else {
                         if (/^([a-zA-Z]{2,16})+$/.test(value) === true) {
                             $(this).next().find(".error").html(name + " is OK: Your data has been entered correctly");
@@ -424,10 +423,7 @@ const validate = (function() {
                     $("#lnameRequired").removeClass("ok").addClass("warning");
                 } else {
                     if (fakeReg.test(value)) {
-                        $(this).next().find(".error").html(name + " is Fake text: Please remove repetition");
-                        $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                        $(this).next().find(".error").addClass('warning').removeClass('ok');
-                        $("#lnameRequired").removeClass("ok").addClass("warning");
+                        inputStatus.warning($formGroup, name + " is Fake text: Please remove repetition");
                     } else {
                         if (/^([a-zA-Z]{2,16})+$/.test(value) === true) {
                             $(this).next().find(".error").html(name + " is OK: Your data has been entered correctly");
@@ -490,11 +486,7 @@ const validate = (function() {
                     $("#emailRequired").removeClass("ok").addClass("warning");
                 } else {
                     if (emailReg.test(value)) {
-                        $(this).next().find(".error").html(name + " is Ok : Your data has been entered correctly");
-                        $(this).next().find(".error").addClass('ok').removeClass('warning');
-                        $(this).next().find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
-                        $("#emailRequired").removeClass("warning").addClass("ok");
-
+                        inputStatus.warning($formGroup, name + " is Ok : Your data has been entered correctly");
                     } else {
                         $(this).next().find(".error").html(name + " is Incorrect: Please enter it correctly").removeClass('ok').addClass('warning');
                         $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
@@ -571,10 +563,7 @@ const validate = (function() {
             var pswRegheigh = /^([a-zA-Z0-9]{13,})+$/; //13 or more occurences
             if (value.length > 0) {
                 if (fakeReg.test(value)) {
-                    $(this).next().find(".error").html(name + " is Fake text: Please remove repetition");
-                    $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                    $(this).next().find(".error").addClass('warning').removeClass('ok');
-                    $("#pwdRequired").removeClass("ok").addClass("warning");
+                    inputStatus.warning($formGroup, name + " is Fake text: Please remove repetition");
                 } else {
                     //check if password and last-name is the same
                     if (value === inputs["Your City"].value) {
