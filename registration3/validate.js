@@ -380,13 +380,13 @@ const validate = (function() {
             if (name === "First Name") {
                 if (value.length > 19) {
                     // condition for more than 19 char
-                    $(this).next().find(".error").html(name + " is Incorrect: Please enter no more than 19 char ");
+                    $(this).next().find(".error").html(name + " is Incorrect: Please enter no more than 19 char");
                     $(this).next().find(".error").addClass('warning').removeClass('ok');
                     $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                     $("#fnameRequired").removeClass("ok").addClass("warning");
                 } else {
                     if (fakeReg.test(value)) {
-                        $(this).next().find(".error").html(name + " is Fake text: Please remove repetition ");
+                        $(this).next().find(".error").html(name + " is Fake text: Please remove repetition");
                         $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                         $(this).next().find(".error").addClass('warning').removeClass('ok');
                         $("#fnameRequired").removeClass("ok").addClass("warning");
@@ -399,13 +399,13 @@ const validate = (function() {
                         } else {
                             if (/^([a-zA-Z]{1,16})+$/.test(value) === true) {
                                 // condition for less than 2 char
-                                $(this).next().find(".error").html(name + " is Incorrect: Please enter 2 upper case or lower case at least ");
+                                $(this).next().find(".error").html(name + " is Incorrect: Please enter 2 upper case or lower case at least");
                                 $(this).next().find(".error").addClass('warning').removeClass('ok');
                                 $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                                 $("#fnameRequired").removeClass("ok").addClass("warning");
                             } else {
                                 // condition for non a to z
-                                $(this).next().find(".error").html(name + " is Incorrect: Please enter upper case and lower case only ");
+                                $(this).next().find(".error").html(name + " is Incorrect: Please enter upper case and lower case only");
                                 $(this).next().find(".error").addClass('warning').removeClass('ok');
                                 $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                                 $("#fnameRequired").removeClass("ok").addClass("warning");
@@ -418,13 +418,13 @@ const validate = (function() {
             if (name === "Last Name") {
                 if (value.length > 19) {
                     // condition for more than 19 char
-                    $(this).next().find(".error").html(name + " is Incorrect: Please enter no more than 19 char ");
+                    $(this).next().find(".error").html(name + " is Incorrect: Please enter no more than 19 char");
                     $(this).next().find(".error").addClass('warning').removeClass('ok');
                     $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                     $("#lnameRequired").removeClass("ok").addClass("warning");
                 } else {
                     if (fakeReg.test(value)) {
-                        $(this).next().find(".error").html(name + " is Fake text: Please remove repetition ");
+                        $(this).next().find(".error").html(name + " is Fake text: Please remove repetition");
                         $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                         $(this).next().find(".error").addClass('warning').removeClass('ok');
                         $("#lnameRequired").removeClass("ok").addClass("warning");
@@ -438,13 +438,13 @@ const validate = (function() {
 
                             if (/^([a-zA-Z]{1,16})+$/.test(value) === true) {
                                 // condition for less than 2 char
-                                $(this).next().find(".error").html(name + " is Incorrect: Please enter 2 upper case or lower case at least ");
+                                $(this).next().find(".error").html(name + " is Incorrect: Please enter 2 upper case or lower case at least");
                                 $(this).next().find(".error").addClass('warning').removeClass('ok');
                                 $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                                 $("#lnameRequired").removeClass("ok").addClass("warning");
                             } else {
                                 // condition for non a to z
-                                $(this).next().find(".error").html(name + " is Incorrect: Please enter upper case and lower case only ");
+                                $(this).next().find(".error").html(name + " is Incorrect: Please enter upper case and lower case only");
                                 $(this).next().find(".error").addClass('warning').removeClass('ok');
                                 $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                                 $("#lnameRequired").removeClass("ok").addClass("warning");
@@ -462,12 +462,12 @@ const validate = (function() {
                 var phoneReg = /^\(?([0-9]{4})\)?([ .-]?)([0-9]{3})\2([0-9]{4})$/;
                 if (!phoneReg.test(inputstr)) {
                     // email
-                    $(this).next().find(".error").html(name + " is Incorrect: Please enter Phone Number correctly ");
+                    $(this).next().find(".error").html(name + " is Incorrect: Please enter Phone Number correctly");
                     $(this).next().find(".error").addClass('warning').removeClass('ok');
                     $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                     $("#phoneRequired").removeClass("ok").addClass("warning");
                 } else {
-                    $(this).next().find(".error").html(name + " is Ok : Your Phone number has been entered correctly ");
+                    $(this).next().find(".error").html(name + " is Ok : Your Phone number has been entered correctly");
                     $(this).next().find(".error").addClass('ok').removeClass('warning');
                     $(this).next().find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
                     $("#phoneRequired").removeClass("warning").addClass("ok");
@@ -484,19 +484,19 @@ const validate = (function() {
         if (name === "E-mail") {
             if (value != "") {
                 if (fakeReg.test(value)) {
-                    $(this).next().find(".error").html(name + " is Fake text: Please remove repetition ");
+                    $(this).next().find(".error").html(name + " is Fake text: Please remove repetition");
                     $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                     $(this).next().find(".error").addClass('warning').removeClass('ok');
                     $("#emailRequired").removeClass("ok").addClass("warning");
                 } else {
                     if (emailReg.test(value)) {
-                        $(this).next().find(".error").html(name + " is Ok : Your data has been entered correctly ");
+                        $(this).next().find(".error").html(name + " is Ok : Your data has been entered correctly");
                         $(this).next().find(".error").addClass('ok').removeClass('warning');
                         $(this).next().find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
                         $("#emailRequired").removeClass("warning").addClass("ok");
 
                     } else {
-                        $(this).next().find(".error").html(name + " is Incorrect: Please enter it correctly ").removeClass('ok').addClass('warning');
+                        $(this).next().find(".error").html(name + " is Incorrect: Please enter it correctly").removeClass('ok').addClass('warning');
                         $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                         $("#emailRequired").removeClass("ok").addClass("warning");
                     }
@@ -515,12 +515,12 @@ const validate = (function() {
                 var AddressReg = /^\d+\s[A-z]+\s[A-z]+/g;
                 if (!AddressReg.test(value)) {
                     // address
-                    $(this).next().find(".error").html(name + " is Incorrect: Please enter Address correctly ");
+                    $(this).next().find(".error").html(name + " is Incorrect: Please enter Address correctly");
                     $(this).next().find(".error").addClass('warning').removeClass('ok');
                     $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                     $("#postalRequired").removeClass("ok").addClass("warning");
                 } else {
-                    $(this).next().find(".error").html(name + " is Ok : Your data has been entered correctly ");
+                    $(this).next().find(".error").html(name + " is Ok : Your data has been entered correctly");
                     $(this).next().find(".error").addClass('ok').removeClass('warning');
                     $(this).next().find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
                     $("#postalRequired").removeClass("warning").addClass("ok");
@@ -538,12 +538,12 @@ const validate = (function() {
                 var PostcodeReg = /^[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}$/;
                 if (!PostcodeReg.test(value)) {
                     //post-code
-                    $(this).next().find(".error").html(name + " is Incorrect: Please enter Post-code correctly ");
+                    $(this).next().find(".error").html(name + " is Incorrect: Please enter Post-code correctly");
                     $(this).next().find(".error").addClass('warning').removeClass('ok');
                     $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                     $("#zipRequired").removeClass("ok").addClass("warning");
                 } else {
-                    $(this).next().find(".error").html(name + " is Ok : Your data has been entered correctly ");
+                    $(this).next().find(".error").html(name + " is Ok : Your data has been entered correctly");
                     $(this).next().find(".error").addClass('ok').removeClass('warning');
                     $(this).next().find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
                     $("#zipRequired").removeClass("warning").addClass("ok");
@@ -571,7 +571,7 @@ const validate = (function() {
             var pswRegheigh = /^([a-zA-Z0-9]{13,})+$/; //13 or more occurences
             if (value.length > 0) {
                 if (fakeReg.test(value)) {
-                    $(this).next().find(".error").html(name + " is Fake text: Please remove repetition ");
+                    $(this).next().find(".error").html(name + " is Fake text: Please remove repetition");
                     $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                     $(this).next().find(".error").addClass('warning').removeClass('ok');
                     $("#pwdRequired").removeClass("ok").addClass("warning");
@@ -584,20 +584,20 @@ const validate = (function() {
                         $("#pwdRequired").removeClass("ok").addClass("warning");
                     } else {
                         if (value === inputs["Last Name"].value) {
-                            $(this).next().find(".error").html(name + " is Incorrect: Password shouldn't match last-name ");
+                            $(this).next().find(".error").html(name + " is Incorrect: Password shouldn't match last-name");
                             $(this).next().find(".error").addClass('warning').removeClass('ok');
                             $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                             $("#pwdRequired").removeClass("ok").addClass("warning");
                         } else {
                             //check if password and first-name is the same
                             if (value === inputs["First Name"].value) {
-                                $(this).next().find(".error").html(name + " is Incorrect: Password shouldn't match fist-name ");
+                                $(this).next().find(".error").html(name + " is Incorrect: Password shouldn't match fist-name");
                                 $(this).next().find(".error").addClass('warning').removeClass('ok');
                                 $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                                 $("#pwdRequired").removeClass("ok").addClass("warning");
                             } else {
                                 if (!pswReglow.test(value)) {
-                                    $(this).next().find(".error").html(name + " is Incorrect: Please enter at lest 6 character ");
+                                    $(this).next().find(".error").html(name + " is Incorrect: Please enter at lest 6 character");
                                     $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                                     $(this).next().find(".error").addClass('warning').removeClass('ok');
                                     $("#pwdRequired").removeClass("ok").addClass("warning");
