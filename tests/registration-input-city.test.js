@@ -25,7 +25,7 @@ describe("registration input city", function () {
             it("gives an error message", function () {
                 $cityError.html("");
                 callRegistrationInputHandler($cityInputGroup);
-                expect($cityError.html()).to.equal("Your Your City field is Empty !");
+                expect($cityError.html()).to.equal("Your Your City field is Empty!");
             });
             it("removes ok from error", function () {
                 $cityError.addClass("ok");
@@ -89,7 +89,7 @@ describe("registration input city", function () {
             it("gives an error message", function () {
                 $cityError.html("");
                 callRegistrationInputHandler($cityInputGroup);
-                expect($cityError.html()).to.equal("Your Your City field is OK !");
+                expect($cityError.html()).to.equal("Your Your City field is OK!");
             });
             it("removes warning from error", function () {
                 $cityError.addClass("warning");

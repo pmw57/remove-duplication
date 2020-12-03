@@ -31,7 +31,7 @@ describe("registration-input retype password", function () {
             it("shows an error message", function () {
                 $retypeError.html("");
                 callRegistrationInputHandler($retypeInputGroup);
-                expect($retypeError.html()).to.equal("Retype Password is Incorrect: Password doesn't match retyped pwd ");
+                expect($retypeError.html()).to.equal("Retype Password is Incorrect: Password doesn't match retyped pwd");
             });
             it("adds warning to error", function () {
                 $retypeError.removeClass("warning");
@@ -90,7 +90,7 @@ describe("registration-input retype password", function () {
             it("shows an error message", function () {
                 $retypeError.html("");
                 callRegistrationInputHandler($retypeInputGroup);
-                expect($retypeError.html()).to.equal("Retype Password is OK: Your data has been entered correctly test value");
+                expect($retypeError.html()).to.equal("Retype Password is OK: Your data has been entered correctly");
             });
             it("adds ok to error", function () {
                 $retypeError.removeClass("ok");
