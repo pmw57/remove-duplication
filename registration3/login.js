@@ -84,7 +84,7 @@ const login = (function() {
     }
     $("#login").on("submit", loginSubmitHandler);
 
-    $(".button1color").click(function() {
+    function loginResetHandler() {
         $(".inputboxmodal1").each(function() {
             var st = $(this).find(".input-check").attr("name");
             var st2 = $(this).find(".input-check").val().trim();
@@ -99,10 +99,12 @@ const login = (function() {
                 $(this).find(".feedback").removeClass("glyphicon glyphicon-remove");
             }
         });
-    });
+    }
+    $("#login").on("reset", loginResetHandler);
     return {
         eventHandler: {
-            loginSubmit: loginSubmitHandler
+            loginSubmit: loginSubmitHandler,
+            loginReset: loginResetHandler
         }
     };
 }());
