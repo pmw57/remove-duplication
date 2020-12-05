@@ -25,7 +25,7 @@ describe("login reset", function () {
             beforeEach(function () {
                 $emailInput.val("test value");
             });
-            it("Shows a message", function () {
+            it("shows a message", function () {
                 $emailError.html("");
                 loginResetHandler();
                 expect($emailError.html()).to.equal("Your E-mail");
@@ -66,7 +66,7 @@ describe("login reset", function () {
             beforeEach(function () {
                 $emailInput.val("");
             });
-            it("Shows a message", function () {
+            it("shows a message", function () {
                 $emailError.html("");
                 loginResetHandler();
                 expect($emailError.html()).to.equal("Your E-mail");
@@ -89,7 +89,7 @@ describe("login reset", function () {
             });
         });
     });
-    describe("Password", function () {
+    describe("password", function () {
         const $passwordGroup = $("#login .form-group").has("[name=Password]");
         const $passwordInput = $passwordGroup.find("input");
         const $passwordError = $passwordGroup.find(".error");
@@ -98,7 +98,7 @@ describe("login reset", function () {
             beforeEach(function () {
                 $passwordInput.val("test value");
             });
-            it("Shows a message", function () {
+            it("shows a message", function () {
                 $passwordError.html("");
                 loginResetHandler();
                 expect($passwordError.html()).to.equal("Your Password");
@@ -139,7 +139,7 @@ describe("login reset", function () {
             beforeEach(function () {
                 $passwordInput.val("");
             });
-            it("Shows a message", function () {
+            it("shows a message", function () {
                 $passwordError.html("");
                 loginResetHandler();
                 expect($passwordError.html()).to.equal("Your Password");
