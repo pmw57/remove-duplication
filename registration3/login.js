@@ -89,14 +89,11 @@ const login = (function() {
             var st = $(this).find(".input-check").attr("name");
             var st2 = $(this).find(".input-check").val().trim();
             if ($(this).find(".input-check").val().trim() != "") {
-                $(this).find(".error").html("Your " + st);
-                $(this).find(".error").css("color", "green");
-                $(this).find(".feedback").removeClass("glyphicon glyphicon-ok ok");
-                $(this).find(".error").removeClass("warning").addClass("ok");
+                inputStatus.errorOk(this, "Your " + st);
+                inputStatus.feedbackNone(this);
             } else {
-                $(this).find(".error").html("Your " + st);
-                $(this).find(".error").css("color", "green");
-                $(this).find(".feedback").removeClass("glyphicon glyphicon-remove");
+                inputStatus.errorOk(this, "Your " + st);
+                inputStatus.feedbackNone(this);
             }
         });
     }
