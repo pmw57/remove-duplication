@@ -59,6 +59,13 @@ const inputStatus = (function () {
         feedbackWarning(inputGroup);
         requiredWarning(inputGroup);
     }
+    function resetForm(form) {
+        $(form).find(".form-group").each(function() {
+            var inputName = $(this).find(".input-check").attr("name");
+            inputStatus.errorOk(this, "Your " + inputName);
+            inputStatus.feedbackNone(this);
+        });
+    }
     return {
         setNone,
         setOk,
@@ -71,6 +78,7 @@ const inputStatus = (function () {
         requiredOk,
         requiredWarning,
         ok,
-        warning
+        warning,
+        resetForm
     };
 }());

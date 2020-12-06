@@ -89,11 +89,7 @@ const changePassword = (function() {
     $(".button1color2").click(passwordSubmitHandler);
 
     function passwordResetHandler() {
-        $("#changepw .form-group").each(function resetInputMessages() {
-            var inputName = $(this).find(".input-check").attr("name");
-            inputStatus.errorOk(this, "Your " + inputName);
-            inputStatus.feedbackNone(this);
-        });
+        inputStatus.resetForm($("#changepw"));
     }
     $("#changepw").on("reset", passwordResetHandler);
 

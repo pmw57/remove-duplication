@@ -82,11 +82,7 @@ const login = (function() {
     $("#login").on("submit", loginSubmitHandler);
 
     function loginResetHandler() {
-        $("#login .form-group").each(function() {
-            var inputName = $(this).find(".input-check").attr("name");
-            inputStatus.errorOk(this, "Your " + inputName);
-            inputStatus.feedbackNone(this);
-        });
+        inputStatus.resetForm($("#login"));
     }
     $("#login").on("reset", loginResetHandler);
     return {
