@@ -17,7 +17,7 @@ describe("registration submit", function () {
         });
         it("doesn't call preventDefault when no fields have a warning", function () {
             chai.spy.on(fakeEvt, "preventDefault");
-            $(".form-group input").val("test value");
+            $(".form-group input.check").val("test value");
             $(".form-group textarea").val("test value");
             $(".form-group .warning").removeClass("warning");
             $("#terms").prop("checked", true);
