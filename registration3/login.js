@@ -68,10 +68,7 @@ const login = (function() {
         inputStatus.feedbackWarning(inputGroup);
     }
     function loginSubmitHandler(evt) {
-        $("#login .form-group").each(function validateInputField() {
-            if (!$(this).find(".input-check").length) {
-                return;
-            }
+        $("#login .form-group").has(".input-check").each(function validateInput() {
             var inputName = $(this).find(".input-check").attr("name");
             var trimmedValue = $(this).find(".input-check").val().trim();
             if (trimmedValue !== "") {
@@ -85,7 +82,7 @@ const login = (function() {
     $("#login").on("submit", loginSubmitHandler);
 
     function loginResetHandler() {
-        $("#login .form-group").has(".input-check").each(function() {
+        $("#login .form-group").each(function() {
             var inputName = $(this).find(".input-check").attr("name");
             inputStatus.errorOk(this, "Your " + inputName);
             inputStatus.feedbackNone(this);
