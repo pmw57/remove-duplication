@@ -85,7 +85,7 @@ const login = (function() {
     $("#login").on("submit", loginSubmitHandler);
 
     function loginResetHandler() {
-        $(".inputboxmodal1").each(function() {
+        $("#login .form-group").has(".input-check").each(function() {
             var inputName = $(this).find(".input-check").attr("name");
             inputStatus.errorOk(this, "Your " + inputName);
             inputStatus.feedbackNone(this);
