@@ -86,15 +86,9 @@ const login = (function() {
 
     function loginResetHandler() {
         $(".inputboxmodal1").each(function() {
-            var st = $(this).find(".input-check").attr("name");
-            var st2 = $(this).find(".input-check").val().trim();
-            if ($(this).find(".input-check").val().trim() != "") {
-                inputStatus.errorOk(this, "Your " + st);
-                inputStatus.feedbackNone(this);
-            } else {
-                inputStatus.errorOk(this, "Your " + st);
-                inputStatus.feedbackNone(this);
-            }
+            var inputName = $(this).find(".input-check").attr("name");
+            inputStatus.errorOk(this, "Your " + inputName);
+            inputStatus.feedbackNone(this);
         });
     }
     $("#login").on("reset", loginResetHandler);
