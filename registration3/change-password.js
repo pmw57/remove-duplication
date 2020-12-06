@@ -74,24 +74,19 @@ const changePassword = (function() {
         }
     });
 
-    $(".button1color2").click(function() {
-        $(".inputboxmodal2").each(function() {
-            var st = $(this).find(".input-check").attr("name");
-            var st2 = $(this).find(".input-check").val().trim();
-            if ($(this).find(".input-check").val().trim() != "") {
-                $(this).find(".error").html("Your " + st + " is OK");
-                $(this).find(".error").css("color", "green");
-                $(this).find(".feedback").removeClass("glyphicon glyphicon-remove warning").addClass("glyphicon glyphicon-ok ok");
-                $(this).next().find(".error").removeClass("warning").addClass("ok");
+    function passwordSubmitHandler(evt) {
+        $("#changepw .form-group").has(".input-check").each(function() {
+            var trimmedValue = $(this).find(".input-check").val().trim();
+            var inputName = $(this).find(".input-check").attr("name");
+            if (trimmedValue === "") {
+                evt.preventDefault();
+                inputStatus.warning(this, "Your " + inputName + " is empty");
             } else {
-                $(this).find(".error").html("Your " + st + " is empty");
-                $(this).find(".error").css("color", "red");
-                $(this).find(".feedback").removeClass("glyphicon glyphicon-ok ok").addClass("glyphicon glyphicon-remove warning");
-                $(this).find(".error").removeClass("ok").addClass("warning");
-                event.preventDefault();
+                inputStatus.ok(this, "Your " + inputName + " is OK");
             }
         });
-    });
+    }
+    $(".button1color2").click(passwordSubmitHandler);
 
     function passwordResetHandler() {
         $("#changepw .form-group").each(function resetInputMessages() {
@@ -104,6 +99,7 @@ const changePassword = (function() {
 
     return {
         eventHandler: {
+            passwordSubmit: passwordSubmitHandler,
             passwordReset: passwordResetHandler
         }
     };
