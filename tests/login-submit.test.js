@@ -1,11 +1,11 @@
 describe("When login form is submitted, update input messages", function () {
+    const fakeEvt = {
+        preventDefault: function fakeFunc() {}
+    };
     function loginSubmitHandler(fakeEvt) {
         const submitHandler = login.eventHandler.loginSubmit;
         submitHandler(fakeEvt);
     }
-    const fakeEvt = {
-        preventDefault: function fakeFunc() {}
-    };
     describe("email has value", function () {
         const $emailGroup = $("#login .form-group").eq(1);
         describe("email error", function () {
