@@ -1,11 +1,14 @@
 describe("registration reset", function () {
+    const fakeEvt = {
+        preventDefault: function fakeFunc() {}
+    };
     function registrationResetHandler(fakeEvt) {
         const resetHandler = validate.eventHandler.registrationReset;
         resetHandler(fakeEvt);
     }
-    const fakeEvt = {
-        preventDefault: function fakeFunc() {}
-    };
+    after(function () {
+        $("#registration").trigger("reset");
+    });
     describe("firstname", function () {
         const $firstnameGroup = $("#registration .form-group").first();
         describe("firstname error", function () {

@@ -19,6 +19,9 @@ describe("registration-input password", function () {
     const $passwordError = $passwordGroup.find(".error");
     const $passwordFeedback = $passwordGroup.find(".feedback");
     const $passwordRequired = $passwordGroup.find(".starrq");
+    after(function () {
+        $("#registration").trigger("reset");
+    });
     describe("password has repetition", function () {
         beforeEach(function () {
             $passwordInput.val("abbbc");

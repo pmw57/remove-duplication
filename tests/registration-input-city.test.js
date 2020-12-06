@@ -16,6 +16,9 @@ describe("registration input city", function () {
     const $cityGroup = $(".form-group").has("[name='Your City']");
     const $cityInputGroup = $cityGroup.find(".input-group");
     const $cityInput = $cityGroup.find("input");
+    after(function () {
+        $("#registration").trigger("reset");
+    });
     describe("when value is empty", function () {
         beforeEach(function () {
             $cityInput.val("");

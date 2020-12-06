@@ -7,6 +7,9 @@ describe("terms click", function () {
     const $terms = $termsGroup.find("#terms");
     const $termsError = $termsGroup.find("#termcheck");
     const $termsRequired = $termsGroup.find("#termsRequired");
+    after(function () {
+        $("#registration").trigger("reset");
+    });
     describe("terms are checked", function () {
         beforeEach(function () {
             $("#terms").prop("checked", true);

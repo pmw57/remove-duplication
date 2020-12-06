@@ -6,6 +6,9 @@ describe("When change-password form is reset, update input messages", function (
     const fakeEvt = {
         preventDefault: function fakeFunc() {}
     };
+    after(function () {
+        $("#changepw").trigger("reset");
+    });
     describe("email error", function () {
         const $emailGroup = $("#changepw .form-group").eq(1);
         const $emailError = $emailGroup.find(".error");

@@ -11,6 +11,9 @@ describe("login reset", function () {
         const resetHandler = login.eventHandler.loginReset;
         resetHandler();
     }
+    after(function () {
+        $("#login").trigger("reset");
+    });
     describe("email", function () {
         const $emailGroup = $("#login .form-group").has("[name='E-mail']");
         const $emailInput = $emailGroup.find("input");

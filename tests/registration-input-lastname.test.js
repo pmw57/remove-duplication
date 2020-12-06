@@ -19,6 +19,9 @@ describe("registration-input last name", function () {
     const $lastnameError = $lastnameGroup.find(".error");
     const $lastnameFeedback = $lastnameGroup.find(".feedback");
     const $lastnameRequired = $lastnameGroup.find(".starrq");
+    after(function () {
+        $("#registration").trigger("reset");
+    });
     describe("first name has repetition", function () {
         beforeEach(function () {
             $lastnameInput.val("abbbc");

@@ -19,6 +19,9 @@ describe("registration-input email", function () {
     const $emailError = $emailGroup.find(".error");
     const $emailFeedback = $emailGroup.find(".feedback");
     const $emailRequired = $emailGroup.find(".starrq");
+    after(function () {
+        $("#registration").trigger("reset");
+    });
     describe("first name has repetition", function () {
         beforeEach(function () {
             $emailInput.val("abbbc");

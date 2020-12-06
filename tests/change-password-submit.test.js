@@ -14,6 +14,9 @@ describe("change password submit", function () {
         const SubmitHandler = changePassword.eventHandler.passwordSubmit;
         SubmitHandler(fakeEvt);
     }
+    after(function () {
+        $("#changepw").trigger("reset");
+    });
     describe("email", function () {
         const $emailGroup = $("#changepw .form-group").has("[name='E-mail']");
         const $emailInput = $emailGroup.find("input");

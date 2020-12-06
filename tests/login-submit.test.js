@@ -6,6 +6,9 @@ describe("When login form is submitted, update input messages", function () {
         const submitHandler = login.eventHandler.loginSubmit;
         submitHandler(fakeEvt);
     }
+    after(function () {
+        $("#login").trigger("reset");
+    });
     describe("email has value", function () {
         const $emailGroup = $("#login .form-group").eq(1);
         describe("email error", function () {

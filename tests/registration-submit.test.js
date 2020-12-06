@@ -1,13 +1,16 @@
 describe("registration submit", function () {
+    let fakeEvt;
     function registrationSubmitHandler(fakeEvt) {
         const submitHandler = validate.eventHandler.registrationSubmit;
         submitHandler(fakeEvt);
     }
-    let fakeEvt;
     beforeEach(function () {
         fakeEvt = {
             preventDefault: function fakePreventDefault() {}
         };
+    });
+    after(function () {
+        $("#registration").trigger("reset");
     });
     describe("avoiding errors", function () {
         it("doesn't throw a trim error", function () {

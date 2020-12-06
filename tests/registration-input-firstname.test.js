@@ -19,7 +19,10 @@ describe("registration-input first name", function () {
     const $firstnameError = $firstnameGroup.find(".error");
     const $firstnameFeedback = $firstnameGroup.find(".feedback");
     const $firstnameRequired = $firstnameGroup.find(".starrq");
-    describe("first name has repetition", function () {
+    after(function () {
+        $("#registration").trigger("reset");
+    });
+describe("first name has repetition", function () {
         beforeEach(function () {
             $firstnameInput.val("abbbc");
         });

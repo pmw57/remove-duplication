@@ -19,6 +19,9 @@ describe("registration-input retype password", function () {
     const $retypeError = $retypeGroup.find(".error");
     const $retypeFeedback = $retypeGroup.find(".feedback");
     const $retypeRequired = $retypeGroup.find(".starrq");
+    after(function () {
+        $("#registration").trigger("reset");
+    });
     describe("value has content", function () {
         beforeEach(function () {
             $retypeInput.val("test value");
