@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>CodePen - registration3</title>
-  <link rel='stylesheet' href='lib/bootstrap.min.css'>
-  <link rel='stylesheet' href='lib/font-awesome.min.css'>
-  <link rel="stylesheet" href="./style.css">
+  <link rel='stylesheet' href='../registration3/lib/bootstrap.min.css'>
+  <link rel='stylesheet' href='../registration3/lib/font-awesome.min.css'>
+  <link rel="stylesheet" href="../registration3/style.css">
 
 </head>
 <body>
@@ -759,12 +759,42 @@
     </div>
   </div>
 <!-- partial -->
-<script src="./lib/jquery.min.js"></script>
-<script src="./lib/bootstrap.min.js"></script>
-<script src="./setup.js"></script>
-<script src="./input-status.js"></script>
-<script src="./validate.js"></script>
-<script src="./change-password.js"></script>
-<script src="./login.js"></script>
+<script src="../registration3/lib/jquery.min.js"></script>
+<script src="../registration3/lib/bootstrap.min.js"></script>
+<script src="../registration3/setup.js"></script>
+<script src="../registration3/input-status.js"></script>
+<script src="../registration3/validate.js"></script>
+<script src="../registration3/change-password.js"></script>
+<script src="../registration3/login.js"></script>
+
+<!-- tests -->
+<script src="../node_modules/mocha/mocha.js"></script>
+<script src="../node_modules/chai/chai.js"></script>
+<script src="../node_modules/chai-spies/chai-spies.js"></script>
+<script>
+    mocha.setup({
+        ui: "bdd",
+        reporter: "spec"
+//        reporter: "dot"
+    });
+    const expect = chai.expect;
+</script>
+<script src="registration-input-firstname.test.js"></script>
+<script src="registration-input-lastname.test.js"></script>
+<script src="registration-input-email.test.js"></script>
+<script src="registration-input-city.test.js"></script>
+<script src="registration-input-password.test.js"></script>
+<script src="registration-input-retypepassword.test.js"></script>
+<script src="terms-click.test.js"></script>
+<script src="registration-submit.test.js"></script>
+<script src="registration-reset.test.js"></script>
+<script src="login-reset.test.js"></script>
+<script src="login-submit.test.js"></script>
+<script src="change-password-reset.test.js"></script>
+<script src="change-password-submit.test.js"></script>
+<script>
+    const delayms = 0;
+    setTimeout(mocha.run, delayms);
+</script>
 </body>
 </html>
