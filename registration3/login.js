@@ -4,26 +4,28 @@ const login = (function() {
         var inputstr = $(this).find(".input-check").val().trim();
         var fakeReg = /(.)\1{2,}/;
         if (inputstr === "") {
-            inputStatus.warning(this, inputattr + " is empty");
-        } else if (fakeReg.test(inputstr)) {
-            inputStatus.warning(this, inputattr + " is Fake text: Please remove repetition");
-        } else if (inputattr === "E-mail") {
+            return inputStatus.warning(this, inputattr + " is empty");
+        }
+        if (fakeReg.test(inputstr)) {
+            return inputStatus.warning(this, inputattr + " is Fake text: Please remove repetition");
+        }
+        if (inputattr === "E-mail") {
             var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
             if (!emailReg.test(inputstr)) {
-                inputStatus.warning(this, inputattr + " is Incorrect: Please enter it correctly");
-            } else {
-                inputStatus.ok(this, inputattr + " is Ok: Your data has been entered correctly");
+                return inputStatus.warning(this, inputattr + " is Incorrect: Please enter it correctly");
             }
-        } else if (inputattr === "Password") {
+            return inputStatus.ok(this, inputattr + " is Ok: Your data has been entered correctly");
+        }
+        if (inputattr === "Password") {
             var pswReglow = /^([a-zA-Z0-9]{0,5})$/;
             var pswRegheigh = /^([a-zA-Z0-9]{13,})$/;
             if (pswReglow.test(inputstr)) {
-                inputStatus.warning(this, inputattr + " is Incorrect: Please enter at least 6 characters");
-            } else if (pswRegheigh.test(inputstr)) {
-                inputStatus.warning(this, inputattr + " is Incorrect: Please enter no more than 12 characters");
-            } else {
-                inputStatus.ok(this, inputattr + " is OK: Your data has been entered correctly");
+                return inputStatus.warning(this, inputattr + " is Incorrect: Please enter at least 6 characters");
             }
+            if (pswRegheigh.test(inputstr)) {
+                return inputStatus.warning(this, inputattr + " is Incorrect: Please enter no more than 12 characters");
+            }
+            return inputStatus.ok(this, inputattr + " is OK: Your data has been entered correctly");
         }
     }
 
