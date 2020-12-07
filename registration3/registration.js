@@ -1,4 +1,4 @@
-const validate = (function() {
+const registration = (function() {
     $(".icon").click(function() {
         $(".bar1").toggleClass("blue");
         $(".bar1").toggleClass("rotate45dg");

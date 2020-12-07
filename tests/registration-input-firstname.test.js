@@ -10,7 +10,7 @@ describe("registration-input first name", function () {
            - .feedback
     */
     function callRegistrationInputHandler(thisArg) {
-        const registrationInputHandler = validate.eventHandler.registrationInput;
+        const registrationInputHandler = registration.eventHandler.registrationInput;
         registrationInputHandler.call(thisArg);
     }
     const $firstnameGroup = $(".form-group").has("[name='First Name']");

@@ -1,6 +1,6 @@
 describe("terms click", function () {
     function callTermsClickHandler(thisArg) {
-        const clickHandler = validate.eventHandler.termsClick;
+        const clickHandler = registration.eventHandler.termsClick;
         clickHandler.call(thisArg);
     }
     const $termsGroup = $("#terms").closest(".form-group");

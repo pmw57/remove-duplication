@@ -10,7 +10,7 @@ describe("registration-input password", function () {
            - .feedback
     */
     function callRegistrationInputHandler(thisArg) {
-        const registrationInputHandler = validate.eventHandler.registrationInput;
+        const registrationInputHandler = registration.eventHandler.registrationInput;
         registrationInputHandler.call(thisArg);
     }
     const $passwordGroup = $(".form-group").has("[name='Password']");

@@ -10,7 +10,7 @@ describe("registration input city", function () {
            - .feedback
     */
     function callRegistrationInputHandler(thisArg) {
-        const registrationInputHandler = validate.eventHandler.registrationInput;
+        const registrationInputHandler = registration.eventHandler.registrationInput;
         registrationInputHandler.call(thisArg);
     }
     const $cityGroup = $(".form-group").has("[name='Your City']");

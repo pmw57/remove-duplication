@@ -10,7 +10,7 @@ describe("registration-input email", function () {
            - .feedback
     */
     function callRegistrationInputHandler(thisArg) {
-        const registrationInputHandler = validate.eventHandler.registrationInput;
+        const registrationInputHandler = registration.eventHandler.registrationInput;
         registrationInputHandler.call(thisArg);
     }
     const $emailGroup = $(".form-group").has("[name='E-mail']");

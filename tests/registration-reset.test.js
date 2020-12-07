@@ -3,7 +3,7 @@ describe("registration reset", function () {
         preventDefault: function fakeFunc() {}
     };
     function registrationResetHandler(fakeEvt) {
-        const resetHandler = validate.eventHandler.registrationReset;
+        const resetHandler = registration.eventHandler.registrationReset;
         resetHandler(fakeEvt);
     }
     after(function () {
