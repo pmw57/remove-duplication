@@ -56,7 +56,7 @@ const login = (function() {
             $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
         }
     }
-    $(".inputboxmodal1").on("focusin focusout input", loginInputHandler);
+
     /* modal check*/
     function removeError(inputGroup, message) {
         inputStatus.errorOk(inputGroup, message);
@@ -78,11 +78,13 @@ const login = (function() {
             }
         });
     }
-    $("#login").on("submit", loginSubmitHandler);
 
     function loginResetHandler() {
         inputStatus.resetForm($("#login"));
     }
+
+    $("#login .form-group").on("focusin focusout input", loginInputHandler);
+    $("#login").on("submit", loginSubmitHandler);
     $("#login").on("reset", loginResetHandler);
     return {
         eventHandler: {

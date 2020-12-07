@@ -73,7 +73,6 @@ const changePassword = (function() {
             $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
         }
     }
-    $(".inputboxmodal2").on("focusin focusout input", passwordInputHandler);
 
     function passwordSubmitHandler(evt) {
         $("#changepw .form-group").has(".input-check").each(function() {
@@ -87,13 +86,14 @@ const changePassword = (function() {
             }
         });
     }
-    $(".button1color2").click(passwordSubmitHandler);
 
     function passwordResetHandler() {
         inputStatus.resetForm($("#changepw"));
     }
-    $("#changepw").on("reset", passwordResetHandler);
 
+    $("#changepw .form-group").on("focusin focusout input", passwordInputHandler);
+    $("#changepw").on("submit", passwordSubmitHandler);
+    $("#changepw").on("reset", passwordResetHandler);
     return {
         eventHandler: {
             passwordInput: passwordInputHandler,
