@@ -1,19 +1,20 @@
+function checkFake(input) {
+    const name = $(input).find(".input-check").attr("name");
+    const value = $(input).find(".input-check").val().trim();
+    const fakeReg = /(.)\1{2,}/;
+    if (fakeReg.test(value)) {
+        inputStatus.warning(input, name + " is Fake text: Please remove repetition");
+        return true;
+    }
+}
 const login = (function() {
     function loginInputHandler() {
         const inputattr = $(this).find(".input-check").attr("name");
         if (inputattr === "E-mail") {
+            if (validate(this, "email")) {
+                return;
+            }
             const inputstr = $(this).find(".input-check").val().trim();
-            if (inputstr === "") {
-                return inputStatus.warning(this, inputattr + " is empty");
-            }
-            const fakeReg = /(.)\1{2,}/;
-            if (fakeReg.test(inputstr)) {
-                return inputStatus.warning(this, inputattr + " is Fake text: Please remove repetition");
-            }
-            const emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-            if (!emailReg.test(inputstr)) {
-                return inputStatus.warning(this, inputattr + " is Incorrect: Please enter it correctly");
-            }
             return inputStatus.ok(this, inputattr + " is Ok: Your data has been entered correctly");
         }
         if (inputattr === "Password") {
