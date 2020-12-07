@@ -1,6 +1,6 @@
 const changePassword = (function() {
     /* modal change*/
-    $(".inputboxmodal2").on("focusin focusout input", function() {
+    function passwordInputHandler() {
         var inputattr = $(this).find(".input-check").attr("name");
         // Get the Login Name value and trim it
         var inputstr = $(this).find(".input-check").val().trim();
@@ -22,7 +22,7 @@ const changePassword = (function() {
                 /* E-mail*/
                 if (inputattr === "E-mail") {
                     if (emailReg.test(inputstr)) {
-                        $(this).find(".error").html(inputattr + " is Ok : Your data has been entered correctly");
+                        $(this).find(".error").html(inputattr + " is Ok: Your data has been entered correctly");
                         $(this).find(".error").addClass('ok').removeClass('warning');
                         $(this).find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
 
@@ -63,7 +63,7 @@ const changePassword = (function() {
                     $(this).find(".error").addClass('warning').removeClass('ok');
                     $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                 } else {
-                    $(this).find(".error").html(inputattr + " is OK: Your data has been entered correctly " + inputstr);
+                    $(this).find(".error").html(inputattr + " is OK: Your data has been entered correctly");
                     $(this).find(".error").addClass('ok').removeClass('warning');
                     $(this).find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
                 }
@@ -72,7 +72,8 @@ const changePassword = (function() {
             $(this).find(".error").html(inputattr + ' is empty').removeClass("ok").addClass("warning");
             $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
         }
-    });
+    }
+    $(".inputboxmodal2").on("focusin focusout input", passwordInputHandler);
 
     function passwordSubmitHandler(evt) {
         $("#changepw .form-group").has(".input-check").each(function() {
@@ -95,6 +96,7 @@ const changePassword = (function() {
 
     return {
         eventHandler: {
+            passwordInput: passwordInputHandler,
             passwordSubmit: passwordSubmitHandler,
             passwordReset: passwordResetHandler
         }
