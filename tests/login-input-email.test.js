@@ -154,7 +154,7 @@ describe("login input email", function () {
             expect($emailFeedback.attr("class")).to.contain("warning");
         });
     });
-    describe.only("email is empty", function () {
+    describe("email is empty", function () {
         beforeEach(function () {
             $emailInput.val("");
         })

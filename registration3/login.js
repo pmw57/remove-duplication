@@ -8,8 +8,6 @@ const login = (function() {
         var pswReglow = /^([a-zA-Z0-9]{6,})+$/;
         var pswRegheigh = /^([a-zA-Z0-9]{13,})+$/; //13 or more occurences
         if (inputstr != "") {
-            $(this).find(".error").html(inputattr + '  is ok').removeClass("warning").addClass("ok");
-            $(this).find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
             if (fakeReg.test(inputstr)) {
                 $(this).find(".error").html(inputattr + " is Fake text: Please remove repetition");
                 $(this).find(".error").addClass('warning').removeClass('ok');
@@ -30,11 +28,11 @@ const login = (function() {
                 if (inputattr === "Password") {
                     if (fakeReg.test(inputstr)) {
                         $(this).find(".error").html(inputattr + " is Fake text: Please remove repetition");
-                        $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                         $(this).find(".error").addClass('warning').removeClass('ok');
+                        $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                     } else {
                         if (!pswReglow.test(inputstr)) {
-                            $(this).find(".error").html(inputattr + " is Incorrect: Please enter at lest 6 character");
+                            $(this).find(".error").html(inputattr + " is Incorrect: Please enter at least 6 characters");
                             $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                             $(this).find(".error").addClass('warning').removeClass('ok');
                         } else {
@@ -44,7 +42,7 @@ const login = (function() {
                                 $(this).find(".error").addClass('ok').removeClass('warning');
                                 $(this).find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
                             } else {
-                                $(this).find(".error").html(inputattr + " is Incorrect: Please enter no more than 12 character " + inputstr);
+                                $(this).find(".error").html(inputattr + " is Incorrect: Please enter no more than 12 characters");
                                 $(this).find(".error").addClass('warning').removeClass('ok');
                                 $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                             }
