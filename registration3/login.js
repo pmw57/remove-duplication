@@ -4,37 +4,25 @@ const login = (function() {
         var inputstr = $(this).find(".input-check").val().trim();
         var fakeReg = /(.)\1{2,}/;
         if (inputstr === "") {
-            $(this).find(".error").html(inputattr + ' is empty').removeClass("ok").addClass("warning");
-            $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
+            inputStatus.warning(this, inputattr + " is empty");
         } else if (fakeReg.test(inputstr)) {
-            $(this).find(".error").html(inputattr + " is Fake text: Please remove repetition");
-            $(this).find(".error").addClass('warning').removeClass('ok');
-            $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
+            inputStatus.warning(this, inputattr + " is Fake text: Please remove repetition");
         } else if (inputattr === "E-mail") {
             var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
             if (!emailReg.test(inputstr)) {
-                $(this).find(".error").html(inputattr + " is Incorrect: Please enter it correctly").addClass('warning').removeClass('ok');
-                $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
+                inputStatus.warning(this, inputattr + " is Incorrect: Please enter it correctly");
             } else {
-                $(this).find(".error").html(inputattr + " is Ok: Your data has been entered correctly");
-                $(this).find(".error").removeClass('warning').addClass('ok');
-                $(this).find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
+                inputStatus.ok(this, inputattr + " is Ok: Your data has been entered correctly");
             }
         } else if (inputattr === "Password") {
             var pswReglow = /^([a-zA-Z0-9]{0,5})$/;
             var pswRegheigh = /^([a-zA-Z0-9]{13,})$/;
             if (pswReglow.test(inputstr)) {
-                $(this).find(".error").html(inputattr + " is Incorrect: Please enter at least 6 characters");
-                $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                $(this).find(".error").addClass('warning').removeClass('ok');
+                inputStatus.warning(this, inputattr + " is Incorrect: Please enter at least 6 characters");
             } else if (pswRegheigh.test(inputstr)) {
-                $(this).find(".error").html(inputattr + " is Incorrect: Please enter no more than 12 characters");
-                $(this).find(".error").addClass('warning').removeClass('ok');
-                $(this).find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
+                inputStatus.warning(this, inputattr + " is Incorrect: Please enter no more than 12 characters");
             } else {
-                $(this).find(".error").html(inputattr + " is OK: Your data has been entered correctly");
-                $(this).find(".error").addClass('ok').removeClass('warning');
-                $(this).find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
+                inputStatus.ok(this, inputattr + " is OK: Your data has been entered correctly");
             }
         }
     }
