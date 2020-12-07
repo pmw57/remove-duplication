@@ -1,27 +1,35 @@
 const login = (function() {
     function loginInputHandler() {
-        var inputattr = $(this).find(".input-check").attr("name");
-        var inputstr = $(this).find(".input-check").val().trim();
-        var fakeReg = /(.)\1{2,}/;
-        if (inputstr === "") {
-            return inputStatus.warning(this, inputattr + " is empty");
-        }
-        if (fakeReg.test(inputstr)) {
-            return inputStatus.warning(this, inputattr + " is Fake text: Please remove repetition");
-        }
+        const inputattr = $(this).find(".input-check").attr("name");
         if (inputattr === "E-mail") {
-            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            const inputstr = $(this).find(".input-check").val().trim();
+            if (inputstr === "") {
+                return inputStatus.warning(this, inputattr + " is empty");
+            }
+            const fakeReg = /(.)\1{2,}/;
+            if (fakeReg.test(inputstr)) {
+                return inputStatus.warning(this, inputattr + " is Fake text: Please remove repetition");
+            }
+            const emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
             if (!emailReg.test(inputstr)) {
                 return inputStatus.warning(this, inputattr + " is Incorrect: Please enter it correctly");
             }
             return inputStatus.ok(this, inputattr + " is Ok: Your data has been entered correctly");
         }
         if (inputattr === "Password") {
-            var pswReglow = /^([a-zA-Z0-9]{0,5})$/;
-            var pswRegheigh = /^([a-zA-Z0-9]{13,})$/;
+            const inputstr = $(this).find(".input-check").val().trim();
+            if (inputstr === "") {
+                return inputStatus.warning(this, inputattr + " is empty");
+            }
+            const fakeReg = /(.)\1{2,}/;
+            if (fakeReg.test(inputstr)) {
+                return inputStatus.warning(this, inputattr + " is Fake text: Please remove repetition");
+            }
+            const pswReglow = /^([a-zA-Z0-9]{0,5})$/;
             if (pswReglow.test(inputstr)) {
                 return inputStatus.warning(this, inputattr + " is Incorrect: Please enter at least 6 characters");
             }
+            const pswRegheigh = /^([a-zA-Z0-9]{13,})$/;
             if (pswRegheigh.test(inputstr)) {
                 return inputStatus.warning(this, inputattr + " is Incorrect: Please enter no more than 12 characters");
             }
