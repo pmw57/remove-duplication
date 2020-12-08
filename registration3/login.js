@@ -9,13 +9,8 @@ function checkFake(input) {
 }
 const login = (function() {
     function loginInputHandler() {
-        const validators = {
-            "E-mail": "email",
-            "Password": "password"
-        };
-        const inputGroup = this;
-        const name = $(inputGroup).find(".input-check").attr("name");
-        validate(inputGroup, validators[name]);
+        const name = $(this).find(".input-check").attr("name");
+        validate(this);
     }
 
     /* modal check*/
@@ -44,7 +39,7 @@ const login = (function() {
         inputStatus.resetForm($("#login"));
     }
 
-    $("#login .form-group").on("focusin focusout input", loginInputHandler);
+    $("#login .form-group").on("focusin focusout input", validate);
     $("#login").on("submit", loginSubmitHandler);
     $("#login").on("reset", loginResetHandler);
     return {

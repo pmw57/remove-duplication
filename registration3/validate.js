@@ -1,8 +1,8 @@
-function validate(inputGroup, type) {
+function validate(inputGroup) {
     const validationTypes = {
-        email: [checkEmpty, checkFake, checkEmailReg],
-        password: [checkEmpty, checkFake, checkPasswordShort, checkPasswordLong],
-        retype: [checkEmpty, matchesPassword]
+        "E-mail": [checkEmpty, checkFake, checkEmailReg],
+        "Password": [checkEmpty, checkFake, checkPasswordShort, checkPasswordLong],
+        "Password Retype": [checkEmpty, matchesPassword]
     };
 
     function getValue(inputGroup) {
@@ -67,13 +67,13 @@ function validate(inputGroup, type) {
             return check(inputGroup, value, name);
         });
     }
-    if (!validationTypes[type]) {
-        throw new Error(type + " validation not supported");
+    const name = getName(inputGroup);
+    if (!validationTypes[name]) {
+        throw new Error(name + " validation not supported");
     }
-    const isNotValid = validateByTypes(inputGroup, validationTypes[type]);
+    const isNotValid = validateByTypes(inputGroup, validationTypes[name]);
     if (isNotValid) {
         return isNotValid;
     }
-    const name = $(inputGroup).find(".input-check").attr("name");
-    showValid(inputGroup, name);
+    showValid(inputGroup);
 }

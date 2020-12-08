@@ -1,13 +1,6 @@
 const changePassword = (function() {
     function passwordInputHandler() {
-        const validators = {
-            "E-mail": "email",
-            "Password": "password",
-            "Password Retype": "retype"
-        };
-        const inputGroup = this;
-        const name = $(inputGroup).find(".input-check").attr("name");
-        validate(inputGroup, validators[name]);
+        validate(this);
     }
 
     function passwordSubmitHandler(evt) {
@@ -27,7 +20,7 @@ const changePassword = (function() {
         inputStatus.resetForm($("#changepw"));
     }
 
-    $("#changepw .form-group").on("focusin focusout input", passwordInputHandler);
+    $("#changepw .form-group").on("focusin focusout input", validate);
     $("#changepw").on("submit", passwordSubmitHandler);
     $("#changepw").on("reset", passwordResetHandler);
     return {
