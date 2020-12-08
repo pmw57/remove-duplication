@@ -2,35 +2,35 @@ const changePassword = (function() {
     function passwordInputHandler() {
         var inputattr = $(this).find(".input-check").attr("name");
         var inputstr = $(this).find(".input-check").val().trim();
-        var fakeReg = /(.)\1{2,}/;
-        if (inputstr === "") {
-            inputStatus.warning(this, inputattr + " is empty");
-        } else if (fakeReg.test(inputstr)) {
-            inputStatus.warning(this, inputattr + " is Fake text: Please remove repetition");
-        } else if (inputattr === "E-mail") {
-            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-            if (!emailReg.test(inputstr)) {
-                inputStatus.warning(this, inputattr + " is Incorrect: Please enter it correctly");
-            } else {
-                inputStatus.ok(this, inputattr + " is Ok: Your data has been entered correctly");
+        if (inputattr === "E-mail") {
+            return validate(this, "email");
+        }
+        if (inputattr === "Password") {
+            if (inputstr === "") {
+                return inputStatus.warning(this, inputattr + " is empty");
             }
-        } else if (inputattr === "Password") {
+            var fakeReg = /(.)\1{2,}/;
+            if (fakeReg.test(inputstr)) {
+                return inputStatus.warning(this, inputattr + " is Fake text: Please remove repetition");
+            }
             var pswReglow = /^([a-zA-Z0-9]{0,5})$/;
-            var pswRegheigh = /^([a-zA-Z0-9]{13,})$/;
             if (pswReglow.test(inputstr)) {
-                inputStatus.warning(this, inputattr + " is Incorrect: Please enter at least 6 characters");
-            } else if (pswRegheigh.test(inputstr)) {
-                inputStatus.warning(this, inputattr + " is Incorrect: Please enter no more than 12 characters");
-            } else {
-                inputStatus.ok(this, inputattr + " is OK: Your data has been entered correctly");
+                return inputStatus.warning(this, inputattr + " is Incorrect: Please enter at least 6 characters");
             }
+            var pswRegheigh = /^([a-zA-Z0-9]{13,})$/;
+            if (pswRegheigh.test(inputstr)) {
+                return inputStatus.warning(this, inputattr + " is Incorrect: Please enter no more than 12 characters");
+            }
+            inputStatus.ok(this, inputattr + " is OK: Your data has been entered correctly");
         } else if (inputattr === "Password Retype") {
             var $passwordInput = $("#changepw [name=Password]");
-            if ($passwordInput.val() !== inputstr) {
-                inputStatus.warning(this, inputattr + " is Incorrect: Password doesn't match retyped password");
-            } else {
-                inputStatus.ok(this, inputattr + " is OK: Your data has been entered correctly");
+            if (inputstr === "") {
+                return inputStatus.warning(this, inputattr + " is empty");
             }
+            if ($passwordInput.val() !== inputstr) {
+                return inputStatus.warning(this, inputattr + " is Incorrect: Password doesn't match retyped password");
+            }
+            inputStatus.ok(this, inputattr + " is OK: Your data has been entered correctly");
         }
     }
 
