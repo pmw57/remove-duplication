@@ -1,4 +1,10 @@
 function validate(inputGroup, type) {
+    const validationTypes = {
+        email: [checkEmpty, checkFake, checkEmailReg],
+        password: [checkEmpty, checkFake, checkPasswordShort, checkPasswordLong],
+        retype: [checkEmpty, matchesPassword]
+    };
+
     function getValue(inputGroup) {
         return $(inputGroup).find(".input-check").val().trim();
     }
@@ -27,6 +33,30 @@ function validate(inputGroup, type) {
             return true;
         }
     }
+    function checkPasswordShort(inputGroup) {
+        const pswReglow = /^([a-zA-Z0-9]{0,5})$/;
+        const value = getValue(inputGroup);
+        if (pswReglow.test(value)) {
+            inputStatus.warning(inputGroup, getName(inputGroup) + " is Incorrect: Please enter at least 6 characters");
+            return true;
+        }
+    }
+    function checkPasswordLong(inputGroup) {
+        const pswReghigh = /^([a-zA-Z0-9]{13,})$/;
+        const value = getValue(inputGroup);
+        if (pswReghigh.test(value)) {
+            inputStatus.warning(inputGroup, getName(inputGroup) + " is Incorrect: Please enter no more than 12 characters");
+            return true;
+        }
+    }
+    function matchesPassword(inputGroup) {
+        var $passwordValue = $("#changepw [name=Password]").val();
+        const value = getValue(inputGroup);
+        if (value !== $passwordValue) {
+            inputStatus.warning(inputGroup, getName(inputGroup) + " is Incorrect: Password doesn't match retyped password");
+            return true;
+        }
+    }
     function showValid(inputGroup) {
         inputStatus.ok(inputGroup, getName(inputGroup) + " is Ok: Your data has been entered correctly");
     }
@@ -37,9 +67,6 @@ function validate(inputGroup, type) {
             return check(inputGroup, value, name);
         });
     }
-    const validationTypes = {
-        email: [checkEmpty, checkFake, checkEmailReg]
-    };
     if (!validationTypes[type]) {
         throw new Error(type + " validation not supported");
     }

@@ -116,7 +116,7 @@ describe("login input password", function () {
         it("shows a message", function () {
             $passwordError.html("");
             loginInputHandler($passwordGroup);
-            expect($passwordError.html()).to.equal("Password is OK: Your data has been entered correctly");
+            expect($passwordError.html()).to.equal("Password is Ok: Your data has been entered correctly");
         });
         it("adds ok to error", function () {
             $passwordError.removeClass("ok");

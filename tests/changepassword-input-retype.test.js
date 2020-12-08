@@ -74,7 +74,7 @@ describe("change-password input retype", function () {
         it("shows a message", function () {
             $retypeError.html("");
             passwordInputHandler();
-            expect($retypeError.html()).to.equal("Password Retype is OK: Your data has been entered correctly");
+            expect($retypeError.html()).to.equal("Password Retype is Ok: Your data has been entered correctly");
         });
         it("adds ok to error", function () {
             $retypeError.removeClass("ok");

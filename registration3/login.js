@@ -9,29 +9,13 @@ function checkFake(input) {
 }
 const login = (function() {
     function loginInputHandler() {
-        const inputattr = $(this).find(".input-check").attr("name");
-        if (inputattr === "E-mail") {
-            validate(this, "email");
-        }
-        if (inputattr === "Password") {
-            const inputstr = $(this).find(".input-check").val().trim();
-            if (inputstr === "") {
-                return inputStatus.warning(this, inputattr + " is empty");
-            }
-            const fakeReg = /(.)\1{2,}/;
-            if (fakeReg.test(inputstr)) {
-                return inputStatus.warning(this, inputattr + " is Fake text: Please remove repetition");
-            }
-            const pswReglow = /^([a-zA-Z0-9]{0,5})$/;
-            if (pswReglow.test(inputstr)) {
-                return inputStatus.warning(this, inputattr + " is Incorrect: Please enter at least 6 characters");
-            }
-            const pswRegheigh = /^([a-zA-Z0-9]{13,})$/;
-            if (pswRegheigh.test(inputstr)) {
-                return inputStatus.warning(this, inputattr + " is Incorrect: Please enter no more than 12 characters");
-            }
-            return inputStatus.ok(this, inputattr + " is OK: Your data has been entered correctly");
-        }
+        const validators = {
+            "E-mail": "email",
+            "Password": "password"
+        };
+        const inputGroup = this;
+        const name = $(inputGroup).find(".input-check").attr("name");
+        validate(inputGroup, validators[name]);
     }
 
     /* modal check*/
