@@ -11,11 +11,7 @@ const login = (function() {
     function loginInputHandler() {
         const inputattr = $(this).find(".input-check").attr("name");
         if (inputattr === "E-mail") {
-            if (validate(this, "email")) {
-                return;
-            }
-            const inputstr = $(this).find(".input-check").val().trim();
-            return inputStatus.ok(this, inputattr + " is Ok: Your data has been entered correctly");
+            validate(this, "email");
         }
         if (inputattr === "Password") {
             const inputstr = $(this).find(".input-check").val().trim();
