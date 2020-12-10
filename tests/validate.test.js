@@ -8,20 +8,10 @@ describe("validate", function () {
             validate(emailGroup);
             expect($emailError.html()).to.equal("E-mail is empty");
         });
-        it("isn't empty", function () {
-            input.value = "test.value@example.com";
-            validate(emailGroup);
-            expect($emailError.html()).to.contain("is Ok");
-        });
         it("is fake text", function () {
             input.value = "aaabbb";
             validate(emailGroup);
             expect($emailError.html()).to.equal("E-mail is Fake text: Please remove repetition");
-        });
-        it("isn't fake text", function () {
-            input.value = "test.value@example.com";
-            validate(emailGroup);
-            expect($emailError.html()).to.contain("is Ok");
         });
         it("is invalid email", function () {
             input.value = "test.value";
@@ -46,7 +36,7 @@ describe("validate", function () {
         it("isn't empty", function () {
             input.value = "Password123";
             validate(passwordGroup);
-            expect($passwordError.html()).to.not.contain("is empty");
+            expect($passwordError.html()).to.contain("is Ok");
         });
         it("is fake text", function () {
             input.value = "aaabbb";
@@ -77,6 +67,30 @@ describe("validate", function () {
             input.value = "Password123";
             validate(passwordGroup);
             expect($passwordError.html()).to.not.contain("12 characters");
+        });
+    });
+    describe("retype password", function () {
+        const passwordGroup = $("#changepw .form-group").has("[name='Password']").get(0);
+        const passwordInput = $(passwordGroup).find("input").get(0);
+        const retypeGroup = $("#changepw .form-group").has("[name='Password Retype']").get(0);
+        const retypeInput = $(retypeGroup).find("input").get(0);
+        const $retypeError = $(retypeGroup).find(".error");
+        it("is empty", function () {
+            retypeInput.value = "";
+            validate(retypeGroup);
+            expect($retypeError.html()).to.equal("Password Retype is empty");
+        });
+        it("doesn't match", function () {
+            passwordInput.value = "Password123";
+            retypeInput.value = "Password234";
+            validate(retypeGroup);
+            expect($retypeError.html()).to.equal("Password Retype is Incorrect: Password doesn't match retyped password");
+        });
+        it("matches", function () {
+            passwordInput.value = "Password123";
+            retypeInput.value = "Password123";
+            validate(retypeGroup);
+            expect($retypeError.html()).to.equal("Password Retype is Ok: Your data has been entered correctly");
         });
     });
 });

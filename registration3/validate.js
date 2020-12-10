@@ -1,8 +1,9 @@
-function validate(inputGroup) {
-    const validationTypes = {
+function validate(inputGroup, validators = {}) {
+    const validationTypes = Object.assign({
         "E-mail": [checkEmpty, checkFake, checkEmailReg],
-        "Password": [checkEmpty, checkFake, checkPasswordShort, checkPasswordLong]
-    };
+        "Password": [checkEmpty, checkFake, checkPasswordShort, checkPasswordLong],
+        "Password Retype": [checkEmpty, checkPasswordDifferent]
+    }, validators);
     function getName(inputGroup) {
         return $(inputGroup).find(".input-check").attr("name");
     }
@@ -48,6 +49,16 @@ function validate(inputGroup) {
         const value = getValue(inputGroup);
         if (pswReghigh.test(value)) {
             inputStatus.warning(inputGroup, getName(inputGroup) + " is Incorrect: Please enter no more than 12 characters");
+            return false;
+        }
+        return true;
+    }
+    function checkPasswordDifferent(inputGroup) {
+        const $form = $(inputGroup).closest("form");
+        const $passwordInput = $form.find("[name=Password]");
+        const $retypeInput = $(inputGroup).find("input");
+        if ($passwordInput.val() !== $retypeInput.val()) {
+            inputStatus.warning(inputGroup, getName(inputGroup) + " is Incorrect: Password doesn't match retyped password");
             return false;
         }
         return true;
