@@ -9,7 +9,6 @@ function checkFake(input) {
 }
 const login = (function() {
     function loginInputHandler() {
-        const name = $(this).find(".input-check").attr("name");
         validate(this);
     }
 

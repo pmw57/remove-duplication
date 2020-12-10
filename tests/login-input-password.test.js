@@ -113,7 +113,7 @@ describe("login input password", function () {
         beforeEach(function () {
             $passwordInput.val("testpassword");
         })
-        it("shows a message", function () {
+        it.only("shows a message", function () {
             $passwordError.html("");
             loginInputHandler($passwordGroup);
             expect($passwordError.html()).to.equal("Password is Ok: Your data has been entered correctly");
