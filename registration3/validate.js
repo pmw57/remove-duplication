@@ -53,7 +53,7 @@ function validate(inputGroup) {
         return true;
     }
     function showValid(inputGroup) {
-        inputStatus.ok(inputGroup, getName(inputGroup) + " is Ok: Your data has been entered correctly");
+        inputStatus.ok(inputGroup, "E-mail is Ok: Your data has been entered correctly");
     }
     function validateByTypes(inputGroup) {
         const name = getName(inputGroup);
