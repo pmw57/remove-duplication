@@ -1,4 +1,4 @@
-describe("When login form is submitted, update input messages", function () {
+describe("login submit", function () {
     const fakeEvt = {
         preventDefault: function fakeFunc() {}
     };
@@ -9,36 +9,24 @@ describe("When login form is submitted, update input messages", function () {
     after(function () {
         $("#login").trigger("reset");
     });
-    describe("email has value", function () {
+    it("email has value, resets email error", function () {
         const $emailGroup = $("#login .form-group").eq(1);
-        describe("email error", function () {
-            const $emailInput = $emailGroup.find("input");
-            const $emailError = $emailGroup.find(".error");
-            const CSSgreen = "rgb(0, 128, 0)";
-            beforeEach(function () {
-                $emailInput.val("test value");
-            });
-            it("Resets the error message", function () {
-                $emailError.html("test content");
-                loginSubmitHandler(fakeEvt);
-                expect($emailError.html()).to.equal("Your E-mail is OK");
-            });
-        });
+        const $emailInput = $emailGroup.find("input");
+        const $emailError = $emailGroup.find(".error");
+        const CSSgreen = "rgb(0, 128, 0)";
+        $emailInput.val("test value");
+        $emailError.html("test content");
+        loginSubmitHandler(fakeEvt);
+        expect($emailError.html()).to.equal("Your E-mail is OK");
     });
-    describe("email is empty", function () {
+    it("email is empty, shows email error", function () {
         const $emailGroup = $("#login .form-group").eq(1);
-        describe("email error", function () {
-            const $emailInput = $emailGroup.find(".input-check").first();
-            const $emailError = $emailGroup.find(".error");
-            const CSSred = "rgb(255, 0, 0)";
-            beforeEach(function () {
-                $emailInput.val("");
-            });
-            it("Gives an error message", function () {
-                $emailError.html("test content");
-                loginSubmitHandler(fakeEvt);
-                expect($emailError.html()).to.equal("Your E-mail is empty");
-            });
-        });
+        const $emailInput = $emailGroup.find(".input-check").first();
+        const $emailError = $emailGroup.find(".error");
+        const CSSred = "rgb(255, 0, 0)";
+        $emailInput.val("");
+        $emailError.html("test content");
+        loginSubmitHandler(fakeEvt);
+        expect($emailError.html()).to.equal("Your E-mail is empty");
     });
 });

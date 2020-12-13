@@ -20,14 +20,10 @@ describe("registration-input password", function () {
     after(function () {
         $("#registration").trigger("reset");
     });
-    describe("password has repetition", function () {
-        beforeEach(function () {
-            $passwordInput.val("abbbc");
-        });
-        it("shows an error message", function () {
-            $passwordError.html("");
-            callRegistrationInputHandler($passwordInputGroup);
-            expect($passwordError.html()).to.equal("Password is Fake text: Please remove repetition");
-        });
+    it("password has repetition", function () {
+        $passwordInput.val("abbbc");
+        $passwordError.html("");
+        callRegistrationInputHandler($passwordInputGroup);
+        expect($passwordError.html()).to.equal("Password is Fake text: Please remove repetition");
     });
 });

@@ -20,43 +20,28 @@ describe("registration-input retype password", function () {
     after(function () {
         $("#registration").trigger("reset");
     });
-    describe("value has content", function () {
-        beforeEach(function () {
-            $retypeInput.val("test value");
-        });
-        describe("doesn't match password", function () {
-            beforeEach(function () {
-                const $password = $("[name=Password]");
-                $password.val($retypeInput.val() + "nomatch");
-            });
-            it("shows an error message", function () {
-                $retypeError.html("");
-                callRegistrationInputHandler($retypeInputGroup);
-                expect($retypeError.html()).to.equal("Retype Password is Incorrect: Password doesn't match retyped pwd");
-            });
-        });
-        describe("does match password", function () {
-            beforeEach(function () {
-                const $password = $("[name=Password]");
-                $password.val($retypeInput.val());
-            });
-            const $retypeError = $retypeGroup.find(".error");
-            it("shows an error message", function () {
-                $retypeError.html("");
-                callRegistrationInputHandler($retypeInputGroup);
-                expect($retypeError.html()).to.equal("Retype Password is OK: Your data has been entered correctly");
-            });
-        });
+    it("doesn't match password", function () {
+        $retypeInput.val("test value");
+        const $password = $("[name=Password]");
+        $password.val($retypeInput.val() + "nomatch");
+        $retypeError.html("");
+        callRegistrationInputHandler($retypeInputGroup);
+        expect($retypeError.html()).to.equal("Retype Password is Incorrect: Password doesn't match retyped pwd");
     });
-    describe("value is empty", function () {
-        beforeEach(function () {
-            $retypeInput.val("");
-        });
+    it("does match password", function () {
+        $retypeInput.val("test value");
         const $retypeError = $retypeGroup.find(".error");
-        it("shows an error message", function () {
-            $retypeError.html("");
-            callRegistrationInputHandler($retypeInputGroup);
-            expect($retypeError.html()).to.equal("Retype Password is EMPTY: Please enter data into this input");
-        });
+        const $password = $("[name=Password]");
+        $password.val($retypeInput.val());
+        $retypeError.html("");
+        callRegistrationInputHandler($retypeInputGroup);
+        expect($retypeError.html()).to.equal("Retype Password is OK: Your data has been entered correctly");
+    });
+    it("value is empty", function () {
+        $retypeInput.val("");
+        const $retypeError = $retypeGroup.find(".error");
+        $retypeError.html("");
+        callRegistrationInputHandler($retypeInputGroup);
+        expect($retypeError.html()).to.equal("Retype Password is EMPTY: Please enter data into this input");
     });
 });

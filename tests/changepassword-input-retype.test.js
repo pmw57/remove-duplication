@@ -19,36 +19,24 @@ describe("change-password input retype", function () {
     after(function () {
         $("#login").trigger("reset");
     });
-    describe("password doesn't match", function () {
-        beforeEach(function () {
-            $passwordInput.val("validpassword");
-            $retypeInput.val("mistypedpassword");
-        })
-        it("shows a message", function () {
-            $retypeError.html("");
-            passwordInputHandler();
-            expect($retypeError.html()).to.equal("Password Retype is Incorrect: Password doesn't match retyped password");
-        });
+    it("password doesn't match", function () {
+        $passwordInput.val("validpassword");
+        $retypeInput.val("mistypedpassword");
+        $retypeError.html("");
+        passwordInputHandler();
+        expect($retypeError.html()).to.equal("Password Retype is Incorrect: Password doesn't match retyped password");
     });
-    describe("password matches", function () {
-        beforeEach(function () {
-            $passwordInput.val("testpassword");
-            $retypeInput.val("testpassword");
-        })
-        it("shows a message", function () {
-            $retypeError.html("");
-            passwordInputHandler();
-            expect($retypeError.html()).to.equal("Password Retype is Ok: Your data has been entered correctly");
-        });
+    it("password matches", function () {
+        $passwordInput.val("testpassword");
+        $retypeInput.val("testpassword");
+        $retypeError.html("");
+        passwordInputHandler();
+        expect($retypeError.html()).to.equal("Password Retype is Ok: Your data has been entered correctly");
     });
-    describe("password is empty", function () {
-        beforeEach(function () {
-            $retypeInput.val("");
-        })
-        it("shows a message", function () {
-            $retypeError.html("");
-            passwordInputHandler();
-            expect($retypeError.html()).to.equal("Password Retype is empty");
-        });
+    it("password is empty", function () {
+        $retypeInput.val("");
+        $retypeError.html("");
+        passwordInputHandler();
+        expect($retypeError.html()).to.equal("Password Retype is empty");
     });
 });

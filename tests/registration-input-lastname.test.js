@@ -20,14 +20,10 @@ describe("registration-input last name", function () {
     after(function () {
         $("#registration").trigger("reset");
     });
-    describe("first name has repetition", function () {
-        beforeEach(function () {
-            $lastnameInput.val("abbbc");
-        });
-        it("shows an error message", function () {
-            $lastnameError.html("");
-            callRegistrationInputHandler($lastnameInputGroup);
-            expect($lastnameError.html()).to.equal("Last Name is Fake text: Please remove repetition");
-        });
+    it("first name has repetition", function () {
+        $lastnameInput.val("abbbc");
+        $lastnameError.html("");
+        callRegistrationInputHandler($lastnameInputGroup);
+        expect($lastnameError.html()).to.equal("Last Name is Fake text: Please remove repetition");
     });
 });

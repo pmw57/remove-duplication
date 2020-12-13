@@ -73,7 +73,7 @@ describe("validate", function () {
             expect($passwordError.html()).to.not.contain("12 characters");
         });
     });
-    describe("uses custom validator to validate form field", function () {
+    describe("uses custom validator", function () {
         const firstnameGroup = $(".form-group").has("[name='First Name']").get(0);
         it("can use a custom validator", function () {
             const validatorFn = function () {};
@@ -84,32 +84,30 @@ describe("validate", function () {
             validate.check(firstnameGroup, customValidator);
             expect(spy).to.have.been.called();
         });
-        describe("custom first-name validator", function () {
-            const $firstnameInput = $(".form-group").find("input");
-            const $firstnameError = $(".form-group").find(".error");
-            function isLessThanThree(inputGroup) {
-                const input = $(inputGroup).find("input");
-                if (input.val().length < 3) {
-                    inputStatus.warning(inputGroup, "Shouldn't be less than three characters");
-                    return false;
-                }
-                return true;
+        const $firstnameInput = $(".form-group").find("input");
+        const $firstnameError = $(".form-group").find(".error");
+        function isLessThanThree(inputGroup) {
+            const input = $(inputGroup).find("input");
+            if (input.val().length < 3) {
+                inputStatus.warning(inputGroup, "Shouldn't be less than three characters");
+                return false;
             }
-            const customValidator = {
-                "First Name": [isLessThanThree]
-            }
-            it("checks if name is less than 3 characters", function () {
-                $firstnameInput.val("Ma");
-                $firstnameError.html();
-                validate.check(firstnameGroup, customValidator);
-                expect($firstnameError.html()).to.contain("less than three");
-            });
-            it("can use a custom validator", function () {
-                $firstnameInput.val("Mat");
-                $firstnameError.html();
-                validate.check(firstnameGroup, customValidator);
-                expect($firstnameError.html()).to.contain("Ok");
-            });
+            return true;
+        }
+        const customValidator = {
+            "First Name": [isLessThanThree]
+        }
+        it("name is less than 3 characters", function () {
+            $firstnameInput.val("Ma");
+            $firstnameError.html();
+            validate.check(firstnameGroup, customValidator);
+            expect($firstnameError.html()).to.contain("less than three");
+        });
+        it("name is 3 characters or more", function () {
+            $firstnameInput.val("Mat");
+            $firstnameError.html();
+            validate.check(firstnameGroup, customValidator);
+            expect($firstnameError.html()).to.contain("Ok");
         });
     });
 });

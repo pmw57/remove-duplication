@@ -18,44 +18,28 @@ describe("login input email", function () {
     after(function () {
         $("#login").trigger("reset");
     });
-    describe("email is fake", function () {
-        beforeEach(function () {
-            $emailInput.val("aaabbb@example.com");
-        })
-        it("shows a message", function () {
-            $emailError.html("");
-            loginInputHandler();
-            expect($emailError.html()).to.equal("E-mail is Fake text: Please remove repetition");
-        });
+    it("email is fake", function () {
+        $emailInput.val("aaabbb@example.com");
+        $emailError.html("");
+        loginInputHandler();
+        expect($emailError.html()).to.equal("E-mail is Fake text: Please remove repetition");
     });
-    describe("email is real", function () {
-        beforeEach(function () {
-            $emailInput.val("test@example.com");
-        })
-        it("shows a message", function () {
-            $emailError.html("");
-            loginInputHandler();
-            expect($emailError.html()).to.equal("E-mail is Ok: Your data has been entered correctly");
-        });
+    it("email is real", function () {
+        $emailInput.val("test@example.com");
+        $emailError.html("");
+        loginInputHandler();
+        expect($emailError.html()).to.equal("E-mail is Ok: Your data has been entered correctly");
     });
-    describe("is not an email", function () {
-        beforeEach(function () {
-            $emailInput.val("not an email");
-        })
-        it("shows a message", function () {
-            $emailError.html("");
-            loginInputHandler();
-            expect($emailError.html()).to.equal("E-mail is Incorrect: Please enter it correctly");
-        });
+    it("is not an email", function () {
+        $emailInput.val("not an email");
+        $emailError.html("");
+        loginInputHandler();
+        expect($emailError.html()).to.equal("E-mail is Incorrect: Please enter it correctly");
     });
-    describe("email is empty", function () {
-        beforeEach(function () {
-            $emailInput.val("");
-        })
-        it("shows a message", function () {
-            $emailError.html("");
-            loginInputHandler();
-            expect($emailError.html()).to.equal("E-mail is empty");
-        });
+    it("email is empty", function () {
+        $emailInput.val("");
+        $emailError.html("");
+        loginInputHandler();
+        expect($emailError.html()).to.equal("E-mail is empty");
     });
 });

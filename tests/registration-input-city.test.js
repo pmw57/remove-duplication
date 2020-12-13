@@ -19,30 +19,18 @@ describe("registration input city", function () {
     after(function () {
         $("#registration").trigger("reset");
     });
-    describe("when value is empty", function () {
-        beforeEach(function () {
-            $cityInput.val("");
-        });
-        describe("error", function () {
-            const $cityError = $cityGroup.find(".error");
-            it("gives an error message", function () {
-                $cityError.html("");
-                callRegistrationInputHandler($cityInputGroup);
-                expect($cityError.html()).to.equal("Your Your City field is Empty!");
-            });
-        });
+    it("when value is empty", function () {
+        $cityInput.val("");
+        const $cityError = $cityGroup.find(".error");
+        $cityError.html("");
+        callRegistrationInputHandler($cityInputGroup);
+        expect($cityError.html()).to.equal("Your Your City field is Empty!");
     });
     describe("when value has content", function () {
-        beforeEach(function () {
-            $cityInput.val("test value");
-        });
-        describe("error", function () {
-            const $cityError = $cityGroup.find(".error");
-            it("gives an error message", function () {
-                $cityError.html("");
-                callRegistrationInputHandler($cityInputGroup);
-                expect($cityError.html()).to.equal("Your Your City field is OK!");
-            });
-        });
+        $cityInput.val("test value");
+        const $cityError = $cityGroup.find(".error");
+        $cityError.html("");
+        callRegistrationInputHandler($cityInputGroup);
+        expect($cityError.html()).to.equal("Your Your City field is OK!");
     });
 });

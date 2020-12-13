@@ -18,7 +18,7 @@ describe("registration submit", function () {
                 registrationSubmitHandler(fakeEvt);
             }).to.not.throw("Cannot read property 'trim' of undefined");
         });
-        it("doesn't call preventDefault when no fields have a warning", function () {
+        it("doesn't preventDefault", function () {
             chai.spy.on(fakeEvt, "preventDefault");
             $(".form-group input.check").val("test value");
             $(".form-group textarea").val("test value");
@@ -27,7 +27,7 @@ describe("registration submit", function () {
             registrationSubmitHandler(fakeEvt);
             expect(fakeEvt.preventDefault).to.not.have.been.called();
         });
-        it("calls preventDefault when a field has a warning", function () {
+        it("calls preventDefault", function () {
             chai.spy.on(fakeEvt, "preventDefault");
             $(".form-group .check").eq(0).val("");
             $(".inputstatus .error").removeClass("warning");

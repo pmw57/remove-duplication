@@ -21,13 +21,9 @@ describe("registration-input email", function () {
         $("#registration").trigger("reset");
     });
     describe("first name has repetition", function () {
-        beforeEach(function () {
-            $emailInput.val("abbbc");
-        });
-        it("shows an error message", function () {
-            $emailError.html("");
-            callRegistrationInputHandler($emailInputGroup);
-            expect($emailError.html()).to.equal("E-mail is Fake text: Please remove repetition");
-        });
+        $emailInput.val("abbbc");
+        $emailError.html("");
+        callRegistrationInputHandler($emailInputGroup);
+        expect($emailError.html()).to.equal("E-mail is Fake text: Please remove repetition");
     });
 });

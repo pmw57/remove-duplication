@@ -3,57 +3,59 @@ describe("input status", function () {
     $error = $(inputGroup).find(".error");
     $feedback = $(inputGroup).find(".feedback");
     $required = $(inputGroup).find(".starrq");
-    it("setNone removes ok", function () {
-        $error.addClass("ok");
-        inputStatus.setNone($error);
-        expect($error.attr("class")).to.not.contain("ok");
-    });
-    it("setNone removes warning", function () {
-        $error.addClass("warning");
-        inputStatus.setNone($error);
-        expect($error.attr("class")).to.not.contain("warning");
-    });
-    it("setOk", function () {
-        $error.removeClass("ok");
-        inputStatus.setOk($error);
-        expect($error.attr("class")).to.contain("ok");
-    });
-    it("setWarning", function () {
-        $error.removeClass("warning");
-        inputStatus.setWarning($error);
-        expect($error.attr("class")).to.contain("warning");
-    });
-    it("errorOk shows message", function () {
-        $error.html("");
-        inputStatus.errorOk(inputGroup, "Test message");
-        expect($error.html()).to.equal("Test message");
-    });
-    it("errorOk sets color", function () {
-        const cssGreen = "rgb(0, 128, 0)";
-        $error.css("color", "red");
-        inputStatus.errorOk(inputGroup, "Test message");
-        expect($error.css("color")).to.equal(cssGreen);
-    });
-    it("errorOk sets ok", function () {
-        $error.removeClass("ok");
-        inputStatus.errorOk(inputGroup, "Test message");
-        expect($error.attr("class")).to.contain("ok");
-    });
-    it("errorWarning shows message", function () {
-        $error.html("");
-        inputStatus.errorWarning(inputGroup, "Test message");
-        expect($error.html()).to.equal("Test message");
-    });
-    it("errorWarning sets color", function () {
-        const cssRed = "rgb(255, 0, 0)";
-        $error.css("color", "green");
-        inputStatus.errorWarning(inputGroup, "Test message");
-        expect($error.css("color")).to.equal(cssRed);
-    });
-    it("errorWarning sets warning", function () {
-        $error.removeClass("warning");
-        inputStatus.errorWarning(inputGroup, "Test message");
-        expect($error.attr("class")).to.contain("warning");
+    describe("error", function () {
+        it("setNone removes ok", function () {
+            $error.addClass("ok");
+            inputStatus.setNone($error);
+            expect($error.attr("class")).to.not.contain("ok");
+        });
+        it("setNone removes warning", function () {
+            $error.addClass("warning");
+            inputStatus.setNone($error);
+            expect($error.attr("class")).to.not.contain("warning");
+        });
+        it("setOk", function () {
+            $error.removeClass("ok");
+            inputStatus.setOk($error);
+            expect($error.attr("class")).to.contain("ok");
+        });
+        it("setWarning", function () {
+            $error.removeClass("warning");
+            inputStatus.setWarning($error);
+            expect($error.attr("class")).to.contain("warning");
+        });
+        it("errorOk shows message", function () {
+            $error.html("");
+            inputStatus.errorOk(inputGroup, "Test message");
+            expect($error.html()).to.equal("Test message");
+        });
+        it("errorOk sets color", function () {
+            const cssGreen = "rgb(0, 128, 0)";
+            $error.css("color", "red");
+            inputStatus.errorOk(inputGroup, "Test message");
+            expect($error.css("color")).to.equal(cssGreen);
+        });
+        it("errorOk sets ok", function () {
+            $error.removeClass("ok");
+            inputStatus.errorOk(inputGroup, "Test message");
+            expect($error.attr("class")).to.contain("ok");
+        });
+        it("errorWarning shows message", function () {
+            $error.html("");
+            inputStatus.errorWarning(inputGroup, "Test message");
+            expect($error.html()).to.equal("Test message");
+        });
+        it("errorWarning sets color", function () {
+            const cssRed = "rgb(255, 0, 0)";
+            $error.css("color", "green");
+            inputStatus.errorWarning(inputGroup, "Test message");
+            expect($error.css("color")).to.equal(cssRed);
+        });
+        it("errorWarning sets warning", function () {
+            $error.removeClass("warning");
+            inputStatus.errorWarning(inputGroup, "Test message");
+            expect($error.attr("class")).to.contain("warning");
+        });
     });
     describe("feedback", function () {
         it("feedbackNone removes glyphicon", function () {
@@ -144,35 +146,39 @@ describe("input status", function () {
             expect($required.attr("class")).to.contain("warning");
         });
     });
-    it("ok shows message", function () {
-        $error.html();
-        inputStatus.ok(inputGroup, "Test message");
-        expect($error.html()).to.equal("Test message");
+    describe("ok", function () {
+        it("ok shows message", function () {
+            $error.html();
+            inputStatus.ok(inputGroup, "Test message");
+            expect($error.html()).to.equal("Test message");
+        });
+        it("ok sets feedback", function () {
+            $feedback.removeClass("ok");
+            inputStatus.ok(inputGroup, "Test message");
+            expect($feedback.attr("class")).to.contain("ok");
+        });
+        it("ok sets required", function () {
+            $required.removeClass("ok");
+            inputStatus.ok(inputGroup, "Test message");
+            expect($required.attr("class")).to.contain("ok");
+        });
     });
-    it("ok sets feedback", function () {
-        $feedback.removeClass("ok");
-        inputStatus.ok(inputGroup, "Test message");
-        expect($feedback.attr("class")).to.contain("ok");
-    });
-    it("ok sets required", function () {
-        $required.removeClass("ok");
-        inputStatus.ok(inputGroup, "Test message");
-        expect($required.attr("class")).to.contain("ok");
-    });
-    it("warning shows message", function () {
-        $error.html();
-        inputStatus.warning(inputGroup, "Test message");
-        expect($error.html()).to.equal("Test message");
-    });
-    it("warning sets feedback", function () {
-        $feedback.removeClass("warning");
-        inputStatus.warning(inputGroup, "Test message");
-        expect($feedback.attr("class")).to.contain("warning");
-    });
-    it("warning sets required", function () {
-        $required.removeClass("warning");
-        inputStatus.warning(inputGroup, "Test message");
-        expect($required.attr("class")).to.contain("warning");
+    describe("warning", function () {
+            it("warning shows message", function () {
+            $error.html();
+            inputStatus.warning(inputGroup, "Test message");
+            expect($error.html()).to.equal("Test message");
+        });
+        it("warning sets feedback", function () {
+            $feedback.removeClass("warning");
+            inputStatus.warning(inputGroup, "Test message");
+            expect($feedback.attr("class")).to.contain("warning");
+        });
+        it("warning sets required", function () {
+            $required.removeClass("warning");
+            inputStatus.warning(inputGroup, "Test message");
+            expect($required.attr("class")).to.contain("warning");
+        });
     });
     describe("resetForm", function () {
         $form = $("form").eq(1);

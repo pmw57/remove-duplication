@@ -1,4 +1,4 @@
-describe("When change-password form is reset, update input messages", function () {
+describe("change-password reset", function () {
     function passwordResetHandler(fakeEvt) {
         const resetHandler = changePassword.eventHandler.passwordReset;
         resetHandler(fakeEvt);
@@ -9,13 +9,11 @@ describe("When change-password form is reset, update input messages", function (
     after(function () {
         $("#changepw").trigger("reset");
     });
-    describe("email error", function () {
+    it("resets email message", function () {
         const $emailGroup = $("#changepw .form-group").eq(1);
         const $emailError = $emailGroup.find(".error");
-        it("Resets the error message", function () {
-            $emailError.html("test content");
-            passwordResetHandler(fakeEvt);
-            expect($emailError.html()).to.equal("Your E-mail");
-        });
+        $emailError.html("test content");
+        passwordResetHandler(fakeEvt);
+        expect($emailError.html()).to.equal("Your E-mail");
     });
 });
