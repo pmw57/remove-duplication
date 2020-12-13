@@ -23,29 +23,29 @@ const inputStatus = (function () {
         $error.css("color", "red");
         setWarning($error);
     }
-    function feedbackNone(inputGroup, message) {
+    function feedbackNone(inputGroup) {
         const $feedback = $(inputGroup).find(".feedback");
         $feedback.removeClass("glyphicon glyphicon-remove");
         $feedback.removeClass("glyphicon glyphicon-ok");
         setNone($feedback);
     }
-    function feedbackOk(inputGroup, message) {
+    function feedbackOk(inputGroup) {
         const $feedback = $(inputGroup).find(".feedback");
         feedbackNone(inputGroup);
         $feedback.addClass("glyphicon glyphicon-ok");
         setOk($feedback);
     }
-    function feedbackWarning(inputGroup, message) {
+    function feedbackWarning(inputGroup) {
         const $feedback = $(inputGroup).find(".feedback");
         feedbackNone(inputGroup);
         $feedback.addClass("glyphicon glyphicon-remove");
         setWarning($feedback);
     }
-    function requiredOk(inputGroup, message) {
+    function requiredOk(inputGroup) {
         const $required = $(inputGroup).find(".starrq");
         setOk($required);
     }
-    function requiredWarning(inputGroup, message) {
+    function requiredWarning(inputGroup) {
         const $required = $(inputGroup).find(".starrq");
         setWarning($required);
     }
