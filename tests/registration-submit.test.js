@@ -50,57 +50,6 @@ describe("registration submit", function () {
                 registrationSubmitHandler(fakeEvt);
                 expect($firstnameError.html()).to.equal("First Name is empty!");
             });
-            it("removes ok", function () {
-                $firstnameError.addClass("ok");
-                registrationSubmitHandler(fakeEvt);
-                expect($firstnameError.attr("class")).to.not.contain("ok");
-            });
-            it("adds warning", function () {
-                $firstnameError.removeClass("warning");
-                registrationSubmitHandler(fakeEvt);
-                expect($firstnameError.attr("class")).to.contain("warning");
-            });
-        });
-        describe("feedback", function () {
-            const $firstnameFeedback = $firstnameGroup.find(".feedback");
-            it("adds glyphicon", function () {
-                $firstnameFeedback.removeClass("glyphicon");
-                registrationSubmitHandler(fakeEvt);
-                expect($firstnameFeedback.attr("class")).to.contain("glyphicon");
-            });
-            it("removes glyphicon-ok", function () {
-                $firstnameFeedback.addClass("glyphicon-ok");
-                registrationSubmitHandler(fakeEvt);
-                expect($firstnameFeedback.attr("class")).to.not.contain("glyphicon-ok");
-            });
-            it("adds glyphicon-remove", function () {
-                $firstnameFeedback.removeClass("glyphicon-remove");
-                registrationSubmitHandler(fakeEvt);
-                expect($firstnameFeedback.attr("class")).to.contain("glyphicon-remove");
-            });
-            it("removes ok", function () {
-                $firstnameFeedback.addClass("ok");
-                registrationSubmitHandler(fakeEvt);
-                expect($firstnameFeedback.attr("class")).to.not.contain("ok");
-            });
-            it("adds warning", function () {
-                $firstnameFeedback.removeClass("warning");
-                registrationSubmitHandler(fakeEvt);
-                expect($firstnameFeedback.attr("class")).to.contain("warning");
-            });
-        });
-        describe("required star", function () {
-            const $firstnameRequired = $firstnameGroup.find(".starrq");
-            it("removes ok", function () {
-                $firstnameRequired.addClass("ok");
-                registrationSubmitHandler(fakeEvt);
-                expect($firstnameRequired.attr("class")).to.not.contain("ok");
-            });
-            it("adds warning", function () {
-                $firstnameRequired.removeClass("warning");
-                registrationSubmitHandler(fakeEvt);
-                expect($firstnameRequired.attr("class")).to.contain("warning");
-            });
         });
         describe("terms", function () {
             const $termsGroup = $("#terms").closest(".form-group");

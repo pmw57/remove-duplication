@@ -19,63 +19,12 @@ describe("registration reset", function () {
                 registrationResetHandler(fakeEvt);
                 expect($firstnameError.html()).to.equal(firstnameName);
             });
-            it("removes warning from error", function () {
-                $firstnameError.addClass("warning");
-                registrationResetHandler(fakeEvt);
-                expect($firstnameError.attr("class")).to.not.contain("warning");
-            });
-            it("adds ok to error", function () {
-                $firstnameError.removeClass("ok");
-                registrationResetHandler(fakeEvt);
-                expect($firstnameError.attr("class")).to.contain("ok");
-            });
-        });
-        describe("firstname feedback", function () {
-            const $firstnameFeedback = $firstnameGroup.find(".feedback");
-            it("removes glyphicon from feedback", function () {
-                $firstnameFeedback.addClass("glyphicon");
-                registrationResetHandler(fakeEvt);
-                expect($firstnameFeedback.attr("class")).to.not.contain("glyphicon");
-            });
-            it("removes glyphicon-ok from feedback", function () {
-                $firstnameFeedback.addClass("glyphicon-ok");
-                registrationResetHandler(fakeEvt);
-                expect($firstnameFeedback.attr("class")).to.not.contain("glyphicon-ok");
-            });
-            it("removes warning from feedback", function () {
-                $firstnameFeedback.addClass("warning");
-                registrationResetHandler(fakeEvt);
-                expect($firstnameFeedback.attr("class")).to.not.contain("warning");
-            });
-        });
-        describe("firstname required", function () {
-            const $firstnameRequired = $firstnameGroup.find(".starrq");
-            it("removes warning from starrq", function () {
-                $firstnameRequired.addClass("warning");
-                registrationResetHandler(fakeEvt);
-                expect($firstnameRequired.attr("class")).to.not.contain("warning");
-            });
-            it("adds ok to starrq", function () {
-                $firstnameRequired.removeClass("ok");
-                registrationResetHandler(fakeEvt);
-                expect($firstnameRequired.attr("class")).to.contain("ok");
-            });
         });
     });
     describe("terms reset", function () {
         const $termsFormgroup = $("#terms").closest(".form-group");
         describe("terms feedback", function () {
             const $termsFeedback = $termsFormgroup.find(".feedback");
-            it("removes glyphicon from terms", function () {
-                $termsFeedback.addClass("glyphicon");
-                registrationResetHandler(fakeEvt);
-                expect($termsFeedback.attr("class")).to.not.contain("glyphicon");
-            });
-            it("removes glyphicon-ok from terms", function () {
-                $termsFeedback.addClass("glyphicon-ok");
-                registrationResetHandler(fakeEvt);
-                expect($termsFeedback.attr("class")).to.not.contain("glyphicon-ok");
-            });
             it("removes ok from terms", function () {
                 $termsFeedback.addClass("ok");
                 registrationResetHandler(fakeEvt);
