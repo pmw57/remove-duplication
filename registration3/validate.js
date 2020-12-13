@@ -52,16 +52,6 @@ const validate = (function () {
         }
         return true;
     }
-    function checkPasswordDifferent(inputGroup) {
-        const $form = $(inputGroup).closest("form");
-        const $passwordInput = $form.find("[name=Password]");
-        const $retypeInput = $(inputGroup).find("input");
-        if ($passwordInput.val() !== $retypeInput.val()) {
-            inputStatus.warning(inputGroup, getName(inputGroup) + " is Incorrect: Password doesn't match retyped password");
-            return false;
-        }
-        return true;
-    }
     function showValid(inputGroup) {
         inputStatus.ok(inputGroup, getName(inputGroup) + " is Ok: Your data has been entered correctly");
     }
