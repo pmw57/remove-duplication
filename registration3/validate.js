@@ -1,14 +1,13 @@
-function validate(inputGroup, validators = {}) {
-    const validationTypes = Object.assign({
+const validate = (function () {
+    const defaultValidators = {
         "E-mail": [checkEmpty, checkFake, checkEmailReg],
-        "Password": [checkEmpty, checkFake, checkPasswordShort, checkPasswordLong],
-        "Password Retype": [checkEmpty, checkPasswordDifferent]
-    }, validators);
+        "Password": [checkEmpty, checkFake, checkPasswordShort, checkPasswordLong]
+    };
     function getName(inputGroup) {
-        return $(inputGroup).find(".input-check").attr("name");
+        return $(inputGroup).find("input").attr("name");
     }
     function getValue(inputGroup) {
-        return $(inputGroup).find(".input-check").val().trim();
+        return $(inputGroup).find("input").val().trim();
     }
     function checkEmpty(inputGroup) {
         if (getValue(inputGroup) === "") {
@@ -66,15 +65,30 @@ function validate(inputGroup, validators = {}) {
     function showValid(inputGroup) {
         inputStatus.ok(inputGroup, getName(inputGroup) + " is Ok: Your data has been entered correctly");
     }
-    function validateByTypes(inputGroup) {
-        const name = getName(inputGroup);
-        const types = validationTypes[name];
-        return types.every(function (check) {
-            return check(inputGroup);
-        });
+    function check(inputGroup, validators) {
+        const validationTypes = Object.assign(defaultValidators, validators);
+        function validateByTypes(inputGroup) {
+            const name = getName(inputGroup);
+            const types = validationTypes[name];
+            if (!types) {
+                throw new Error(name + " validation not yet supported");
+            }
+            return types.every(function (check) {
+                return check(inputGroup);
+            });
+        }
+        const isValid = validateByTypes(inputGroup);
+        if (isValid) {
+            showValid(inputGroup);
+        }
     }
-    const isValid = validateByTypes(inputGroup);
-    if (isValid) {
-        showValid(inputGroup);
-    }
-}
+    return {
+        check,
+        fn: {
+            getName,
+            getValue,
+            checkEmpty,
+            checkFake
+        }
+    };
+}());

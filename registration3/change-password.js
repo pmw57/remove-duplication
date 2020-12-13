@@ -1,6 +1,19 @@
 const changePassword = (function() {
+    function checkPasswordDifferent(inputGroup) {
+        const $form = $(inputGroup).closest("form");
+        const $passwordInput = $form.find("[name=Password]");
+        const $retypeInput = $(inputGroup).find("input");
+        if ($passwordInput.val() !== $retypeInput.val()) {
+            inputStatus.warning(inputGroup, validate.fn.getName(inputGroup) + " is Incorrect: Password doesn't match retyped password");
+            return false;
+        }
+        return true;
+    }
+    const retypeValidator = {
+        "Password Retype": [validate.fn.checkEmpty, checkPasswordDifferent]
+    };
     function passwordInputHandler() {
-        validate(this);
+        validate.check(this, retypeValidator);
     }
 
     function passwordSubmitHandler(evt) {
@@ -20,7 +33,7 @@ const changePassword = (function() {
         inputStatus.resetForm($("#changepw"));
     }
 
-    $("#changepw .form-group").on("focusin focusout input", validate);
+    $("#changepw .form-group").on("focusin focusout input", validate.check);
     $("#changepw").on("submit", passwordSubmitHandler);
     $("#changepw").on("reset", passwordResetHandler);
     return {

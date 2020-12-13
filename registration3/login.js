@@ -9,7 +9,7 @@ function checkFake(input) {
 }
 const login = (function() {
     function loginInputHandler() {
-        validate(this);
+        validate.check(this);
     }
 
     /* modal check*/
