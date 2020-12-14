@@ -109,5 +109,25 @@ describe("validate", function () {
             validate.check(firstnameGroup, customValidator);
             expect($firstnameError.html()).to.contain("Ok");
         });
+        it("createValidator finds invalid value", function () {
+            $firstnameInput.val("Ma");
+            const checkAtLeastThree = validate.createValidator(function (input) {
+                return input.value.length >= 3;
+            }, "Should be three or more characters");
+            validate.check(firstnameGroup, {
+                "First Name": [checkAtLeastThree]
+            });
+            expect($firstnameError.html()).to.equal("First Name is Incorrect: Should be three or more characters");
+        });
+        it("createCheck finds valid value", function () {
+            $firstnameInput.val("Mat");
+            const checkAtLeastThree = validate.createValidator(function (input) {
+                return input.value.length >= 3;
+            }, "Should be three or more characters");
+            validate.check(firstnameGroup, {
+                "First Name": [checkAtLeastThree]
+            });
+            expect($firstnameError.html()).to.equal("First Name is Ok: Your data has been entered correctly");
+        });
     });
 });

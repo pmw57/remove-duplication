@@ -3,6 +3,16 @@ const validate = (function () {
         "E-mail": [checkEmpty, checkFake, checkEmailReg],
         "Password": [checkEmpty, checkFake, checkPasswordShort, checkPasswordLong]
     };
+    function createValidator(rule, errorMessage) {
+        return function check(inputGroup) {
+            const input = $(inputGroup).find("input, textarea").get(0);
+            if (!rule(input)) {
+                inputStatus.warning(inputGroup, validate.fn.getName(inputGroup) + " is Incorrect: " + errorMessage);
+                return false;
+            }
+            return true;
+        }
+    }
     function getName(inputGroup) {
         return $(inputGroup).find("input, textarea").attr("name");
     }
@@ -73,6 +83,7 @@ const validate = (function () {
         }
     }
     return {
+        createValidator,
         check,
         fn: {
             getName,
