@@ -503,50 +503,27 @@ const registration = (function() {
 
         /* address */
         if (name === "Postal Address") {
-            if (value.length > 0) {
-                var AddressReg = /^\d+\s[A-z]+\s[A-z]+/g;
-                if (!AddressReg.test(value)) {
-                    // address
-                    $(this).next().find(".error").html(name + " is Incorrect: Please enter Address correctly");
-                    $(this).next().find(".error").addClass('warning').removeClass('ok');
-                    $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                    $("#postalRequired").removeClass("ok").addClass("warning");
-                } else {
-                    $(this).next().find(".error").html(name + " is Ok : Your data has been entered correctly");
-                    $(this).next().find(".error").addClass('ok').removeClass('warning');
-                    $(this).next().find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
-                    $("#postalRequired").removeClass("warning").addClass("ok");
-                }
+            const $formGroup = $(this).closest(".form-group");
+            const AddressReg = /^\d+\s[A-z]+\s[A-z]+/g;
+            if (value === "") {
+                inputStatus.warning($formGroup, name + " is EMPTY: Please enter data into this input");
+            } else if (!AddressReg.test(value)) {
+                inputStatus.warning($formGroup, name + " is Incorrect: Please enter Address correctly");
             } else {
-                $(this).next().find(".error").html(name + " is EMPTY: Please enter data into this input");
-                $(this).next().find(".error").addClass('warning').removeClass('ok');
-                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                $("#postalRequired").removeClass("ok").addClass("warning");
+                inputStatus.ok($formGroup, name + " is Ok: Your data has been entered correctly");
             }
         }
         /* postcode  */
         if (name === "zip code") {
-            if (value.length > 0) {
-                var PostcodeReg = /^[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}$/;
-                if (!PostcodeReg.test(value)) {
-                    //post-code
-                    $(this).next().find(".error").html(name + " is Incorrect: Please enter Post-code correctly");
-                    $(this).next().find(".error").addClass('warning').removeClass('ok');
-                    $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                    $("#zipRequired").removeClass("ok").addClass("warning");
-                } else {
-                    $(this).next().find(".error").html(name + " is Ok : Your data has been entered correctly");
-                    $(this).next().find(".error").addClass('ok').removeClass('warning');
-                    $(this).next().find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
-                    $("#zipRequired").removeClass("warning").addClass("ok");
-                }
+            const $formGroup = $(this).closest(".form-group");
+            var PostcodeReg = /^[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}$/;
+            if (value === "") {
+                inputStatus.warning($formGroup, name + " is EMPTY: Please enter data into this input");
+            } else if (!PostcodeReg.test(value)) {
+                inputStatus.warning($formGroup, name + " is Incorrect: Please enter Post-code correctly");
             } else {
-                $(this).next().find(".error").html(name + " is EMPTY: Please enter data into this input");
-                $(this).next().find(".error").addClass('warning').removeClass('ok');
-                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                $("#zipRequired").removeClass("ok").addClass("warning");
+                inputStatus.ok($formGroup, name + " is Ok: Your data has been entered correctly");
             }
-
         }
         /* city  */
         if (name === "Your City") {
