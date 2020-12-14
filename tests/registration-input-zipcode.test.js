@@ -1,4 +1,4 @@
-describe.only("registration input zipcode", function () {
+describe("registration input zipcode", function () {
     /*
        Structure
        - .form-group
