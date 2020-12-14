@@ -6,7 +6,6 @@ const registration = (function() {
         $(".bar3").toggleClass("rotate-45dg");
     });
 
-    // first name glyph
     $(".fst-name-glyph").on("mouseenter", function() {
         $(".fst-name-glyph").css("background-color", "darkred");
         $(".fst-name-glyph").css("color", "orange");
@@ -22,7 +21,6 @@ const registration = (function() {
         $(".fst-name-field").css("background-color", "lightgreen");
     });
 
-    // first name field
     $(".fst-name-field").on("mouseenter", function() {
         $(".fst-name-glyph").css("background-color", "darkred");
         $(".fst-name-glyph").css("color", "orange");
@@ -38,7 +36,6 @@ const registration = (function() {
         $(".fst-name-field").css("background-color", "lightgreen");
     });
 
-    // last name glyph
     $(".lst-name-glyph").on("mouseenter", function() {
         $(".lst-name-glyph").css("background-color", "darkred");
         $(".lst-name-glyph").css("color", "orange");
@@ -54,7 +51,6 @@ const registration = (function() {
         $(".lst-name-field").css("background-color", "lightgreen");
     });
 
-    // last name field
     $(".lst-name-field").on("mouseenter", function() {
         $(".lst-name-glyph").css("background-color", "darkred");
         $(".lst-name-glyph").css("color", "orange");
@@ -70,7 +66,6 @@ const registration = (function() {
         $(".lst-name-field").css("background-color", "lightgreen");
     });
 
-    // email glyph
     $(".email-glyph").on("mouseenter", function() {
         $(".email-glyph").css("background-color", "darkred");
         $(".email-glyph").css("color", "orange");
@@ -86,7 +81,6 @@ const registration = (function() {
         $(".email-field").css("background-color", "lightgreen");
     });
 
-    // email field
     $(".email-field").on("mouseenter", function() {
         $(".email-glyph").css("background-color", "darkred");
         $(".email-glyph").css("color", "orange");
@@ -102,7 +96,6 @@ const registration = (function() {
         $(".email-field").css("background-color", "lightgreen");
     });
 
-    // phone glyph
     $(".phone-glyph").on("mouseenter", function() {
         $(".phone-glyph").css("background-color", "darkred");
         $(".phone-glyph").css("color", "orange");
@@ -118,7 +111,6 @@ const registration = (function() {
         $(".phone-field").css("background-color", "lightgreen");
     });
 
-    // phone field
     $(".phone-field").on("mouseenter", function() {
         $(".phone-glyph").css("background-color", "darkred");
         $(".phone-glyph").css("color", "orange");
@@ -134,7 +126,6 @@ const registration = (function() {
         $(".phone-field").css("background-color", "lightgreen");
     });
 
-    // .phone2 glyph
     $(".phone2-glyph").on("mouseenter", function() {
         $(".phone2-glyph").css("background-color", "darkred");
         $(".phone2-glyph").css("color", "orange");
@@ -150,7 +141,6 @@ const registration = (function() {
         $(".phone2-field").css("background-color", "lightgreen");
     });
 
-    // .phone2 field
     $(".phone2-field").on("mouseenter", function() {
         $(".phone2-glyph").css("background-color", "darkred");
         $(".phone2-glyph").css("color", "orange");
@@ -166,7 +156,6 @@ const registration = (function() {
         $(".phone2-field").css("background-color", "lightgreen");
     });
 
-    // .address glyph
     $(".address-glyph").on("mouseenter", function() {
         $(".address-glyph").css("background-color", "darkred");
         $(".address-glyph").css("color", "orange");
@@ -182,7 +171,6 @@ const registration = (function() {
         $(".address-field").css("background-color", "lightgreen");
     });
 
-    // .address field
     $(".address-field").on("mouseenter", function() {
         $(".address-glyph").css("background-color", "darkred");
         $(".address-glyph").css("color", "orange");
@@ -198,7 +186,6 @@ const registration = (function() {
         $(".address-field").css("background-color", "lightgreen");
     });
 
-    // .zip glyph
     $(".zip-glyph").on("mouseenter", function() {
         $(".zip-glyph").css("background-color", "darkred");
         $(".zip-glyph").css("color", "orange");
@@ -214,7 +201,6 @@ const registration = (function() {
         $(".zip-field").css("background-color", "lightgreen");
     });
 
-    // .zip field
     $(".zip-field").on("mouseenter", function() {
         $(".zip-glyph").css("background-color", "darkred");
         $(".zip-glyph").css("color", "orange");
@@ -230,7 +216,6 @@ const registration = (function() {
         $(".zip-field").css("background-color", "lightgreen");
     });
 
-    // .city glyph
     $(".city-glyph").on("mouseenter", function() {
         $(".city-glyph").css("background-color", "darkred");
         $(".city-glyph").css("color", "orange");
@@ -246,7 +231,6 @@ const registration = (function() {
         $(".city-field").css("background-color", "lightgreen");
     });
 
-    // .city field
     $(".city-field").on("mouseenter", function() {
         $(".city-glyph").css("background-color", "darkred");
         $(".city-glyph").css("color", "orange");
@@ -262,7 +246,6 @@ const registration = (function() {
         $(".city-field").css("background-color", "lightgreen");
     });
 
-    // .pwd glyph
     $(".pwd-glyph").on("mouseenter", function() {
         $(".pwd-glyph").css("background-color", "darkred");
         $(".pwd-glyph").css("color", "orange");
@@ -278,7 +261,6 @@ const registration = (function() {
         $(".pwd-field").css("background-color", "lightgreen");
     });
 
-    // .pwd field
     $(".pwd-field").on("mouseenter", function() {
         $(".pwd-glyph").css("background-color", "darkred");
         $(".pwd-glyph").css("color", "orange");
@@ -294,7 +276,6 @@ const registration = (function() {
         $(".pwd-field").css("background-color", "lightgreen");
     });
 
-    // .re glyph
     $(".re-glyph").on("mouseenter", function() {
         $(".re-glyph").css("background-color", "darkred");
         $(".re-glyph").css("color", "orange");
@@ -310,7 +291,6 @@ const registration = (function() {
         $(".re-field").css("background-color", "lightgreen");
     });
 
-    // .re field
     $(".re-field").on("mouseenter", function() {
         $(".re-glyph").css("background-color", "darkred");
         $(".re-glyph").css("color", "orange");
@@ -325,20 +305,16 @@ const registration = (function() {
     $(".re-field").on("mouseleave", function() {
         $(".re-field").css("background-color", "lightgreen");
     });
-    // form end 
 
-    /* modal call */
     $("#myBtn").click(function() {
         $("#myModal").modal();
     });
 
-    /* input with  dropdown */
     $(".citylist li").click(function() {
         var city = $(this).text().trim();
         var name = $("#your-city").attr("name");
         $("#your-city").val(city);
         $("#demo2").collapse("hide");
-        /**/
         if (city != "") {
             $(".form-group").find("#errorid").html(name + " is OK: Your data has been entered correctly");
             $(".form-group").find("#errorid").addClass('ok').removeClass('warning');
@@ -364,9 +340,8 @@ const registration = (function() {
         const $formGroup = $(this).closest(".form-group");
         
         /* The regex for ensuring that letters aren’t used, can just be a simple regex for numbers and separators.
-/^[0-9 .-]+$/ */
+        /^[0-9 .-]+$/ */
 
-        /* first name */
         if (value === "") {
             $(this).next().find(".error").html("Your " + name + " field is Empty !").removeClass("ok").addClass("warning");
 
@@ -378,7 +353,6 @@ const registration = (function() {
                 $("#lnameRequired").removeClass("ok").addClass("warning");
             }
         } else {
-            /* first name */
             if (name === "First Name") {
                 if (value.length > 19) {
                     // condition for more than 19 char
@@ -397,13 +371,11 @@ const registration = (function() {
                             $("#fnameRequired").removeClass("warning").addClass("ok");
                         } else {
                             if (/^([a-zA-Z]{1,16})+$/.test(value) === true) {
-                                // condition for less than 2 char
                                 $(this).next().find(".error").html(name + " is Incorrect: Please enter 2 upper case or lower case at least");
                                 $(this).next().find(".error").addClass('warning').removeClass('ok');
                                 $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                                 $("#fnameRequired").removeClass("ok").addClass("warning");
                             } else {
-                                // condition for non a to z
                                 $(this).next().find(".error").html(name + " is Incorrect: Please enter upper case and lower case only");
                                 $(this).next().find(".error").addClass('warning').removeClass('ok');
                                 $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
@@ -413,10 +385,8 @@ const registration = (function() {
                     }
                 }
             }
-            /* last name */
             if (name === "Last Name") {
                 if (value.length > 19) {
-                    // condition for more than 19 char
                     $(this).next().find(".error").html(name + " is Incorrect: Please enter no more than 19 char");
                     $(this).next().find(".error").addClass('warning').removeClass('ok');
                     $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
@@ -433,13 +403,11 @@ const registration = (function() {
                         } else {
 
                             if (/^([a-zA-Z]{1,16})+$/.test(value) === true) {
-                                // condition for less than 2 char
                                 $(this).next().find(".error").html(name + " is Incorrect: Please enter 2 upper case or lower case at least");
                                 $(this).next().find(".error").addClass('warning').removeClass('ok');
                                 $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                                 $("#lnameRequired").removeClass("ok").addClass("warning");
                             } else {
-                                // condition for non a to z
                                 $(this).next().find(".error").html(name + " is Incorrect: Please enter upper case and lower case only");
                                 $(this).next().find(".error").addClass('warning').removeClass('ok');
                                 $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
@@ -451,7 +419,6 @@ const registration = (function() {
             }
 
         }
-        /* Phone number */
         var inputstr = value;
         if (name === "Phone Number") {
             if (inputstr.length > 0) {
@@ -475,7 +442,6 @@ const registration = (function() {
                 $("#phoneRequired").removeClass("ok").addClass("warning");
             }
         }
-        /* email */
 
         if (name === "E-mail") {
             if (value != "") {
@@ -500,8 +466,6 @@ const registration = (function() {
             }
 
         }
-
-        /* address */
         if (name === "Postal Address") {
             const $formGroup = $(this).closest(".form-group");
             const AddressReg = /^\d+\s[A-z]+\s[A-z]+/g;
@@ -513,7 +477,6 @@ const registration = (function() {
                 inputStatus.ok($formGroup, name + " is Ok: Your data has been entered correctly");
             }
         }
-        /* postcode  */
         if (name === "zip code") {
             const $formGroup = $(this).closest(".form-group");
             var PostcodeReg = /^[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}$/;
@@ -525,7 +488,6 @@ const registration = (function() {
                 inputStatus.ok($formGroup, name + " is Ok: Your data has been entered correctly");
             }
         }
-        /* city  */
         if (name === "Your City") {
             const $formGroup = $(this).closest(".form-group");
             if (value === "") {
@@ -534,7 +496,6 @@ const registration = (function() {
                 inputStatus.ok($formGroup, "Your " + name + " field is OK!");
             }
         }
-        /* password */
         if (name === "Password") {
             var pswReglow = /^([a-zA-Z0-9]{6,})+$/;
             var pswRegheigh = /^([a-zA-Z0-9]{13,})+$/; //13 or more occurences
@@ -542,7 +503,6 @@ const registration = (function() {
                 if (fakeReg.test(value)) {
                     inputStatus.warning($formGroup, name + " is Fake text: Please remove repetition");
                 } else {
-                    //check if password and last-name is the same
                     if (value === inputs["Your City"].value) {
                         $(this).next().find(".error").html(name + " is Incorrect: Password shouldn't match city name");
                         $(this).next().find(".error").addClass('warning').removeClass('ok');
@@ -555,7 +515,6 @@ const registration = (function() {
                             $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                             $("#pwdRequired").removeClass("ok").addClass("warning");
                         } else {
-                            //check if password and first-name is the same
                             if (value === inputs["First Name"].value) {
                                 $(this).next().find(".error").html(name + " is Incorrect: Password shouldn't match fist-name");
                                 $(this).next().find(".error").addClass('warning').removeClass('ok');
@@ -569,7 +528,6 @@ const registration = (function() {
                                     $("#pwdRequired").removeClass("ok").addClass("warning");
                                 } else {
                                     if (!pswRegheigh.test(value)) {
-                                        // condition to check if length is bigger than 12 char
                                         $(this).next().find(".error").html(name + " is OK: Your data has been entered correctly");
                                         $(this).next().find(".error").addClass('ok').removeClass('warning');
                                         $(this).next().find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
@@ -592,7 +550,6 @@ const registration = (function() {
                 $("#pwdRequired").removeClass("ok").addClass("warning");
             }
         }
-        /* retype password  */
         if (name === "Retype Password") {
             const $formGroup = $(this).closest(".form-group");
             if (inputstr === inputs.Password.value) {
@@ -607,7 +564,6 @@ const registration = (function() {
     }
     $('.input-group').on('focusin focusout input', registrationInputHandler);
 
-    // terms and conditions check
     function updateTerms() {
         const $termsGroup = $(".form-group").has("#terms");
         const $terms = $termsGroup.find("#terms");
