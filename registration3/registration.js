@@ -484,14 +484,19 @@ const registration = (function() {
         }
         if (name === "zip code") {
             const $formGroup = $(this).closest(".form-group");
-            var PostcodeReg = /^[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}$/;
-            if (value === "") {
-                inputStatus.warning($formGroup, name + " is EMPTY: Please enter data into this input");
-            } else if (!PostcodeReg.test(value)) {
-                inputStatus.warning($formGroup, name + " is Incorrect: Please enter Post-code correctly");
-            } else {
-                inputStatus.ok($formGroup, name + " is Ok: Your data has been entered correctly");
+            function checkPostcode(inputGroup) {
+                const $postcodeInput = $(inputGroup).find("input");
+                const value = $postcodeInput.val();
+                const postcodeReg = /^[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}$/;
+                if (!postcodeReg.test(value)) {
+                    inputStatus.warning(inputGroup, validate.fn.getName(inputGroup) + " is Incorrect: Please enter Post-code correctly");
+                    return false;
+                }
+                return true;
             }
+            validate.check($formGroup, {
+                "zip code": [validate.fn.checkEmpty, checkPostcode]
+            });
         }
         if (name === "Your City") {
             const $formGroup = $(this).closest(".form-group");
