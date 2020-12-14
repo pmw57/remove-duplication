@@ -468,34 +468,28 @@ const registration = (function() {
         }
         if (name === "Postal Address") {
             const $formGroup = $(this).closest(".form-group");
-            function checkPostalAddress(inputGroup) {
-                const $postalInput = $(inputGroup).find("textarea");
-                const value = validate.fn.getValue(inputGroup);
+            const addressRule = function (input) {
                 const addressReg = /^\d+\s[A-z]+\s[A-z]+/g;
-                if (!addressReg.test(value)) {
-                    inputStatus.warning(inputGroup, validate.fn.getName(inputGroup) + " is Incorrect: Please enter Address correctly");
-                    return false;
-                }
-                return true;
-            }
+                return addressReg.test(input.value);
+            };
             validate.check($formGroup, {
-                "Postal Address": [validate.fn.checkEmpty, checkPostalAddress]
+                "Postal Address": [
+                    validate.fn.checkEmpty,
+                    validate.createValidator(addressRule, "Please enter Address correctly")
+                ]
             });
         }
         if (name === "zip code") {
             const $formGroup = $(this).closest(".form-group");
-            function checkPostcode(inputGroup) {
-                const $postcodeInput = $(inputGroup).find("input");
-                const value = validate.fn.getValue(inputGroup);
+            const postcodeRule = function (input) {
                 const postcodeReg = /^[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}$/;
-                if (!postcodeReg.test(value)) {
-                    inputStatus.warning(inputGroup, validate.fn.getName(inputGroup) + " is Incorrect: Please enter Post-code correctly");
-                    return false;
-                }
-                return true;
-            }
+                return postcodeReg.test(input.value);
+            };
             validate.check($formGroup, {
-                "zip code": [validate.fn.checkEmpty, checkPostcode]
+                "zip code": [
+                    validate.fn.checkEmpty,
+                    validate.createValidator(postcodeRule, "Please enter Post-code correctly")
+                ]
             });
         }
         if (name === "Your City") {
