@@ -1,16 +1,14 @@
 const changePassword = (function() {
-    function checkPasswordDifferent(inputGroup) {
-        const $form = $(inputGroup).closest("form");
-        const $passwordInput = $form.find("[name=Password]");
-        const $retypeInput = $(inputGroup).find("input");
-        if ($passwordInput.val() !== $retypeInput.val()) {
-            inputStatus.warning(inputGroup, validate.fn.getName(inputGroup) + " is Incorrect: Password doesn't match retyped password");
-            return false;
-        }
-        return true;
+    const passwordsMatchRule = function (input) {
+        const form = input.form;
+        const passwordInput = form.elements["Password"];
+        return passwordInput.value === input.value;
     }
     const retypeValidator = {
-        "Password Retype": [validate.fn.checkEmpty, checkPasswordDifferent]
+        "Password Retype": [
+            validate.fn.checkEmpty,
+            validate.createValidator(passwordsMatchRule, "Password doesn't match retyped password")
+        ]
     };
     function passwordInputHandler() {
         validate.check(this, retypeValidator);
