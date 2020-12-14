@@ -10,7 +10,7 @@ describe("validate", function () {
         it("is empty", function () {
             input.value = "";
             validate.check(emailGroup);
-            expect($emailError.html()).to.equal("E-mail is empty");
+            expect($emailError.html()).to.equal("E-mail is Empty: Please enter data into this input");
         });
         it("is fake text", function () {
             input.value = "aaabbb";
@@ -35,7 +35,7 @@ describe("validate", function () {
         it("is empty", function () {
             input.value = "";
             validate.check(passwordGroup);
-            expect($passwordError.html()).to.equal("Password is empty");
+            expect($passwordError.html()).to.equal("Password is Empty: Please enter data into this input");
         });
         it("isn't empty", function () {
             input.value = "Password123";

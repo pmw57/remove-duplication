@@ -38,7 +38,7 @@ const login = (function() {
         inputStatus.resetForm($("#login"));
     }
 
-    $("#login .form-group").on("focusin focusout input", validate);
+    $("#login .form-group").on("focusin focusout input", loginInputHandler);
     $("#login").on("submit", loginSubmitHandler);
     $("#login").on("reset", loginResetHandler);
     return {

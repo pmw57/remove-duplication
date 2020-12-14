@@ -4,14 +4,14 @@ const validate = (function () {
         "Password": [checkEmpty, checkFake, checkPasswordShort, checkPasswordLong]
     };
     function getName(inputGroup) {
-        return $(inputGroup).find("input").attr("name");
+        return $(inputGroup).find("input, textarea").attr("name");
     }
     function getValue(inputGroup) {
-        return $(inputGroup).find("input").val().trim();
+        return $(inputGroup).find("input, textarea").val().trim();
     }
     function checkEmpty(inputGroup) {
         if (getValue(inputGroup) === "") {
-            inputStatus.warning(inputGroup, getName(inputGroup) + " is empty");
+            inputStatus.warning(inputGroup, getName(inputGroup) + " is Empty: Please enter data into this input");
             return false;
         }
         return true;

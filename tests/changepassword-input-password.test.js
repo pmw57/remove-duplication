@@ -46,6 +46,6 @@ describe("change-password input password", function () {
         $passwordInput.val("");
         $passwordError.html("");
         loginInputHandler($passwordGroup);
-        expect($passwordError.html()).to.equal("Password is empty");
+        expect($passwordError.html()).to.equal("Password is Empty: Please enter data into this input");
     });
 });

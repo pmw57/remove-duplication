@@ -37,6 +37,6 @@ describe("change-password input retype", function () {
         $retypeInput.val("");
         $retypeError.html("");
         passwordInputHandler();
-        expect($retypeError.html()).to.equal("Password Retype is empty");
+        expect($retypeError.html()).to.equal("Password Retype is Empty: Please enter data into this input");
     });
 });

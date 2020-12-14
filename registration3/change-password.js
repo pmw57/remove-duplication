@@ -33,7 +33,7 @@ const changePassword = (function() {
         inputStatus.resetForm($("#changepw"));
     }
 
-    $("#changepw .form-group").on("focusin focusout input", validate.check);
+    $("#changepw .form-group").on("focusin focusout input", passwordInputHandler);
     $("#changepw").on("submit", passwordSubmitHandler);
     $("#changepw").on("reset", passwordResetHandler);
     return {

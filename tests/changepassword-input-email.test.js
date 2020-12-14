@@ -40,6 +40,6 @@ describe("change-password input email", function () {
         $emailInput.val("");
         $emailError.html("");
         passwordInputHandler();
-        expect($emailError.html()).to.equal("E-mail is empty");
+        expect($emailError.html()).to.equal("E-mail is Empty: Please enter data into this input");
     });
 });

@@ -25,7 +25,7 @@ describe("registration input postaladdress", function () {
         $postalError.html("");
         $postalError.removeClass("warning");
         callRegistrationInputHandler($postalInputGroup);
-        expect($postalError.html()).to.equal("Postal Address is EMPTY: Please enter data into this input");
+        expect($postalError.html()).to.equal("Postal Address is Empty: Please enter data into this input");
         expect($postalError.attr("class")).to.contain("warning");
     });
     it("when address is not valid", function () {

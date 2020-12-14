@@ -468,14 +468,19 @@ const registration = (function() {
         }
         if (name === "Postal Address") {
             const $formGroup = $(this).closest(".form-group");
-            const AddressReg = /^\d+\s[A-z]+\s[A-z]+/g;
-            if (value === "") {
-                inputStatus.warning($formGroup, name + " is EMPTY: Please enter data into this input");
-            } else if (!AddressReg.test(value)) {
-                inputStatus.warning($formGroup, name + " is Incorrect: Please enter Address correctly");
-            } else {
-                inputStatus.ok($formGroup, name + " is Ok: Your data has been entered correctly");
+            function checkPostalAddress(inputGroup) {
+                const $postalInput = $(inputGroup).find("textarea");
+                const value = $postalInput.val();
+                const addressReg = /^\d+\s[A-z]+\s[A-z]+/g;
+                if (!addressReg.test(value)) {
+                    inputStatus.warning(inputGroup, validate.fn.getName(inputGroup) + " is Incorrect: Please enter Address correctly");
+                    return false;
+                }
+                return true;
             }
+            validate.check($formGroup, {
+                "Postal Address": [validate.fn.checkEmpty, checkPostalAddress]
+            });
         }
         if (name === "zip code") {
             const $formGroup = $(this).closest(".form-group");
