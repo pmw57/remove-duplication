@@ -1,4 +1,4 @@
-describe("registration input zipcode", function () {
+describe.only("registration input zipcode", function () {
     /*
        Structure
        - .form-group
@@ -25,7 +25,7 @@ describe("registration input zipcode", function () {
         $zipcodeError.html("");
         $zipcodeError.removeClass("warning");
         callRegistrationInputHandler($zipcodeInputGroup);
-        expect($zipcodeError.html()).to.equal("zip code is EMPTY: Please enter data into this input");
+        expect($zipcodeError.html()).to.equal("zip code is Empty: Please enter data into this input");
         expect($zipcodeError.attr("class")).to.contain("warning");
     });
     it("when zipcode is not valid", function () {
