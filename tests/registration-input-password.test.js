@@ -17,13 +17,53 @@ describe("registration-input password", function () {
     const $passwordInputGroup = $passwordGroup.find(".input-group");
     const $passwordInput = $passwordGroup.find("input");
     const $passwordError = $passwordGroup.find(".error");
+    const $firstnameInput = $passwordGroup.closest("form").find("[name='First Name']");
+    const $lastnameInput = $passwordGroup.closest("form").find("[name='Last Name']");
+    const $cityInput = $passwordGroup.closest("form").find("[name='Your City']");
     after(function () {
         $("#registration").trigger("reset");
     });
+    it("password is empty", function () {
+        $passwordInput.val("");
+        callRegistrationInputHandler($passwordInputGroup);
+        expect($passwordError.html()).to.equal("Password is Empty: Please enter data into this input");
+    });
     it("password has repetition", function () {
         $passwordInput.val("abbbc");
-        $passwordError.html("");
         callRegistrationInputHandler($passwordInputGroup);
         expect($passwordError.html()).to.equal("Password is Fake text: Please remove repetition");
+    });
+    it("password shouldn't match firstname", function () {
+        $firstnameInput.val("John");
+        $passwordInput.val("John");
+        callRegistrationInputHandler($passwordInputGroup);
+        expect($passwordError.html()).to.equal("Password is Incorrect: Password shouldn't match first-name");
+    });
+    it("password shouldn't match lastname", function () {
+        $lastnameInput.val("Adams");
+        $passwordInput.val("Adams");
+        callRegistrationInputHandler($passwordInputGroup);
+        expect($passwordError.html()).to.equal("Password is Incorrect: Password shouldn't match last-name");
+    });
+    it("password shouldn't match city", function () {
+        $cityInput.val("Chicago");
+        $passwordInput.val("Chicago");
+        callRegistrationInputHandler($passwordInputGroup);
+        expect($passwordError.html()).to.equal("Password is Incorrect: Password shouldn't match city name");
+    });
+    it("password should be at least 6 characters", function () {
+        $passwordInput.val("12345");
+        callRegistrationInputHandler($passwordInputGroup);
+        expect($passwordError.html()).to.equal("Password is Incorrect: Please enter at lest 6 characters");
+    });
+    it("password should be at most 12 characters", function () {
+        $passwordInput.val("12345678901234567890");
+        callRegistrationInputHandler($passwordInputGroup);
+        expect($passwordError.html()).to.equal("Password is Incorrect: Please enter no more than 12 characters");
+    });
+    it("password is valid", function () {
+        $passwordInput.val("password");
+        callRegistrationInputHandler($passwordInputGroup);
+        expect($passwordError.html()).to.equal("Password is Ok: Your data has been entered correctly");
     });
 });

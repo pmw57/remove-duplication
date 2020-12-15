@@ -20,10 +20,24 @@ describe("registration-input email", function () {
     after(function () {
         $("#registration").trigger("reset");
     });
-    describe("first name has repetition", function () {
+    it("email is empty", function () {
+        $emailInput.val("");
+        callRegistrationInputHandler($emailInputGroup);
+        expect($emailError.html()).to.equal("E-mail is Empty: Please enter data into this input");
+    });
+    it("email has repetition", function () {
         $emailInput.val("abbbc");
-        $emailError.html("");
         callRegistrationInputHandler($emailInputGroup);
         expect($emailError.html()).to.equal("E-mail is Fake text: Please remove repetition");
+    });
+    it("email isn't valid", function () {
+        $emailInput.val("test@example");
+        callRegistrationInputHandler($emailInputGroup);
+        expect($emailError.html()).to.equal("E-mail is Incorrect: Please enter it correctly");
+    });
+    it("email is valid", function () {
+        $emailInput.val("test@example.com");
+        callRegistrationInputHandler($emailInputGroup);
+        expect($emailError.html()).to.equal("E-mail is Ok: Your data has been entered correctly");
     });
 });

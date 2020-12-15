@@ -24,13 +24,13 @@ describe("registration input city", function () {
         const $cityError = $cityGroup.find(".error");
         $cityError.html("");
         callRegistrationInputHandler($cityInputGroup);
-        expect($cityError.html()).to.equal("Your Your City field is Empty!");
+        expect($cityError.html()).to.equal("Your City field is Empty!");
     });
     describe("when value has content", function () {
         $cityInput.val("test value");
         const $cityError = $cityGroup.find(".error");
         $cityError.html("");
         callRegistrationInputHandler($cityInputGroup);
-        expect($cityError.html()).to.equal("Your Your City field is OK!");
+        expect($cityError.html()).to.equal("Your City field is OK!");
     });
 });
