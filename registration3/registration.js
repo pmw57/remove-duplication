@@ -343,7 +343,7 @@ const registration = (function() {
         /^[0-9 .-]+$/ */
 
         if (value === "") {
-            $(this).next().find(".error").html("Your " + name + " field is Empty !").removeClass("ok").addClass("warning");
+            $(this).next().find(".error").html(name + " is Empty: Please enter data into this input").removeClass("ok").addClass("warning");
 
             $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
             if (name === "First Name") {
