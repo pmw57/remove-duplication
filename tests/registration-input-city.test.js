@@ -19,14 +19,14 @@ describe("registration input city", function () {
     after(function () {
         $("#registration").trigger("reset");
     });
-    it("when value is empty", function () {
+    it("value is empty", function () {
         $cityInput.val("");
         const $cityError = $cityGroup.find(".error");
         $cityError.html("");
         callRegistrationInputHandler($cityInputGroup);
         expect($cityError.html()).to.equal("Your City field is Empty!");
     });
-    describe("when value has content", function () {
+    describe("value has content", function () {
         $cityInput.val("test value");
         const $cityError = $cityGroup.find(".error");
         $cityError.html("");

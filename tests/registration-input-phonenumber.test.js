@@ -20,17 +20,17 @@ describe("registration input phonenumber", function () {
     after(function () {
         $("#registration").trigger("reset");
     });
-    it("when value is empty", function () {
+    it("is empty", function () {
         $phoneInput.val("");
         callRegistrationInputHandler($phoneInputGroup);
         expect($phoneError.html()).to.equal("Phone Number is Empty: Please enter data into this input");
     });
-    it("when value isn't a phone number", function () {
+    it("isn't a phone number", function () {
         $phoneInput.val("not phone number");
         callRegistrationInputHandler($phoneInputGroup);
         expect($phoneError.html()).to.equal("Phone Number is Incorrect: Please enter Phone Number correctly");
     });
-    it("when value is a phone number", function () {
+    it("is a phone number", function () {
         $phoneInput.val("(1234)-567-8901");
         callRegistrationInputHandler($phoneInputGroup);
         expect($phoneError.html()).to.equal("Phone Number is Ok: Your Phone number has been entered correctly");

@@ -501,13 +501,13 @@ const registration = (function() {
         }
         if (name === "Retype Password") {
             const $formGroup = $(this).closest(".form-group");
-            if (value === inputs.Password.value) {
+            if (value === "") {
+                inputStatus.warning($formGroup, name + " is EMPTY: Please enter data into this input");
+                inputStatus.requiredOk($formGroup);
+            } else if (value === inputs.Password.value) {
                 inputStatus.ok($formGroup, name + " is OK: Your data has been entered correctly");
             } else if (value.length > 0) {
                 inputStatus.warning($formGroup, name + " is Incorrect: Password doesn't match retyped pwd");
-            } else {
-                inputStatus.warning($formGroup, name + " is EMPTY: Please enter data into this input");
-                inputStatus.requiredOk($formGroup);
             }
         }
     }

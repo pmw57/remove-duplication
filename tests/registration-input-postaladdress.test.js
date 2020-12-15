@@ -20,25 +20,22 @@ describe("registration input postaladdress", function () {
     after(function () {
         $("#registration").trigger("reset");
     });
-    it("when address is empty", function () {
+    it("is empty", function () {
         $postalInput.val("");
-        $postalError.html("");
         $postalError.removeClass("warning");
         callRegistrationInputHandler($postalInputGroup);
         expect($postalError.html()).to.equal("Postal Address is Empty: Please enter data into this input");
         expect($postalError.attr("class")).to.contain("warning");
     });
-    it("when address is not valid", function () {
+    it("is not valid", function () {
         $postalInput.val("not valid");
-        $postalError.html("");
         $postalError.removeClass("warning");
         callRegistrationInputHandler($postalInputGroup);
         expect($postalError.html()).to.equal("Postal Address is Incorrect: Please enter Address correctly");
         expect($postalError.attr("class")).to.contain("warning");
     });
-    it("when address is valid", function () {
+    it("is valid", function () {
         $postalInput.val("123 Test Lane");
-        $postalError.html("");
         $postalError.removeClass("ok");
         callRegistrationInputHandler($postalInputGroup);
         expect($postalError.html()).to.equal("Postal Address is Ok: Your data has been entered correctly");

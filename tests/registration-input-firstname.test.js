@@ -20,39 +20,33 @@ describe("registration-input first name", function () {
     after(function () {
         $("#registration").trigger("reset");
     });
-    it("isn't empty", function () {
+    it("is empty", function () {
         $firstnameInput.val("");
-        $firstnameError.html("");
         callRegistrationInputHandler($firstnameInputGroup);
         expect($firstnameError.html()).to.equal("First Name is Empty: Please enter data into this input");
     });
-    it("isn't fake", function () {
+    it("is fake", function () {
         $firstnameInput.val("abbbc");
-        $firstnameError.html("");
         callRegistrationInputHandler($firstnameInputGroup);
         expect($firstnameError.html()).to.equal("First Name is Fake text: Please remove repetition");
     });
-    it("isn't too long", function () {
+    it("is too long", function () {
         $firstnameInput.val("Too much text in the input field");
-        $firstnameError.html("");
         callRegistrationInputHandler($firstnameInputGroup);
         expect($firstnameError.html()).to.equal("First Name is Incorrect: Please enter no more than 19 char");
     });
-    it("has enough characters", function () {
+    it("has too short", function () {
         $firstnameInput.val("a");
-        $firstnameError.html("");
         callRegistrationInputHandler($firstnameInputGroup);
         expect($firstnameError.html()).to.equal("First Name is Incorrect: Please enter 2 upper case or lower case at least");
     });
-    it("isn't invalid characters", function () {
+    it("has strange characters", function () {
         $firstnameInput.val("##");
-        $firstnameError.html("");
         callRegistrationInputHandler($firstnameInputGroup);
         expect($firstnameError.html()).to.equal("First Name is Incorrect: Please enter upper case and lower case only");
     });
     it("is valid", function () {
         $firstnameInput.val("John");
-        $firstnameError.html("");
         callRegistrationInputHandler($firstnameInputGroup);
         expect($firstnameError.html()).to.equal("First Name is Ok: Your data has been entered correctly");
     });
