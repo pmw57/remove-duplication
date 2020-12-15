@@ -54,7 +54,7 @@ describe("registration-input password", function () {
     it("should be at least 6 characters", function () {
         $passwordInput.val("12345");
         callRegistrationInputHandler($passwordInputGroup);
-        expect($passwordError.html()).to.equal("Password is Incorrect: Please enter at lest 6 characters");
+        expect($passwordError.html()).to.equal("Password is Incorrect: Please enter at least 6 characters");
     });
     it("should be at most 12 characters", function () {
         $passwordInput.val("12345678901234567890");
