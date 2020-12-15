@@ -54,6 +54,6 @@ describe("registration-input first name", function () {
         $firstnameInput.val("John");
         $firstnameError.html("");
         callRegistrationInputHandler($firstnameInputGroup);
-        expect($firstnameError.html()).to.equal("First Name is OK: Your data has been entered correctly");
+        expect($firstnameError.html()).to.equal("First Name is Ok: Your data has been entered correctly");
     });
 });
