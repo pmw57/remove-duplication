@@ -367,41 +367,15 @@ const registration = (function() {
             });
         }
         if (name === "Last Name") {
-            if (value === "") {
-                $(this).next().find(".error").html(name + " is Empty: Please enter data into this input").removeClass("ok").addClass("warning");
-
-                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                $("#lnameRequired").removeClass("ok").addClass("warning");
-            } else if (value.length > 19) {
-                $(this).next().find(".error").html(name + " is Incorrect: Please enter no more than 19 char");
-                $(this).next().find(".error").addClass('warning').removeClass('ok');
-                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                $("#lnameRequired").removeClass("ok").addClass("warning");
-            } else {
-                if (fakeReg.test(value)) {
-                    inputStatus.warning($formGroup, name + " is Fake text: Please remove repetition");
-                } else {
-                    if (/^([a-zA-Z]{2,16})+$/.test(value) === true) {
-                        $(this).next().find(".error").html(name + " is OK: Your data has been entered correctly");
-                        $(this).next().find(".error").addClass('ok').removeClass('warning');
-                        $(this).next().find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
-                        $("#lnameRequired").removeClass("warning").addClass("ok");
-                    } else {
-
-                        if (/^([a-zA-Z]{1,16})+$/.test(value) === true) {
-                            $(this).next().find(".error").html(name + " is Incorrect: Please enter 2 upper case or lower case at least");
-                            $(this).next().find(".error").addClass('warning').removeClass('ok');
-                            $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                            $("#lnameRequired").removeClass("ok").addClass("warning");
-                        } else {
-                            $(this).next().find(".error").html(name + " is Incorrect: Please enter upper case and lower case only");
-                            $(this).next().find(".error").addClass('warning').removeClass('ok');
-                            $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                            $("#lnameRequired").removeClass("ok").addClass("warning");
-                        }
-                    }
-                }
-            }
+            validate.check($formGroup, {
+                "Last Name": [
+                    validate.fn.checkEmpty,
+                    validate.fn.checkFake,
+                    checkLessThanTwentyChars,
+                    checkMoreThanOneAlpha,
+                    checkOnlyAlphaChars
+                ]
+            });
         }
         var inputstr = value;
         if (name === "Phone Number") {
