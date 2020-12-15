@@ -328,8 +328,9 @@ const registration = (function() {
     });
 
     function registrationInputHandler(evt) {
-        var name = $(this).find(".check,textarea").attr("name");
-        var value = $(this).find(".check,textarea").val().trim();
+        var input = $(this).find(".check,textarea").get(0);
+        var name = input.name;
+        var value = input.value.trim();
 
         var fakeReg = /(.)\1{2,}/;
         var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
@@ -339,9 +340,15 @@ const registration = (function() {
         var inputs = $form[0].elements;
         const $formGroup = $(this).closest(".form-group");
         
+//        validate.check($formGroup, {
+//            "First Name": [
+//                validate.fn.checkEmpty,
+//                validate.fn.checkFake,
+//                validate.createValidator(addressRule, "Please enter Address correctly")
+//            ]
+//        });
         /* The regex for ensuring that letters aren’t used, can just be a simple regex for numbers and separators.
         /^[0-9 .-]+$/ */
-
         if (value === "") {
             $(this).next().find(".error").html(name + " is Empty: Please enter data into this input").removeClass("ok").addClass("warning");
 
@@ -354,35 +361,37 @@ const registration = (function() {
             }
         } else {
             if (name === "First Name") {
-                if (value.length > 19) {
-                    // condition for more than 19 char
+                function lessThanTwentyChars(input) {
+                    return input.value.length < 20;
+                }
+                function moreThanOneAlpha(input) {
+                    return !/^([a-zA-Z]{1})$/.test(value);
+                }
+                function onlyAlphaChars(input) {
+                    return /^([a-zA-Z]{1,})+$/.test(input.value);
+                }
+                if (fakeReg.test(value)) {
+                    inputStatus.warning($formGroup, name + " is Fake text: Please remove repetition");
+                } else if (!lessThanTwentyChars(input)) {
                     $(this).next().find(".error").html(name + " is Incorrect: Please enter no more than 19 char");
                     $(this).next().find(".error").addClass('warning').removeClass('ok');
                     $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
                     $("#fnameRequired").removeClass("ok").addClass("warning");
+                } else if (!moreThanOneAlpha(input)) {
+                    $(this).next().find(".error").html(name + " is Incorrect: Please enter 2 upper case or lower case at least");
+                    $(this).next().find(".error").addClass('warning').removeClass('ok');
+                    $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
+                    $("#fnameRequired").removeClass("ok").addClass("warning");
+                } else if (!onlyAlphaChars(input)) {
+                    $(this).next().find(".error").html(name + " is Incorrect: Please enter upper case and lower case only");
+                    $(this).next().find(".error").addClass('warning').removeClass('ok');
+                    $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
+                    $("#fnameRequired").removeClass("ok").addClass("warning");
                 } else {
-                    if (fakeReg.test(value)) {
-                        inputStatus.warning($formGroup, name + " is Fake text: Please remove repetition");
-                    } else {
-                        if (/^([a-zA-Z]{2,16})+$/.test(value) === true) {
-                            $(this).next().find(".error").html(name + " is OK: Your data has been entered correctly");
-                            $(this).next().find(".error").addClass('ok').removeClass('warning');
-                            $(this).next().find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
-                            $("#fnameRequired").removeClass("warning").addClass("ok");
-                        } else {
-                            if (/^([a-zA-Z]{1,16})+$/.test(value) === true) {
-                                $(this).next().find(".error").html(name + " is Incorrect: Please enter 2 upper case or lower case at least");
-                                $(this).next().find(".error").addClass('warning').removeClass('ok');
-                                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                                $("#fnameRequired").removeClass("ok").addClass("warning");
-                            } else {
-                                $(this).next().find(".error").html(name + " is Incorrect: Please enter upper case and lower case only");
-                                $(this).next().find(".error").addClass('warning').removeClass('ok');
-                                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                                $("#fnameRequired").removeClass("ok").addClass("warning");
-                            }
-                        }
-                    }
+                    $(this).next().find(".error").html(name + " is OK: Your data has been entered correctly");
+                    $(this).next().find(".error").addClass('ok').removeClass('warning');
+                    $(this).next().find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
+                    $("#fnameRequired").removeClass("warning").addClass("ok");
                 }
             }
             if (name === "Last Name") {
