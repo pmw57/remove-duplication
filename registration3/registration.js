@@ -331,20 +331,12 @@ const registration = (function() {
         const $formGroup = $(this).closest(".form-group");
         var input = $(this).find(".check,textarea").get(0);
         var name = input.name;
-        var value = input.value.trim();
 
-        var fakeReg = /(.)\1{2,}/;
-        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-        var pswReglow = /^([a-zA-Z0-9]{6,})+$/;
-        var pswRegheigh = /^([a-zA-Z0-9]{13,})+$/; //13 or more occurences
-        var $form = $("form.register");
-        var inputs = $form[0].elements;
-        
         function lessThanTwentyChars(input) {
             return input.value.length < 20;
         }
         function moreThanOneAlpha(input) {
-            return !/^([a-zA-Z]{1})$/.test(value);
+            return !/^([a-zA-Z]{1})$/.test(input.value);
         }
         function onlyAlphaChars(input) {
             return /^([a-zA-Z]{1,})+$/.test(input.value);
@@ -353,8 +345,6 @@ const registration = (function() {
         const checkMoreThanOneAlpha = validate.createValidator(moreThanOneAlpha, "Please enter 2 upper case or lower case at least");
         const checkOnlyAlphaChars = validate.createValidator(onlyAlphaChars, "Please enter upper case and lower case only");
 
-        /* The regex for ensuring that letters aren’t used, can just be a simple regex for numbers and separators.
-        /^[0-9 .-]+$/ */
         if (name === "First Name") {
             validate.check($formGroup, {
                 "First Name": [
@@ -377,7 +367,14 @@ const registration = (function() {
                 ]
             });
         }
+        var value = input.value.trim();
         var inputstr = value;
+        var fakeReg = /(.)\1{2,}/;
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        var pswReglow = /^([a-zA-Z0-9]{6,})+$/;
+        var pswRegheigh = /^([a-zA-Z0-9]{13,})+$/; //13 or more occurences
+        var $form = $("form.register");
+        var inputs = $form[0].elements;
         if (name === "Phone Number") {
             if (value === "") {
                 $(this).next().find(".error").html(name + " is Empty: Please enter data into this input").removeClass("ok").addClass("warning");
