@@ -25,7 +25,7 @@ describe("registration-input retype password", function () {
         const $retypeError = $retypeGroup.find(".error");
         $retypeError.html("");
         callRegistrationInputHandler($retypeInputGroup);
-        expect($retypeError.html()).to.equal("Retype Password is EMPTY: Please enter data into this input");
+        expect($retypeError.html()).to.equal("Retype Password is Empty: Please enter data into this input");
     });
     it("doesn't match password", function () {
         $retypeInput.val("test value");
@@ -42,6 +42,6 @@ describe("registration-input retype password", function () {
         $password.val($retypeInput.val());
         $retypeError.html("");
         callRegistrationInputHandler($retypeInputGroup);
-        expect($retypeError.html()).to.equal("Retype Password is OK: Your data has been entered correctly");
+        expect($retypeError.html()).to.equal("Retype Password is Ok: Your data has been entered correctly");
     });
 });
