@@ -328,201 +328,135 @@ const registration = (function() {
     });
 
     function registrationInputHandler(evt) {
+        const checkLessThanTwentyChars = validate.createValidator(
+            function (input) {
+                return input.value.length < 20;
+            }, "Please enter no more than 19 char"
+        );
+        const checkMoreThanOneAlpha = validate.createValidator(
+            function (input) {
+                return !/^([a-zA-Z]{1})$/.test(input.value);
+            }, "Please enter 2 upper case or lower case at least"
+        );
+        const checkOnlyAlphaChars = validate.createValidator(
+            function (input) {
+                return /^([a-zA-Z]{1,})+$/.test(input.value);
+            }, "Please enter upper case and lower case only"
+        );
+        const checkIsPhoneNumber = validate.createValidator(
+            function (input) {
+                var phoneReg = /^\(?([0-9]{4})\)?([ .-]?)([0-9]{3})\2([0-9]{4})$/;
+                return phoneReg.test(input.value);
+            }, "Please enter Phone Number correctly"
+        );
+        const checkIsEmail = validate.createValidator(
+            function (input) {
+                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                return emailReg.test(input.value);
+            }, "Please enter it correctly"
+        );
+        const checkPostalAddress = validate.createValidator(
+            function (input) {
+                const addressReg = /^\d+\s[A-z]+\s[A-z]+/g;
+                return addressReg.test(input.value);
+            }, "Please enter Address correctly"
+        );
+        const checkPostcode = validate.createValidator(
+            function (input) {
+                const postcodeReg = /^[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}$/;
+                return postcodeReg.test(input.value);
+            }, "Please enter Post-code correctly"
+        );
+        const checkDifferentThanFirstname = validate.createValidator(
+            function (input) {
+                const form = input.form;
+                const firstname = form.elements["First Name"];
+                return firstname.value !== input.value;
+            }, "Password shouldn't match first-name"
+        );
+        const checkDifferentThanLastname = validate.createValidator(
+            function (input) {
+                const form = input.form;
+                const lastname = form.elements["Last Name"];
+                return lastname.value !== input.value;
+            }, "Password shouldn't match last-name"
+        );
+        const checkDifferentThanCity = validate.createValidator(
+            function (input) {
+                const form = input.form;
+                const city = form.elements["Your City"];
+                return city.value !== input.value;
+            }, "Password shouldn't match city name"
+        );
+        const checkPasswordAtLeastSix = validate.createValidator(
+            function (input) {
+                var pswReglow = /^([a-zA-Z0-9]{6,})+$/;
+                return pswReglow.test(input.value);
+            }, "Please enter at least 6 characters"
+        );
+        const checkPasswordBelowThirteen = validate.createValidator(
+            function (input) {
+                var pswRegheigh = /^([a-zA-Z0-9]{13,})+$/;
+                return !pswRegheigh.test(input.value);
+            }, "Please enter no more than 12 characters"
+        );
+        const checkMatchesPassword = validate.createValidator(
+            function (input) {
+                const form = input.form;
+                const password = form.elements["Password"];
+                return password.value === input.value;
+            }, "Password doesn't match retyped pwd"
+        );
+
         const $formGroup = $(this).closest(".form-group");
-        var input = $(this).find(".check,textarea").get(0);
-        var name = input.name;
-
-        const checkLessThanTwentyChars = validate.createValidator(function (input) {
-            return input.value.length < 20;
-        }, "Please enter no more than 19 char");
-        const checkMoreThanOneAlpha = validate.createValidator(function (input) {
-            return !/^([a-zA-Z]{1})$/.test(input.value);
-        }, "Please enter 2 upper case or lower case at least");
-        const checkOnlyAlphaChars = validate.createValidator(function (input) {
-            return /^([a-zA-Z]{1,})+$/.test(input.value);
-        }, "Please enter upper case and lower case only");
-        function isPhoneNumber(input) {
-            var phoneReg = /^\(?([0-9]{4})\)?([ .-]?)([0-9]{3})\2([0-9]{4})$/;
-            return phoneReg.test(input.value);
-        }
-        function isEmail(input) {
-            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-            return emailReg.test(input.value);
-        }
-        function differentThanFirstname(input) {
-            const form = input.form;
-            const firstname = form.elements["First Name"];
-            return firstname.value !== input.value;
-        }
-        function differentThanLastname(input) {
-            const form = input.form;
-            const lastname = form.elements["Last Name"];
-            return lastname.value !== input.value;
-        }
-        function differentThanCity(input) {
-            const form = input.form;
-            const city = form.elements["Your City"];
-            return city.value !== input.value;
-        }
-        function passwordAtLeastSix(input) {
-            var pswReglow = /^([a-zA-Z0-9]{6,})+$/;
-            return pswReglow.test(input.value);
-        }
-        function passwordBelowThirteen(input) {
-            var pswRegheigh = /^([a-zA-Z0-9]{13,})+$/; //13 or more occurences
-            return !pswRegheigh.test(input.value)
-        }
-        function isPassword(input) {
-            const form = input.form;
-            const password = form.elements["Password"];
-            return password.value === input.value;
-        }
-
-        if (name === "First Name") {
-            validate.check($formGroup, {
-                "First Name": [
-                    validate.fn.checkEmpty,
-                    validate.fn.checkFake,
-                    checkLessThanTwentyChars,
-                    checkMoreThanOneAlpha,
-                    checkOnlyAlphaChars
-                ]
-            });
-        }
-        if (name === "Last Name") {
-            validate.check($formGroup, {
-                "Last Name": [
-                    validate.fn.checkEmpty,
-                    validate.fn.checkFake,
-                    checkLessThanTwentyChars,
-                    checkMoreThanOneAlpha,
-                    checkOnlyAlphaChars
-                ]
-            });
-        }
-        var value = input.value.trim();
-        var fakeReg = /(.)\1{2,}/;
-        var $form = $("form.register");
-        var inputs = $form[0].elements;
-        if (name === "Phone Number") {
-            if (value === "") {
-                $(this).next().find(".error").html(name + " is Empty: Please enter data into this input").removeClass("ok").addClass("warning");
-                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                $("#lnameRequired").removeClass("ok").addClass("warning");
-            } else if (!isPhoneNumber(input)) {
-                $(this).next().find(".error").html(name + " is Incorrect: Please enter Phone Number correctly");
-                $(this).next().find(".error").addClass('warning').removeClass('ok');
-                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                $("#phoneRequired").removeClass("ok").addClass("warning");
-            } else {
-                $(this).next().find(".error").html(name + " is Ok: Your Phone number has been entered correctly");
-                $(this).next().find(".error").addClass('ok').removeClass('warning');
-                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
-                $("#phoneRequired").removeClass("warning").addClass("ok");
-            }
-        }
-        if (name === "E-mail") {
-            if (value === "") {
-                $(this).next().find(".error").html(name + " is Empty: Please enter data into this input").removeClass("ok").addClass("warning");
-
-                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                $("#lnameRequired").removeClass("ok").addClass("warning");
-            } else if (fakeReg.test(value)) {
-                $(this).next().find(".error").html(name + " is Fake text: Please remove repetition");
-                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                $(this).next().find(".error").addClass('warning').removeClass('ok');
-                $("#emailRequired").removeClass("ok").addClass("warning");
-            } else if (!isEmail(input)) {
-                $(this).next().find(".error").html(name + " is Incorrect: Please enter it correctly").removeClass('ok').addClass('warning');
-                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                $("#emailRequired").removeClass("ok").addClass("warning");
-            } else {
-                inputStatus.warning($formGroup, name + " is Ok: Your data has been entered correctly");
-            }
-        }
-        if (name === "Postal Address") {
-            const $formGroup = $(this).closest(".form-group");
-            validate.check($formGroup, {
-                "Postal Address": [
-                    validate.fn.checkEmpty,
-                    validate.createValidator(function (input) {
-                        const addressReg = /^\d+\s[A-z]+\s[A-z]+/g;
-                        return addressReg.test(input.value);
-                    }, "Please enter Address correctly")
-                ]
-            });
-        }
-        if (name === "zip code") {
-            const $formGroup = $(this).closest(".form-group");
-            validate.check($formGroup, {
-                "zip code": [
-                    validate.fn.checkEmpty,
-                    validate.createValidator(function (input) {
-                        const postcodeReg = /^[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}$/;
-                        return postcodeReg.test(input.value);
-                    }, "Please enter Post-code correctly")
-                ]
-            });
-        }
-        if (name === "Your City") {
-            const $formGroup = $(this).closest(".form-group");
-            if (value === "") {
-                inputStatus.warning($formGroup, name + " field is Empty!");
-            } else {
-                inputStatus.ok($formGroup, name + " field is OK!");
-            }
-        }
-        if (name === "Password") {
-            if (value === "") {
-                $(this).next().find(".error").html(name + " is Empty: Please enter data into this input").removeClass("ok").addClass("warning");
-
-                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                $("#lnameRequired").removeClass("ok").addClass("warning");
-            } else if (fakeReg.test(value)) {
-                inputStatus.warning($formGroup, name + " is Fake text: Please remove repetition");
-            } else if (!differentThanFirstname(input)) {
-                $(this).next().find(".error").html(name + " is Incorrect: Password shouldn't match first-name");
-                $(this).next().find(".error").addClass('warning').removeClass('ok');
-                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                $("#pwdRequired").removeClass("ok").addClass("warning");
-            } else if (!differentThanLastname(input)) {
-                $(this).next().find(".error").html(name + " is Incorrect: Password shouldn't match last-name");
-                $(this).next().find(".error").addClass('warning').removeClass('ok');
-                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                $("#pwdRequired").removeClass("ok").addClass("warning");
-            } else if (!differentThanCity(input)) {
-                $(this).next().find(".error").html(name + " is Incorrect: Password shouldn't match city name");
-                $(this).next().find(".error").addClass('warning').removeClass('ok');
-                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                $("#pwdRequired").removeClass("ok").addClass("warning");
-            } else if (!passwordAtLeastSix(input)) {
-                $(this).next().find(".error").html(name + " is Incorrect: Please enter at least 6 characters");
-                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                $(this).next().find(".error").addClass('warning').removeClass('ok');
-                $("#pwdRequired").removeClass("ok").addClass("warning");
-            } else if (!passwordBelowThirteen(input)) {
-                $(this).next().find(".error").html(name + " is Incorrect: Please enter no more than 12 characters");
-                $(this).next().find(".error").addClass('warning').removeClass('ok');
-                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-                $("#pwdRequired").removeClass("ok").addClass("warning");
-            } else {
-                $(this).next().find(".error").html(name + " is Ok: Your data has been entered correctly");
-                $(this).next().find(".error").addClass('ok').removeClass('warning');
-                $(this).next().find(".feedback").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
-                $("#pwdRequired").removeClass("warning").addClass("ok");
-            }
-        }
-        if (name === "Retype Password") {
-            const $formGroup = $(this).closest(".form-group");
-            if (value === "") {
-                inputStatus.warning($formGroup, name + " is EMPTY: Please enter data into this input");
-                inputStatus.requiredOk($formGroup);
-            } else if (!isPassword(input)) {
-                inputStatus.warning($formGroup, name + " is Incorrect: Password doesn't match retyped pwd");
-            } else {
-                inputStatus.ok($formGroup, name + " is OK: Your data has been entered correctly");
-            }
-        }
+        return validate.check($formGroup, {
+            "First Name": [
+                validate.fn.checkEmpty,
+                validate.fn.checkFake,
+                checkLessThanTwentyChars,
+                checkMoreThanOneAlpha,
+                checkOnlyAlphaChars
+            ],
+            "Last Name": [
+                validate.fn.checkEmpty,
+                validate.fn.checkFake,
+                checkLessThanTwentyChars,
+                checkMoreThanOneAlpha,
+                checkOnlyAlphaChars
+            ],
+            "Phone Number": [
+                validate.fn.checkEmpty,
+                checkIsPhoneNumber
+            ],
+            "E-mail": [
+                validate.fn.checkEmpty,
+                validate.fn.checkFake,
+                checkIsEmail
+            ],
+            "Postal Address": [
+                validate.fn.checkEmpty,
+                checkPostalAddress
+            ],
+            "zip code": [
+                validate.fn.checkEmpty,
+                checkPostcode
+            ],
+            "Your City": [
+                validate.fn.checkEmpty
+            ],
+            "Password": [
+                validate.fn.checkEmpty,
+                validate.fn.checkFake,
+                checkDifferentThanFirstname,
+                checkDifferentThanLastname,
+                checkDifferentThanCity,
+                checkPasswordAtLeastSix, checkPasswordBelowThirteen
+            ],
+            "Retype Password": [
+                validate.fn.checkEmpty,
+                checkMatchesPassword
+            ]
+        });
     }
     $('.input-group').on('focusin focusout input', registrationInputHandler);
 

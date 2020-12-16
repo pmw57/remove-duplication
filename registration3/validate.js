@@ -66,12 +66,14 @@ const validate = (function () {
         inputStatus.ok(inputGroup, getName(inputGroup) + " is Ok: Your data has been entered correctly");
     }
     function check(inputGroup, validators) {
-        const validationTypes = Object.assign(defaultValidators, validators);
+        const validationTypes = Object.create(defaultValidators);
+        Object.assign(validationTypes, validators);
         function validateByTypes(inputGroup) {
             const name = getName(inputGroup);
             const types = validationTypes[name];
             if (!types) {
-                throw new Error(name + " validation not yet supported");
+                console.log(name + " validation not yet implemented");
+                return;
             }
             return types.every(function (check) {
                 return check(inputGroup);

@@ -33,6 +33,6 @@ describe("registration input phonenumber", function () {
     it("is a phone number", function () {
         $phoneInput.val("(1234)-567-8901");
         callRegistrationInputHandler($phoneInputGroup);
-        expect($phoneError.html()).to.equal("Phone Number is Ok: Your Phone number has been entered correctly");
+        expect($phoneError.html()).to.equal("Phone Number is Ok: Your data has been entered correctly");
     });
 });
