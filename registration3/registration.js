@@ -311,20 +311,17 @@ const registration = (function() {
     });
 
     function citylistClickHandler() {
-        var city = $(this).text().trim();
-        var name = $("#your-city").attr("name");
-        $("#your-city").val(city);
-        $("#demo2").collapse("hide");
-        if (city != "") {
-            $(".form-group").find("#errorid").html(name + " is OK: Your data has been entered correctly");
-            $(".form-group").find("#errorid").addClass('ok').removeClass('warning');
-            $(".form-group").find("#feedbackid").removeClass("glyphicon glyphicon-remove").addClass("glyphicon glyphicon-ok").removeClass("warning").addClass("ok");
-            $(".form-group").find("#cityRequired").addClass('ok').removeClass('warning');
-        } else {
-            $(".form-group").find("#errorid").html("Your " + name + " field is Empty !").removeClass("ok").addClass("warning");
-            $(".form-group").find("#feedbackid").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
-            $(".form-group").find("#cityRequired").removeClass("ok").addClass("warning");
-        }
+        const $form = $(this).closest("form");
+        const $cityInput = $form.find("[name='Your City']");
+        const $cityGroup = $cityInput.closest(".form-group");
+
+        const value = $(this).text().trim();
+        $cityInput.val(value);
+        $("#citylist").collapse("hide");
+
+        validate.check($cityGroup, {
+            "Your City": [validate.fn.checkEmpty]
+        });
     }
     $(".citylist li").click(citylistClickHandler);
 
@@ -520,6 +517,7 @@ const registration = (function() {
             registrationInput: registrationInputHandler,
             registrationSubmit: registrationSubmitHandler,
             registrationReset: registrationResetHandler,
+            citylistClick: citylistClickHandler,
             termsClick: termsClickHandler
         }
     };

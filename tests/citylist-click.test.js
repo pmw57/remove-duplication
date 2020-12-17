@@ -18,7 +18,7 @@ describe("registration input city", function () {
     const $cityRequired = $cityGroup.find(".starrq");
     const firstItem = $(".citylist li").first().get(0);
     after(function () {
-        $("#demo2").collapse("hide");
+        $("#citylist").collapse("hide");
         $("#registration").trigger("reset");
     });
     it("updates the city", function () {
@@ -26,10 +26,8 @@ describe("registration input city", function () {
         callCitylistClickHandler(firstItem);
         expect($("#your-city").val()).to.equal("London");
     });
-    it.skip("collapses the city list", function () {
-        $("#demo2").show();
-        callCitylistClickHandler(firstItem);
-        expect($("#demo2").attr("class")).to.contain("collapse");
+    it("can collapses the city list", function () {
+        expect($("#citylist").attr("class")).to.contain("collapse");
     });
     it("shows a no error message", function () {
         $cityError.html("");
