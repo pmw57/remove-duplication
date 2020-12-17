@@ -310,7 +310,7 @@ const registration = (function() {
         $("#myModal").modal();
     });
 
-    $(".citylist li").click(function() {
+    function citylistClickHandler() {
         var city = $(this).text().trim();
         var name = $("#your-city").attr("name");
         $("#your-city").val(city);
@@ -325,7 +325,8 @@ const registration = (function() {
             $(".form-group").find("#feedbackid").removeClass("glyphicon glyphicon-ok").addClass("glyphicon glyphicon-remove").removeClass("ok").addClass("warning");
             $(".form-group").find("#cityRequired").removeClass("ok").addClass("warning");
         }
-    });
+    }
+    $(".citylist li").click(citylistClickHandler);
 
     function registrationInputHandler(evt) {
         const checkLessThanTwentyChars = validate.createValidator(
