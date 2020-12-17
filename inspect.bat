@@ -1,2 +1,2 @@
 @echo off
-npx jsinspect registration3 --ignore lib
+npx jsinspect -t 20 registration3 --ignore lib -I -L
