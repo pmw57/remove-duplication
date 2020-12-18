@@ -83,6 +83,7 @@ const validate = (function () {
         if (isValid) {
             showValid(inputGroup);
         }
+        return isValid;
     }
     return {
         createValidator,

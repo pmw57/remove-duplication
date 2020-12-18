@@ -14,10 +14,10 @@ describe("login submit", function () {
         const $emailInput = $emailGroup.find("input");
         const $emailError = $emailGroup.find(".error");
         const CSSgreen = "rgb(0, 128, 0)";
-        $emailInput.val("test value");
+        $emailInput.val("test@example.com");
         $emailError.html("test content");
         loginSubmitHandler(fakeEvt);
-        expect($emailError.html()).to.equal("Your E-mail is OK");
+        expect($emailError.html()).to.equal("E-mail is Ok: Your data has been entered correctly");
     });
     it("email is empty, shows email error", function () {
         const $emailGroup = $("#login .form-group").eq(1);
@@ -27,6 +27,6 @@ describe("login submit", function () {
         $emailInput.val("");
         $emailError.html("test content");
         loginSubmitHandler(fakeEvt);
-        expect($emailError.html()).to.equal("Your E-mail is empty");
+        expect($emailError.html()).to.equal("E-mail is Empty: Please enter data into this input");
     });
 });

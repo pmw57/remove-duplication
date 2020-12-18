@@ -3,27 +3,27 @@ describe("validate", function () {
         $("#registration").trigger("reset");
         $("#login").trigger("reset");
     });
+    const emailGroup = $("#login .form-group").has("[name='E-mail']").get(0);
+    const emailInput = $(emailGroup).find("input").get(0);
+    const $emailError = $(emailGroup).find(".error");
     describe("email", function () {
-        const emailGroup = $("#login .form-group").has("[name='E-mail']").get(0);
-        const input = $(emailGroup).find("input").get(0);
-        const $emailError = $(emailGroup).find(".error");
         it("is empty", function () {
-            input.value = "";
+            emailInput.value = "";
             validate.check(emailGroup);
             expect($emailError.html()).to.equal("E-mail is Empty: Please enter data into this input");
         });
         it("is fake text", function () {
-            input.value = "aaabbb";
+            emailInput.value = "aaabbb";
             validate.check(emailGroup);
             expect($emailError.html()).to.equal("E-mail is Fake text: Please remove repetition");
         });
         it("is invalid email", function () {
-            input.value = "test.value";
+            emailInput.value = "test.value";
             validate.check(emailGroup);
             expect($emailError.html()).to.equal("E-mail is Incorrect: Please enter it correctly");
         });
         it("is valid email", function () {
-            input.value = "test.value@example.com";
+            emailInput.value = "test.value@example.com";
             validate.check(emailGroup);
             expect($emailError.html()).to.contain("is Ok");
         });
@@ -128,6 +128,22 @@ describe("validate", function () {
                 "First Name": [checkAtLeastThree]
             });
             expect($firstnameError.html()).to.equal("First Name is Ok: Your data has been entered correctly");
+        });
+    });
+    describe("returns validation result", function () {
+        it("returns false when failed", function () {
+            emailInput.value = "";
+            const result = validate.check(emailGroup, {
+                "E-mail": [validate.fn.checkEmpty]
+            });
+            expect(result).to.equal(false);
+        });
+        it("returns true when successful", function () {
+            emailInput.value = "test@example.com";
+            const result = validate.check(emailGroup, {
+                "E-mail": [validate.fn.checkEmpty]
+            });
+            expect(result).to.equal(true);
         });
     });
 });
