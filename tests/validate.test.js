@@ -84,8 +84,8 @@ describe("validate", function () {
             validate.check(firstnameGroup, customValidator);
             expect(spy).to.have.been.called();
         });
-        const $firstnameInput = $(".form-group").find("input");
-        const $firstnameError = $(".form-group").find(".error");
+        const $firstnameInput = $(firstnameGroup).find("input");
+        const $firstnameError = $(firstnameGroup).find(".error");
         function isLessThanThree(inputGroup) {
             const input = $(inputGroup).find("input");
             if (input.val().length < 3) {
@@ -120,7 +120,7 @@ describe("validate", function () {
             expect($firstnameError.html()).to.equal("First Name is Incorrect: Should be three or more characters");
         });
         it("createCheck finds valid value", function () {
-            $firstnameInput.val("Mat");
+            $firstnameInput.val("Max");
             const checkAtLeastThree = validate.createValidator(function (input) {
                 return input.value.length >= 3;
             }, "Should be three or more characters");
