@@ -12,23 +12,10 @@ const login = (function() {
         validate.check(this);
     }
 
-    /* modal check*/
-    function removeError(inputGroup, message) {
-        inputStatus.errorOk(inputGroup, message);
-        inputStatus.feedbackOk(inputGroup);
-    }
-    function addError(inputGroup, message) {
-        inputStatus.errorWarning(inputGroup, message);
-        inputStatus.feedbackWarning(inputGroup);
-    }
     function loginSubmitHandler(evt) {
         $("#login .form-group").has(".input-check").each(function validateInput() {
-            var inputName = $(this).find(".input-check").attr("name");
-            var trimmedValue = $(this).find(".input-check").val().trim();
-            if (trimmedValue !== "") {
-                removeError(this, "Your " + inputName + " is OK");
-            } else {
-                addError(this, "Your " + inputName + " is empty");
+            const isValid = validate.check(this);
+            if (!isValid) {
                 evt.preventDefault();
             }
         });
