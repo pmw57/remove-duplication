@@ -85,9 +85,20 @@ const validate = (function () {
         }
         return isValid;
     }
+    function checkFormEmpty(form) {
+        $(form).find(".form-group").has(".check").each(function validateGroup() {
+            const $requiredField = $(this).find("input, textarea");
+            const name = $requiredField.attr("name");
+            const validations = [checkEmpty];
+            check(this, Object.fromEntries([
+                [name, validations]
+            ]));
+        });
+    }
     return {
         createValidator,
         check,
+        checkFormEmpty,
         fn: {
             getName,
             getValue,

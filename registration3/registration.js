@@ -476,16 +476,9 @@ const registration = (function() {
     $('#terms').click(termsClickHandler);
 
     function registrationSubmitHandler(evt) {
-        $('.form-group').has(".check").each(function validateGroup() {
-            var $requiredField = $(this).find("input, textarea");
-            var name = $requiredField.attr("name");
-            var value = $requiredField.val().trim();
-            if (value === "") {
-                inputStatus.warning(this, name + " is empty!");
-            }
-        });
+        validate.checkFormEmpty("#registration");
         updateTerms();
-        if ($(".inputstatus .warning").length !== 0) {
+        if ($("#registration .warning").length !== 0) {
             evt.preventDefault();
         }
     }

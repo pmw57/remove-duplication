@@ -21,7 +21,7 @@ describe("login submit", function () {
     });
     it("email is empty, shows email error", function () {
         const $emailGroup = $("#login .form-group").eq(1);
-        const $emailInput = $emailGroup.find(".input-check").first();
+        const $emailInput = $emailGroup.find(".check").first();
         const $emailError = $emailGroup.find(".error");
         const CSSred = "rgb(255, 0, 0)";
         $emailInput.val("");

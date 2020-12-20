@@ -15,9 +15,9 @@ const changePassword = (function() {
     }
 
     function passwordSubmitHandler(evt) {
-        $("#changepw .form-group").has(".input-check").each(function() {
-            var trimmedValue = $(this).find(".input-check").val().trim();
-            var inputName = $(this).find(".input-check").attr("name");
+        $("#changepw .form-group").has(".check").each(function() {
+            var trimmedValue = $(this).find(".check").val().trim();
+            var inputName = $(this).find(".check").attr("name");
             if (trimmedValue === "") {
                 evt.preventDefault();
                 inputStatus.warning(this, "Your " + inputName + " is empty");

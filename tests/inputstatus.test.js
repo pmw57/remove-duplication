@@ -182,11 +182,11 @@ describe("input status", function () {
     });
     describe("resetForm", function () {
         $form = $("form").eq(1);
-        $formGroups = $form.find(".form-group").has(".input-check");
+        $formGroups = $form.find(".form-group").has(".check");
         $group1 = $formGroups.eq(0);
         $group2 = $formGroups.eq(1);
-        $name1 = $group1.find(".input-check").attr("name");
-        $name2 = $group2.find(".input-check").attr("name");
+        $name1 = $group1.find(".check").attr("name");
+        $name2 = $group2.find(".check").attr("name");
         $error1 = $group1.find(".error");
         $error2 = $group2.find(".error");
         $feedback1 = $group1.find(".feedback");

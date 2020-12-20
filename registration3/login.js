@@ -1,24 +1,13 @@
-function checkFake(input) {
-    const name = $(input).find(".input-check").attr("name");
-    const value = $(input).find(".input-check").val().trim();
-    const fakeReg = /(.)\1{2,}/;
-    if (fakeReg.test(value)) {
-        inputStatus.warning(input, name + " is Fake text: Please remove repetition");
-        return true;
-    }
-}
 const login = (function() {
     function loginInputHandler() {
         validate.check(this);
     }
 
     function loginSubmitHandler(evt) {
-        $("#login .form-group").has(".input-check").each(function validateInput() {
-            const isValid = validate.check(this);
-            if (!isValid) {
-                evt.preventDefault();
-            }
-        });
+        validate.checkFormEmpty("#login");
+        if ($("#login .warning").length !== 0) {
+            evt.preventDefault();
+        }
     }
 
     function loginResetHandler() {

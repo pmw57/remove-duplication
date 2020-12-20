@@ -61,7 +61,7 @@ const inputStatus = (function () {
     }
     function resetForm($form) {
         $form.find(".form-group").each(function() {
-            var inputName = $(this).find(".input-check").attr("name");
+            var inputName = $(this).find(".check").attr("name");
             inputStatus.errorOk(this, "Your " + inputName);
             inputStatus.feedbackNone(this);
         });
