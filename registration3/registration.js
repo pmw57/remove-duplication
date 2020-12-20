@@ -312,16 +312,13 @@ const registration = (function() {
 
     function citylistClickHandler() {
         const $form = $(this).closest("form");
-        const $cityInput = $form.find("[name='Your City']");
-        const $cityGroup = $cityInput.closest(".form-group");
-
+        const $inputField = $form.find("[name='Your City']");
+        const $cityGroup = $inputField.closest(".form-group");
         const value = $(this).text().trim();
-        $cityInput.val(value);
+        $inputField.val(value);
         $("#citylist").collapse("hide");
 
-        validate.check($cityGroup, {
-            "Your City": [validate.fn.checkEmpty]
-        });
+        validate.checkFieldEmpty($cityGroup);
     }
     $(".citylist li").click(citylistClickHandler);
 
