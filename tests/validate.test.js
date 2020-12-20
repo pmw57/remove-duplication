@@ -130,20 +130,4 @@ describe("validate", function () {
             expect($firstnameError.html()).to.equal("First Name is Ok: Your data has been entered correctly");
         });
     });
-    describe("returns validation result", function () {
-        it("returns false when failed", function () {
-            emailInput.value = "";
-            const result = validate.check(emailGroup, {
-                "E-mail": [validate.fn.checkEmpty]
-            });
-            expect(result).to.equal(false);
-        });
-        it("returns true when successful", function () {
-            emailInput.value = "test@example.com";
-            const result = validate.check(emailGroup, {
-                "E-mail": [validate.fn.checkEmpty]
-            });
-            expect(result).to.equal(true);
-        });
-    });
 });

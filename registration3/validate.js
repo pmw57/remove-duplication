@@ -83,7 +83,6 @@ const validate = (function () {
         if (isValid) {
             showValid(inputGroup);
         }
-        return isValid;
     }
     function checkFormEmpty(form) {
         $(form).find(".form-group").has(".check").each(function validateGroup() {
