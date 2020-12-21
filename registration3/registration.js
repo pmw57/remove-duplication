@@ -64,25 +64,23 @@ const registration = (function() {
                 return postcodeReg.test(input.value);
             }, "Please enter Post-code correctly"
         );
+        function fieldMatches(form, fieldname, str) {
+            const field = form.elements[fieldname];
+            return field.value === str;
+        }
         const checkDifferentThanFirstname = validate.createValidator(
             function (input) {
-                const form = input.form;
-                const firstname = form.elements["First Name"];
-                return firstname.value !== input.value;
+                return !fieldMatches(input.form, "First Name", input.value);
             }, "Password shouldn't match first-name"
         );
         const checkDifferentThanLastname = validate.createValidator(
             function (input) {
-                const form = input.form;
-                const lastname = form.elements["Last Name"];
-                return lastname.value !== input.value;
+                return !fieldMatches(input.form, "Last Name", input.value);
             }, "Password shouldn't match last-name"
         );
         const checkDifferentThanCity = validate.createValidator(
             function (input) {
-                const form = input.form;
-                const city = form.elements["Your City"];
-                return city.value !== input.value;
+                return !fieldMatches(input.form, "Your City", input.value);
             }, "Password shouldn't match city name"
         );
         const checkPasswordAtLeastSix = validate.createValidator(
@@ -99,9 +97,7 @@ const registration = (function() {
         );
         const checkMatchesPassword = validate.createValidator(
             function (input) {
-                const form = input.form;
-                const password = form.elements["Password"];
-                return password.value === input.value;
+                return fieldMatches(input.form, "Password", input.value);
             }, "Password doesn't match retyped pwd"
         );
 
