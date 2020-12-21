@@ -64,23 +64,19 @@ const registration = (function() {
                 return postcodeReg.test(input.value);
             }, "Please enter Post-code correctly"
         );
-        function fieldMatches(form, fieldname, str) {
-            const field = form.elements[fieldname];
-            return field.value === str;
-        }
         const checkDifferentThanFirstname = validate.createValidator(
             function (input) {
-                return !fieldMatches(input.form, "First Name", input.value);
+                return !validate.fieldMatches(input.form, "First Name", input.value);
             }, "Password shouldn't match first-name"
         );
         const checkDifferentThanLastname = validate.createValidator(
             function (input) {
-                return !fieldMatches(input.form, "Last Name", input.value);
+                return !validate.fieldMatches(input.form, "Last Name", input.value);
             }, "Password shouldn't match last-name"
         );
         const checkDifferentThanCity = validate.createValidator(
             function (input) {
-                return !fieldMatches(input.form, "Your City", input.value);
+                return !validate.fieldMatches(input.form, "Your City", input.value);
             }, "Password shouldn't match city name"
         );
         const checkPasswordAtLeastSix = validate.createValidator(
@@ -97,7 +93,7 @@ const registration = (function() {
         );
         const checkMatchesPassword = validate.createValidator(
             function (input) {
-                return fieldMatches(input.form, "Password", input.value);
+                return validate.fieldMatches(input.form, "Password", input.value);
             }, "Password doesn't match retyped pwd"
         );
 
