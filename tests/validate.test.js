@@ -87,6 +87,22 @@ describe("validate", function () {
             expect($emailError.attr("class")).to.contain("ok");
         });
     });
+    describe("compares a field", function () {
+       it("checks that a field matches a value", function () {
+           const form = emailInput.form;
+           const fieldname = emailInput.name;
+           emailInput.value = "test@example.com";
+           const result = validate.fieldMatches(form, fieldname, "test@example.com");
+           expect(result).to.equal(true);
+       });
+       it("checks that a field doesn't match", function () {
+           const form = emailInput.form;
+           const fieldname = emailInput.name;
+           emailInput.value = "test@example.com";
+           const result = validate.fieldMatches(form, fieldname, "test@example");
+           expect(result).to.equal(false);
+       });
+    });
     describe("uses custom validator", function () {
         const firstnameGroup = $(".form-group").has("[name='First Name']").get(0);
         it("can use a custom validator", function () {

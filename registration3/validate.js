@@ -84,6 +84,10 @@ const validate = (function () {
             showValid(inputGroup);
         }
     }
+    function fieldMatches(form, fieldname, str) {
+        const field = form.elements[fieldname];
+        return field.value === str;
+    }
     function checkFieldEmpty(formGroup) {
         const $inputField = $(formGroup).find("input, textarea");
         const name = $inputField.attr("name");
@@ -100,6 +104,7 @@ const validate = (function () {
     return {
         createValidator,
         check,
+        fieldMatches,
         checkFieldEmpty,
         checkFormEmpty,
         fn: {
