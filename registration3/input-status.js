@@ -1,53 +1,72 @@
 const inputStatus = (function () {
-    function setNone($el) {
+    function setNone($el, classes) {
         $el.removeClass("warning");
         $el.removeClass("ok");
+        $el.removeClass(classes);
     }
-    function setOk($el) {
+    function setOk($el, classes) {
         $el.removeClass("warning");
         $el.addClass("ok");
+        $el.addClass(classes);
     }
-    function setWarning($el) {
+    function setWarning($el, classes) {
         $el.removeClass("ok");
         $el.addClass("warning");
+        $el.addClass(classes);
+    }
+    function setError(inputGroup, type, message) {
+        const $error = $(inputGroup).find(".error");
+        $error.html(message);
+        if (type === "ok") {
+            $error.css("color", "green");
+            setOk($error);
+        }
+        if (type === "warning") {
+            $error.css("color", "red");
+            setWarning($error);
+        }
+    }
+    function setFeedback(inputGroup, type) {
+        const $feedback = $(inputGroup).find(".feedback");
+        const warningClass = "glyphicon glyphicon-remove";
+        const okClass = "glyphicon glyphicon-ok";
+        setNone($feedback, warningClass + " " + okClass);
+        if (type === "ok") {
+            setOk($feedback, okClass);
+        }
+        if (type === "warning") {
+            setWarning($feedback, warningClass);
+        }
+    }
+    function setRequired(inputGroup, type) {
+        const $required = $(inputGroup).find(".starrq");
+        if (type === "ok") {
+            setOk($required);
+        }
+        if (type === "warning") {
+            setWarning($required);
+        }
     }
     function errorOk(inputGroup, message) {
-        const $error = $(inputGroup).find(".error");
-        $error.html(message);
-        $error.css("color", "green");
-        setOk($error);
+        setError(inputGroup, "ok", message);
     }
     function errorWarning(inputGroup, message) {
-        const $error = $(inputGroup).find(".error");
-        $error.html(message);
-        $error.css("color", "red");
-        setWarning($error);
+        setError(inputGroup, "warning", message);
     }
     function feedbackNone(inputGroup) {
-        const $feedback = $(inputGroup).find(".feedback");
-        $feedback.removeClass("glyphicon glyphicon-remove");
-        $feedback.removeClass("glyphicon glyphicon-ok");
-        setNone($feedback);
+        setFeedback(inputGroup, "none");
     }
     function feedbackOk(inputGroup) {
-        const $feedback = $(inputGroup).find(".feedback");
-        feedbackNone(inputGroup);
-        $feedback.addClass("glyphicon glyphicon-ok");
-        setOk($feedback);
+        setFeedback(inputGroup, "ok");
     }
     function feedbackWarning(inputGroup) {
-        const $feedback = $(inputGroup).find(".feedback");
-        feedbackNone(inputGroup);
-        $feedback.addClass("glyphicon glyphicon-remove");
-        setWarning($feedback);
+        setFeedback(inputGroup, "warning");
     }
     function requiredOk(inputGroup) {
-        const $required = $(inputGroup).find(".starrq");
-        setOk($required);
+        setRequired(inputGroup, "ok");
     }
     function requiredWarning(inputGroup) {
-        const $required = $(inputGroup).find(".starrq");
-        setWarning($required);
+        setRequired(inputGroup, "warning");
     }
     function ok(inputGroup, message) {
         errorOk(inputGroup, message);
