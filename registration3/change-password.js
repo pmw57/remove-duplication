@@ -1,8 +1,6 @@
 const changePassword = (function() {
     const passwordsMatchRule = function (input) {
-        const form = input.form;
-        const passwordInput = form.elements["Password"];
-        return passwordInput.value === input.value;
+        return validate.fieldMatches(input.form, "Password", input.value);
     }
     const retypeValidator = {
         "Password Retype": [
