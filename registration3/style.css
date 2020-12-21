@@ -1344,3 +1344,19 @@ input[type="submit"] {
 #login .checkbox input{position:static;margin-left:0}
 #changepw .checkbox input{position:static;margin-left:0}
 .termleft {	padding-left:15px;}
+
+.input-group .input-group-addon {
+    background-color: darkgreen;
+    color: yellow;
+}
+.input-group .form-control {
+    background-color: lightgreen;
+}
+.input-group:hover .input-group-addon {
+    width:75px;
+    background-color: darkred;
+    color: orange;
+}
+.input-group:hover .form-control {
+    background-color: pink;
+}
