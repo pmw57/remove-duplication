@@ -73,6 +73,20 @@ describe("validate", function () {
             expect($passwordError.html()).to.not.contain("12 characters");
         });
     });
+    describe("checks empty", function () {
+        it("checks a field is empty", function () {
+            emailInput.value = "";
+            $emailError.removeClass("warning");
+            validate.checkFieldEmpty(emailGroup);
+            expect($emailError.attr("class")).to.contain("warning");
+        });
+        it("checks a field is not empty", function () {
+            emailInput.value = "test@example.com";
+            $emailError.removeClass("ok");
+            validate.checkFieldEmpty(emailGroup);
+            expect($emailError.attr("class")).to.contain("ok");
+        });
+    });
     describe("uses custom validator", function () {
         const firstnameGroup = $(".form-group").has("[name='First Name']").get(0);
         it("can use a custom validator", function () {
