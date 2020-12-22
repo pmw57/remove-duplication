@@ -1,5 +1,5 @@
 const changePassword = (function() {
-    const passwordsMatchRule = function (input) {
+    const passwordsMatchRule = function(input) {
         return validate.fieldMatches(input.form, "Password", input.value);
     }
     const retypeValidator = {
@@ -8,6 +8,7 @@ const changePassword = (function() {
             validate.createValidator(passwordsMatchRule, "Password doesn't match retyped password")
         ]
     };
+
     function passwordInputHandler() {
         validate.check(this, retypeValidator);
     }

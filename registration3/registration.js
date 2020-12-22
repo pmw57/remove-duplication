@@ -26,69 +26,69 @@ const registration = (function() {
 
     function registrationInputHandler(evt) {
         const checkLessThanTwentyChars = validate.createValidator(
-            function (input) {
+            function(input) {
                 return input.value.length < 20;
             }, "Please enter no more than 19 char"
         );
         const checkMoreThanOneAlpha = validate.createValidator(
-            function (input) {
+            function(input) {
                 return !validate.checkRx(/^([a-zA-Z]{1})$/, input);
             }, "Please enter 2 upper case or lower case at least"
         );
         const checkOnlyAlphaChars = validate.createValidator(
-            function (input) {
+            function(input) {
                 return validate.checkRx(/^([a-zA-Z]{1,})+$/, input);
             }, "Please enter upper case and lower case only"
         );
         const checkIsPhoneNumber = validate.createValidator(
-            function (input) {
+            function(input) {
                 return validate.checkRx(/^\(?([0-9]{4})\)?([ .-]?)([0-9]{3})\2([0-9]{4})$/, input);
             }, "Please enter Phone Number correctly"
         );
         const checkIsEmail = validate.createValidator(
-            function (input) {
+            function(input) {
                 return validate.checkRx(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/, input);
             }, "Please enter it correctly"
         );
         const checkPostalAddress = validate.createValidator(
-            function (input) {
+            function(input) {
                 return validate.checkRx(/^\d+\s[A-z]+\s[A-z]+/g, input);
             }, "Please enter Address correctly"
         );
         const checkPostcode = validate.createValidator(
-            function (input) {
+            function(input) {
                 return validate.checkRx(/^[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}$/, input);
             }, "Please enter Post-code correctly"
         );
         const checkDifferentThanFirstname = validate.createValidator(
-            function (input) {
+            function(input) {
                 return !validate.fieldMatches(input.form, "First Name", input.value);
             }, "Password shouldn't match first-name"
         );
         const checkDifferentThanLastname = validate.createValidator(
-            function (input) {
+            function(input) {
                 return !validate.fieldMatches(input.form, "Last Name", input.value);
             }, "Password shouldn't match last-name"
         );
         const checkDifferentThanCity = validate.createValidator(
-            function (input) {
+            function(input) {
                 return !validate.fieldMatches(input.form, "Your City", input.value);
             }, "Password shouldn't match city name"
         );
         const checkPasswordAtLeastSix = validate.createValidator(
-            function (input) {
+            function(input) {
                 var pswReglow = /^([a-zA-Z0-9]{6,})+$/;
                 return pswReglow.test(input.value);
             }, "Please enter at least 6 characters"
         );
         const checkPasswordBelowThirteen = validate.createValidator(
-            function (input) {
+            function(input) {
                 var pswRegheigh = /^([a-zA-Z0-9]{13,})+$/;
                 return !pswRegheigh.test(input.value);
             }, "Please enter no more than 12 characters"
         );
         const checkMatchesPassword = validate.createValidator(
-            function (input) {
+            function(input) {
                 return validate.fieldMatches(input.form, "Password", input.value);
             }, "Password doesn't match retyped pwd"
         );
@@ -157,6 +157,7 @@ const registration = (function() {
             inputStatus.requiredWarning($termsGroup);
         }
     }
+
     function termsClickHandler() {
         updateTerms();
     }
