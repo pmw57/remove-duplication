@@ -12,7 +12,7 @@ const inputStatus = (function () {
             remove: "ok"
         }
     };
-    function setErrorState($error, state, classes) {
+    function setErrorState($error, state) {
         const errorState = errorStates[state];
         $error.removeClass(errorState.remove);
         $error.addClass(errorState.add);
