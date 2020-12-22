@@ -1,11 +1,14 @@
-const changePassword = (function() {
+const changePassword = (function makeChangePassword() {
     function passwordsMatchRule(input) {
         return validate.fieldMatches(input.form, "Password", input.value);
     }
     const retypeValidator = {
         "Password Retype": [
             validate.fn.checkEmpty,
-            validate.createValidator(passwordsMatchRule, "Password doesn't match retyped password")
+            validate.createValidator(
+                passwordsMatchRule,
+                "Password doesn't match retyped password"
+            )
         ]
     };
 
@@ -24,7 +27,10 @@ const changePassword = (function() {
         inputStatus.resetForm($("#changepw"));
     }
 
-    $("#changepw .form-group").on("focusin focusout input", passwordInputHandler);
+    $("#changepw .form-group").on(
+        "focusin focusout input",
+        passwordInputHandler
+    );
     $("#changepw").on("submit", passwordSubmitHandler);
     $("#changepw").on("reset", passwordResetHandler);
     return {
