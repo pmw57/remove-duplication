@@ -14,7 +14,8 @@ describe("change-password input retype", function () {
     function passwordInputHandler() {
         const passwordHandler = changePassword.eventHandler.passwordInput;
         const thisArg = $retypeGroup.get(0);
-        passwordHandler.call(thisArg);
+        const evt = {target: thisArg};
+        passwordHandler.call(thisArg, evt);
     }
     after(function () {
         $("#login").trigger("reset");

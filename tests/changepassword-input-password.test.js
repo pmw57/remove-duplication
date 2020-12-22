@@ -13,7 +13,8 @@ describe("change-password input password", function () {
     function loginInputHandler() {
         const passwordHandler = changePassword.eventHandler.passwordInput;
         const thisArg = $passwordGroup.get(0);
-        passwordHandler.call(thisArg);
+        const evt = {target: thisArg};
+        passwordHandler.call(thisArg, evt);
     }
     after(function () {
         $("#login").trigger("reset");

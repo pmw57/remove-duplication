@@ -1,5 +1,5 @@
 const changePassword = (function() {
-    const passwordsMatchRule = function(input) {
+    function passwordsMatchRule(input) {
         return validate.fieldMatches(input.form, "Password", input.value);
     }
     const retypeValidator = {
@@ -9,19 +9,20 @@ const changePassword = (function() {
         ]
     };
 
-    function passwordInputHandler() {
-        validate.check(this, retypeValidator);
+    function passwordInputHandler(evt) {
+        validate.check(evt.target, retypeValidator);
     }
 
     function passwordSubmitHandler(evt) {
-        $("#changepw .form-group").has(".check").each(function() {
-            var trimmedValue = $(this).find(".check").val().trim();
-            var inputName = $(this).find(".check").attr("name");
+        const formGroups = $("#changepw .form-group").has(".check").toArray();
+        formGroups.forEach(function(formGroup) {
+            var trimmedValue = $(formGroup).find(".check").val().trim();
+            var inputName = $(formGroup).find(".check").attr("name");
             if (trimmedValue === "") {
                 evt.preventDefault();
-                inputStatus.warning(this, "Your " + inputName + " is empty");
+                inputStatus.warning(formGroup, "Your " + inputName + " is empty");
             } else {
-                inputStatus.ok(this, "Your " + inputName + " is OK");
+                inputStatus.ok(formGroup, "Your " + inputName + " is OK");
             }
         });
     }

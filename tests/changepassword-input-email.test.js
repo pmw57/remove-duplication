@@ -13,7 +13,8 @@ describe("change-password input email", function () {
     function passwordInputHandler() {
         const passwordHandler = changePassword.eventHandler.passwordInput;
         const thisArg = $emailGroup.get(0);
-        passwordHandler.call(thisArg);
+        const evt = {target: thisArg};
+        passwordHandler.call(thisArg, evt);
     }
     after(function () {
         $("#changepw").trigger("reset");
