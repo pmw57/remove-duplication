@@ -103,6 +103,20 @@ describe("validate", function () {
            expect(result).to.equal(false);
        });
     });
+    describe("compares against a regular expression", function () {
+       it("checks that a field matches a regex", function () {
+           emailInput.value = "email@example.com";
+           const regex = /[a-z]@[a-z.]/;
+           const result = validate.checkRx(regex, emailInput);
+           expect(result).to.equal(true);
+       });
+       it("checks that a field doesn't match regex", function () {
+           emailInput.value = "";
+           const regex = /[a-z]@[a-z.]/;
+           const result = validate.checkRx(regex, emailInput);
+           expect(result).to.equal(false);
+       });
+    });
     describe("uses custom validator", function () {
         const firstnameGroup = $(".form-group").has("[name='First Name']").get(0);
         it("can use a custom validator", function () {
