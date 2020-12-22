@@ -24,13 +24,13 @@ describe("change password submit", function () {
         $emailInput.val("test value");
         $emailError.html("");
         changePasswordSubmitHandler();
-        expect($emailError.html()).to.equal("Your E-mail is OK");
+        expect($emailError.html()).to.equal("E-mail is Ok: Your data has been entered correctly");
     });
     it("email is empty", function () {
         $emailInput.val("");
         $emailError.html("");
         changePasswordSubmitHandler();
-        expect($emailError.html()).to.equal("Your E-mail is empty");
+        expect($emailError.html()).to.equal("E-mail is Empty: Please enter data into this input");
     });
     const $passwordGroup = $("#changepw .form-group").has("[name='Password']");
     const $passwordInput = $passwordGroup.find("input");
@@ -39,13 +39,13 @@ describe("change password submit", function () {
         $passwordInput.val("test value");
         $passwordError.html("");
         changePasswordSubmitHandler();
-        expect($passwordError.html()).to.equal("Your Password is OK");
+        expect($passwordError.html()).to.equal("Password is Ok: Your data has been entered correctly");
     });
-    it("password is empty", function () {
+    it("Password is Empty: Please enter data into this input", function () {
         $passwordInput.val("");
         $passwordError.html("");
         changePasswordSubmitHandler();
-        expect($passwordError.html()).to.equal("Your Password is empty");
+        expect($passwordError.html()).to.equal("Password is Empty: Please enter data into this input");
     });
     const $retypeGroup = $("#changepw .form-group").has("[name='Password Retype']");
     const $retypeInput = $retypeGroup.find("input");
@@ -55,12 +55,12 @@ describe("change password submit", function () {
         $retypeInput.val("test value");
         $retypeError.html("");
         changePasswordSubmitHandler();
-        expect($retypeError.html()).to.equal("Your Password Retype is OK");
+        expect($retypeError.html()).to.equal("Password Retype is Ok: Your data has been entered correctly");
     });
     it("retype is empty", function () {
         $retypeInput.val("");
         $retypeError.html("");
         changePasswordSubmitHandler();
-        expect($retypeError.html()).to.equal("Your Password Retype is empty");
+        expect($retypeError.html()).to.equal("Password Retype is Empty: Please enter data into this input");
     });
 });

@@ -14,17 +14,10 @@ const changePassword = (function() {
     }
 
     function passwordSubmitHandler(evt) {
-        const formGroups = $("#changepw .form-group").has(".check").toArray();
-        formGroups.forEach(function(formGroup) {
-            var trimmedValue = $(formGroup).find(".check").val().trim();
-            var inputName = $(formGroup).find(".check").attr("name");
-            if (trimmedValue === "") {
-                evt.preventDefault();
-                inputStatus.warning(formGroup, "Your " + inputName + " is empty");
-            } else {
-                inputStatus.ok(formGroup, "Your " + inputName + " is OK");
-            }
-        });
+        validate.checkFormEmpty("#changepw");
+        if ($("#changepw .warning").length !== 0) {
+            evt.preventDefault();
+        }
     }
 
     function passwordResetHandler() {
