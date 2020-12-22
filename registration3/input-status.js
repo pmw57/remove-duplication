@@ -41,6 +41,12 @@ const inputStatus = (function () {
             setWarning($error);
         }
     }
+    function errorOk(inputGroup, message) {
+        setError(inputGroup, "ok", message);
+    }
+    function errorWarning(inputGroup, message) {
+        setError(inputGroup, "warning", message);
+    }
     function setFeedback(inputGroup, type) {
         const $feedback = $(inputGroup).find(".feedback");
         const warningClass = "glyphicon glyphicon-remove";
@@ -53,21 +59,6 @@ const inputStatus = (function () {
             setWarning($feedback, warningClass);
         }
     }
-    function setRequired(inputGroup, type) {
-        const $required = $(inputGroup).find(".starrq");
-        if (type === "ok") {
-            setOk($required);
-        }
-        if (type === "warning") {
-            setWarning($required);
-        }
-    }
-    function errorOk(inputGroup, message) {
-        setError(inputGroup, "ok", message);
-    }
-    function errorWarning(inputGroup, message) {
-        setError(inputGroup, "warning", message);
-    }
     function feedbackNone(inputGroup) {
         setFeedback(inputGroup, "none");
     }
@@ -76,6 +67,15 @@ const inputStatus = (function () {
     }
     function feedbackWarning(inputGroup) {
         setFeedback(inputGroup, "warning");
+    }
+    function setRequired(inputGroup, type) {
+        const $required = $(inputGroup).find(".starrq");
+        if (type === "ok") {
+            setOk($required);
+        }
+        if (type === "warning") {
+            setWarning($required);
+        }
     }
     function requiredOk(inputGroup) {
         setRequired(inputGroup, "ok");
