@@ -84,6 +84,9 @@ const validate = (function () {
             showValid(inputGroup);
         }
     }
+    function checkRx(rx, input) {
+        return rx.test(input.value);
+    }
     function fieldMatches(form, fieldname, str) {
         const field = form.elements[fieldname];
         return field.value === str;
@@ -104,6 +107,7 @@ const validate = (function () {
     return {
         createValidator,
         check,
+        checkRx,
         fieldMatches,
         checkFieldEmpty,
         checkFormEmpty,
