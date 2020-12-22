@@ -1,4 +1,4 @@
-const inputStatus = (function() {
+const inputStatus = (function makeInputStatus() {
     const errorStates = {
         "none": {
             remove: "warning ok"
@@ -111,10 +111,11 @@ const inputStatus = (function() {
     }
 
     function resetForm($form) {
-        $form.find(".form-group").each(function() {
-            var inputName = $(this).find(".check").attr("name");
-            inputStatus.errorOk(this, "Your " + inputName);
-            inputStatus.feedbackNone(this);
+        const formGroups = $form.find(".form-group").toArray();
+        formGroups.forEach(function resetGroup(formGroup) {
+            var inputName = $(formGroup).find(".check").attr("name");
+            inputStatus.errorOk(formGroup, "Your " + inputName);
+            inputStatus.feedbackNone(formGroup);
         });
     }
     return {
