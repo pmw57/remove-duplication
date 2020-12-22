@@ -30,37 +30,34 @@ const registration = (function() {
                 return input.value.length < 20;
             }, "Please enter no more than 19 char"
         );
-        function checkRx(rx, input) {
-            return rx.test(input.value);
-        }
         const checkMoreThanOneAlpha = validate.createValidator(
             function (input) {
-                return !checkRx(/^([a-zA-Z]{1})$/, input);
+                return !validate.checkRx(/^([a-zA-Z]{1})$/, input);
             }, "Please enter 2 upper case or lower case at least"
         );
         const checkOnlyAlphaChars = validate.createValidator(
             function (input) {
-                return checkRx(/^([a-zA-Z]{1,})+$/, input);
+                return validate.checkRx(/^([a-zA-Z]{1,})+$/, input);
             }, "Please enter upper case and lower case only"
         );
         const checkIsPhoneNumber = validate.createValidator(
             function (input) {
-                return checkRx(/^\(?([0-9]{4})\)?([ .-]?)([0-9]{3})\2([0-9]{4})$/, input);
+                return validate.checkRx(/^\(?([0-9]{4})\)?([ .-]?)([0-9]{3})\2([0-9]{4})$/, input);
             }, "Please enter Phone Number correctly"
         );
         const checkIsEmail = validate.createValidator(
             function (input) {
-                return checkRx(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/, input);
+                return validate.checkRx(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/, input);
             }, "Please enter it correctly"
         );
         const checkPostalAddress = validate.createValidator(
             function (input) {
-                return checkRx(/^\d+\s[A-z]+\s[A-z]+/g, input);
+                return validate.checkRx(/^\d+\s[A-z]+\s[A-z]+/g, input);
             }, "Please enter Address correctly"
         );
         const checkPostcode = validate.createValidator(
             function (input) {
-                return checkRx(/^[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}$/, input);
+                return validate.checkRx(/^[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}$/, input);
             }, "Please enter Post-code correctly"
         );
         const checkDifferentThanFirstname = validate.createValidator(
