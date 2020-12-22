@@ -1,17 +1,32 @@
 const inputStatus = (function () {
+    const errorStates = {
+        "none": {
+            remove: "warning ok"
+        },
+        "ok": {
+            add: "ok",
+            remove: "warning"
+        },
+        "warning": {
+            add: "warning",
+            remove: "ok"
+        }
+    };
+    function setErrorState($error, state, classes) {
+        const errorState = errorStates[state];
+        $error.removeClass(errorState.remove);
+        $error.addClass(errorState.add);
+    }
     function setNone($el, classes) {
-        $el.removeClass("warning");
-        $el.removeClass("ok");
+        setErrorState($el, "none");
         $el.removeClass(classes);
     }
     function setOk($el, classes) {
-        $el.removeClass("warning");
-        $el.addClass("ok");
+        setErrorState($el, "ok");
         $el.addClass(classes);
     }
     function setWarning($el, classes) {
-        $el.removeClass("ok");
-        $el.addClass("warning");
+        setErrorState($el, "warning");
         $el.addClass(classes);
     }
     function setError(inputGroup, type, message) {
