@@ -25,11 +25,6 @@ const registration = (function() {
     $(".citylist li").click(citylistClickHandler);
 
     function registrationInputHandler(evt) {
-        const checkLessThanTwentyChars = validate.createValidator(
-            function(input) {
-                return input.value.length < 20;
-            }, "Please enter no more than 19 char"
-        );
         const validators = {
             lessThanTwentyChars: {
                 regex: /^.{1,19}$/,
@@ -84,6 +79,14 @@ const registration = (function() {
                 error: "Password doesn't match retyped pwd"
             }
         };
+        function createValidator(validatorName) {
+            const fn = function regexValidator(input) {
+                return validate.checkRx(validators[validatorName].regex, input);
+            };
+            const errorMessage = validators[validatorName].error;
+            return validate.createValidator(fn, errorMessage);
+        }
+        const checkLessThanTwentyChars = createValidator("lessThanTwentyChars");
         const checkMoreThanOneAlpha = validate.createValidator(
             function(input) {
                 return !validate.checkRx(/^([a-zA-Z]{1})$/, input);
