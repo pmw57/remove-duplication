@@ -88,18 +88,19 @@ describe("validate", function () {
         });
     });
     describe("compares a field", function () {
+        const form = $("#changepw").get(0);
+        const passwordField = form.elements.Password;
+        const retypeField = form.elements["Password Retype"];
        it("checks that a field matches a value", function () {
-           const form = emailInput.form;
-           const fieldname = emailInput.name;
-           emailInput.value = "test@example.com";
-           const result = validate.fieldMatches(form, fieldname, "test@example.com");
+           passwordField.value = "test password";
+           retypeField.value = "test password";
+           const result = validate.fieldMatch("Password", retypeField);
            expect(result).to.equal(true);
        });
        it("checks that a field doesn't match", function () {
-           const form = emailInput.form;
-           const fieldname = emailInput.name;
-           emailInput.value = "test@example.com";
-           const result = validate.fieldMatches(form, fieldname, "test@example");
+           passwordField.value = "test password";
+           retypeField.value = "bad password";
+           const result = validate.fieldMatch("Password", retypeField);
            expect(result).to.equal(false);
        });
     });

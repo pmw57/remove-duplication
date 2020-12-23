@@ -99,12 +99,11 @@ const validate = (function() {
     function checkRx(rx, input) {
         return rx.test(input.value);
     }
-
-    function fieldMatches(form, fieldname, str) {
+    function fieldMatch(fieldname, input) {
+        const form = input.form;
         const field = form.elements[fieldname];
-        return field.value === str;
+        return field.value === input.value;
     }
-
     function checkFieldEmpty(formGroup) {
         const $inputField = $(formGroup).find("input, textarea");
         const name = $inputField.attr("name");
@@ -123,7 +122,7 @@ const validate = (function() {
         createValidator,
         check,
         checkRx,
-        fieldMatches,
+        fieldMatch,
         checkFieldEmpty,
         checkFormEmpty,
         fn: {

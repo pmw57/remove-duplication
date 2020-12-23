@@ -62,17 +62,17 @@ const registration = (function() {
         );
         const checkDifferentThanFirstname = validate.createValidator(
             function(input) {
-                return !validate.fieldMatches(input.form, "First Name", input.value);
+                return !validate.fieldMatch("First Name", input);
             }, "Password shouldn't match first-name"
         );
         const checkDifferentThanLastname = validate.createValidator(
             function(input) {
-                return !validate.fieldMatches(input.form, "Last Name", input.value);
+                return !validate.fieldMatch("Last Name", input);
             }, "Password shouldn't match last-name"
         );
         const checkDifferentThanCity = validate.createValidator(
             function(input) {
-                return !validate.fieldMatches(input.form, "Your City", input.value);
+                return !validate.fieldMatch("Your City", input);
             }, "Password shouldn't match city name"
         );
         const checkPasswordAtLeastSix = validate.createValidator(
@@ -89,7 +89,7 @@ const registration = (function() {
         );
         const checkMatchesPassword = validate.createValidator(
             function(input) {
-                return validate.fieldMatches(input.form, "Password", input.value);
+                return validate.fieldMatch("Password", input);
             }, "Password doesn't match retyped pwd"
         );
 
