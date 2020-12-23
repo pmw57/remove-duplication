@@ -30,6 +30,60 @@ const registration = (function() {
                 return input.value.length < 20;
             }, "Please enter no more than 19 char"
         );
+        const validators = {
+            lessThanTwentyChars: {
+                regex: /^.{1,19}$/,
+                error: "Please enter no more than 19 char"
+            },
+            moreThanOneAlpha: {
+                regex: /^([a-zA-Z]{1})$/,
+                error: "Please enter 2 upper case or lower case at least"
+            },
+            onlyAlphaChars: {
+                regex: /^([a-zA-Z]{1,})+$/,
+                error: "Please enter upper case and lower case only"
+            },
+            isPhoneNumber: {
+                regex: /^\(?([0-9]{4})\)?([ .-]?)([0-9]{3})\2([0-9]{4})$/,
+                error: "Please enter Phone Number correctly"
+            },
+            isEmail: {
+                regex: /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/,
+                error: "Please enter it correctly"
+            },
+            postalAddress: {
+                regex: /^\d+\s[A-z]+\s[A-z]+/g,
+                error: "Please enter Address correctly"
+            },
+            postcode: {
+                regex: /^[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}$/,
+                error: "Please enter Post-code correctly"
+            },
+            differentThanFirstname: {
+                fieldname: "First Name",
+                error: "Password shouldn't match first-name"
+            },
+            differentThanLastname: {
+                fieldname: "Last Name",
+                error: "Password shouldn't match last-name"
+            },
+            differentThanCity: {
+                fieldname: "Your City",
+                error: "Password shouldn't match city name"
+            },
+            passwordAtLeastSix: {
+                regex: /^([a-zA-Z0-9]{6,})+$/,
+                error: "Please enter at least 6 characters"
+            },
+            passwordBelowThirteen: {
+                regex: /^([a-zA-Z0-9]{13,})+$/,
+                error: "Please enter no more than 12 characters"
+            },
+            matchesPassword: {
+                fieldname: "Password",
+                error: "Password doesn't match retyped pwd"
+            }
+        };
         const checkMoreThanOneAlpha = validate.createValidator(
             function(input) {
                 return !validate.checkRx(/^([a-zA-Z]{1})$/, input);
