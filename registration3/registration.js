@@ -30,8 +30,8 @@ const registration = (function() {
                 regex: /^.{1,19}$/,
                 error: "Please enter no more than 19 char"
             },
-            moreThanOneAlpha: {
-                regex: /^([a-zA-Z]{1})$/,
+            moreThanOneChar: {
+                regex: /^.{2,}$/,
                 error: "Please enter 2 upper case or lower case at least"
             },
             onlyAlphaChars: {
@@ -87,9 +87,10 @@ const registration = (function() {
             return validate.createValidator(fn, errorMessage);
         }
         const checkLessThanTwentyChars = createValidator("lessThanTwentyChars");
-        const checkMoreThanOneAlpha = validate.createValidator(
+        const checkMoreThanOneChar = validate.createValidator(
             function(input) {
-                return !validate.checkRx(/^([a-zA-Z]{1})$/, input);
+                const value = input.value;
+                return validate.checkRx(/^.{2,}$/, input);
             }, "Please enter 2 upper case or lower case at least"
         );
         const checkOnlyAlphaChars = validate.createValidator(
@@ -156,14 +157,14 @@ const registration = (function() {
                 validate.fn.checkEmpty,
                 validate.fn.checkFake,
                 checkLessThanTwentyChars,
-                checkMoreThanOneAlpha,
+                checkMoreThanOneChar,
                 checkOnlyAlphaChars
             ],
             "Last Name": [
                 validate.fn.checkEmpty,
                 validate.fn.checkFake,
                 checkLessThanTwentyChars,
-                checkMoreThanOneAlpha,
+                checkMoreThanOneChar,
                 checkOnlyAlphaChars
             ],
             "Phone Number": [
