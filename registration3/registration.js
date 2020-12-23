@@ -71,7 +71,7 @@ const registration = (function() {
                 error: "Please enter at least 6 characters"
             },
             passwordBelowThirteen: {
-                regex: /^([a-zA-Z0-9]{13,})+$/,
+                regex: /^[a-zA-Z0-9]{1,12}$/,
                 error: "Please enter no more than 12 characters"
             },
             matchesPassword: {
@@ -80,44 +80,19 @@ const registration = (function() {
             }
         };
         function createValidator(validatorName) {
-            const fn = function regexValidator(input) {
-                return validate.checkRx(validators[validatorName].regex, input);
-            };
-            const errorMessage = validators[validatorName].error;
-            return validate.createValidator(fn, errorMessage);
+            const validatorConfig = validators[validatorName];
+            const errorMessage = validatorConfig.error;
+            if (validatorConfig.regex) {
+                return validate.createValidator(function regexValidator(input) {
+                    return validate.checkRx(validatorConfig.regex, input);
+                }, errorMessage);
+            }
+            if (validatorConfig.fieldname) {
+                return validate.createValidator(function fieldnameValidator(input) {
+                    return validate.fieldMatch(validatorConfig.fieldname, input);
+                }, errorMessage);
+            }
         }
-        const checkLessThanTwentyChars = createValidator("lessThanTwentyChars");
-        const checkMoreThanOneChar = validate.createValidator(
-            function(input) {
-                const value = input.value;
-                return validate.checkRx(/^.{2,}$/, input);
-            }, "Please enter 2 upper case or lower case at least"
-        );
-        const checkOnlyAlphaChars = validate.createValidator(
-            function(input) {
-                return validate.checkRx(/^([a-zA-Z]{1,})+$/, input);
-            }, "Please enter upper case and lower case only"
-        );
-        const checkIsPhoneNumber = validate.createValidator(
-            function(input) {
-                return validate.checkRx(/^\(?([0-9]{4})\)?([ .-]?)([0-9]{3})\2([0-9]{4})$/, input);
-            }, "Please enter Phone Number correctly"
-        );
-        const checkIsEmail = validate.createValidator(
-            function(input) {
-                return validate.checkRx(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/, input);
-            }, "Please enter it correctly"
-        );
-        const checkPostalAddress = validate.createValidator(
-            function(input) {
-                return validate.checkRx(/^\d+\s[A-z]+\s[A-z]+/g, input);
-            }, "Please enter Address correctly"
-        );
-        const checkPostcode = validate.createValidator(
-            function(input) {
-                return validate.checkRx(/^[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}$/, input);
-            }, "Please enter Post-code correctly"
-        );
         const checkDifferentThanFirstname = validate.createValidator(
             function(input) {
                 return !validate.fieldMatch("First Name", input);
@@ -133,22 +108,11 @@ const registration = (function() {
                 return !validate.fieldMatch("Your City", input);
             }, "Password shouldn't match city name"
         );
-        const checkPasswordAtLeastSix = validate.createValidator(
-            function(input) {
-                var pswReglow = /^([a-zA-Z0-9]{6,})+$/;
-                return pswReglow.test(input.value);
-            }, "Please enter at least 6 characters"
-        );
         const checkPasswordBelowThirteen = validate.createValidator(
             function(input) {
-                var pswRegheigh = /^([a-zA-Z0-9]{13,})+$/;
-                return !pswRegheigh.test(input.value);
+                var pswRegheigh = /^[a-zA-Z0-9]{1,12}$/;
+                return pswRegheigh.test(input.value);
             }, "Please enter no more than 12 characters"
-        );
-        const checkMatchesPassword = validate.createValidator(
-            function(input) {
-                return validate.fieldMatch("Password", input);
-            }, "Password doesn't match retyped pwd"
         );
 
         const $formGroup = $(this).closest(".form-group");
@@ -156,33 +120,33 @@ const registration = (function() {
             "First Name": [
                 validate.fn.checkEmpty,
                 validate.fn.checkFake,
-                checkLessThanTwentyChars,
-                checkMoreThanOneChar,
-                checkOnlyAlphaChars
+                createValidator("lessThanTwentyChars"),
+                createValidator("moreThanOneChar"),
+                createValidator("onlyAlphaChars")
             ],
             "Last Name": [
                 validate.fn.checkEmpty,
                 validate.fn.checkFake,
-                checkLessThanTwentyChars,
-                checkMoreThanOneChar,
-                checkOnlyAlphaChars
+                createValidator("lessThanTwentyChars"),
+                createValidator("moreThanOneChar"),           createValidator("onlyAlphaChars")
+
             ],
             "Phone Number": [
                 validate.fn.checkEmpty,
-                checkIsPhoneNumber
+                createValidator("isPhoneNumber")
             ],
             "E-mail": [
                 validate.fn.checkEmpty,
                 validate.fn.checkFake,
-                checkIsEmail
+                createValidator("isEmail")
             ],
             "Postal Address": [
                 validate.fn.checkEmpty,
-                checkPostalAddress
+                createValidator("postalAddress")
             ],
             "zip code": [
                 validate.fn.checkEmpty,
-                checkPostcode
+                createValidator("postcode")
             ],
             "Your City": [
                 validate.fn.checkEmpty
@@ -193,12 +157,12 @@ const registration = (function() {
                 checkDifferentThanFirstname,
                 checkDifferentThanLastname,
                 checkDifferentThanCity,
-                checkPasswordAtLeastSix,
-                checkPasswordBelowThirteen
+                createValidator("passwordAtLeastSix"),
+                createValidator("passwordBelowThirteen")
             ],
             "Retype Password": [
                 validate.fn.checkEmpty,
-                checkMatchesPassword
+                createValidator("matchesPassword")
             ]
         });
     }
