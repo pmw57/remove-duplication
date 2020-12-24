@@ -11,10 +11,11 @@ describe("registration-input password", function () {
     */
     function callRegistrationInputHandler(thisArg) {
         const registrationInputHandler = registration.eventHandler.registrationInput;
-        registrationInputHandler.call(thisArg);
+        const evt = {target: thisArg};
+        registrationInputHandler.call(thisArg, evt);
     }
     const $passwordGroup = $(".form-group").has("[name='Password']");
-    const $passwordInputGroup = $passwordGroup.find(".input-group");
+    const passwordInputGroup = $passwordGroup.find(".input-group").get(0);
     const $passwordInput = $passwordGroup.find("input");
     const $passwordError = $passwordGroup.find(".error");
     const $firstnameInput = $passwordGroup.closest("form").find("[name='First Name']");
@@ -25,45 +26,45 @@ describe("registration-input password", function () {
     });
     it("is empty", function () {
         $passwordInput.val("");
-        callRegistrationInputHandler($passwordInputGroup);
+        callRegistrationInputHandler(passwordInputGroup);
         expect($passwordError.html()).to.equal("Password is Empty: Please enter data into this input");
     });
     it("has repetition", function () {
         $passwordInput.val("abbbc");
-        callRegistrationInputHandler($passwordInputGroup);
+        callRegistrationInputHandler(passwordInputGroup);
         expect($passwordError.html()).to.equal("Password is Fake text: Please remove repetition");
     });
     it("shouldn't match firstname", function () {
         $firstnameInput.val("John");
         $passwordInput.val("John");
-        callRegistrationInputHandler($passwordInputGroup);
+        callRegistrationInputHandler(passwordInputGroup);
         expect($passwordError.html()).to.equal("Password is Incorrect: Password shouldn't match first-name");
     });
     it("shouldn't match lastname", function () {
         $lastnameInput.val("Adams");
         $passwordInput.val("Adams");
-        callRegistrationInputHandler($passwordInputGroup);
+        callRegistrationInputHandler(passwordInputGroup);
         expect($passwordError.html()).to.equal("Password is Incorrect: Password shouldn't match last-name");
     });
     it("shouldn't match city", function () {
         $cityInput.val("Chicago");
         $passwordInput.val("Chicago");
-        callRegistrationInputHandler($passwordInputGroup);
+        callRegistrationInputHandler(passwordInputGroup);
         expect($passwordError.html()).to.equal("Password is Incorrect: Password shouldn't match city name");
     });
     it("should be at least 6 characters", function () {
         $passwordInput.val("12345");
-        callRegistrationInputHandler($passwordInputGroup);
+        callRegistrationInputHandler(passwordInputGroup);
         expect($passwordError.html()).to.equal("Password is Incorrect: Please enter at least 6 characters");
     });
     it("should be at most 12 characters", function () {
         $passwordInput.val("12345678901234567890");
-        callRegistrationInputHandler($passwordInputGroup);
+        callRegistrationInputHandler(passwordInputGroup);
         expect($passwordError.html()).to.equal("Password is Incorrect: Please enter no more than 12 characters");
     });
     it("is valid", function () {
         $passwordInput.val("password");
-        callRegistrationInputHandler($passwordInputGroup);
+        callRegistrationInputHandler(passwordInputGroup);
         expect($passwordError.html()).to.equal("Password is Ok: Your data has been entered correctly");
     });
 });

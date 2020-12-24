@@ -4,17 +4,6 @@ const validate = (function() {
         "Password": [checkEmpty, checkFake, checkPasswordShort, checkPasswordLong]
     };
 
-    function createValidator(rule, errorMessage) {
-        return function check(inputGroup) {
-            const input = $(inputGroup).find("input, textarea").get(0);
-            if (!rule(input)) {
-                inputStatus.warning(inputGroup, validate.fn.getName(inputGroup) + " is Incorrect: " + errorMessage);
-                return false;
-            }
-            return true;
-        }
-    }
-
     function getName(inputGroup) {
         return $(inputGroup).find("input, textarea").attr("name");
     }
@@ -118,13 +107,52 @@ const validate = (function() {
             checkFieldEmpty(this);
         });
     }
+    function createValidator(rule, errorMessage) {
+        return function check(inputGroup) {
+            const input = $(inputGroup).find("input, textarea").get(0);
+            if (!rule(input)) {
+                inputStatus.warning(inputGroup, getName(inputGroup) + " is Incorrect: " + errorMessage);
+                return false;
+            }
+            return true;
+        }
+    }
+    function getValidator(config) {
+        return config.regex && {
+            checker: checkRx,
+            rule: config.regex
+        }
+        || config.fieldname && {
+            checker: fieldMatch,
+            rule: config.fieldname
+        };
+    }
+    function createMatcher(config, invertMatcher) {
+        const validator = getValidator(config);
+        const errorMessage = config.error;
+        const checker = validator.checker;
+        return createValidator(function regexValidator(input) {
+            if (invertMatcher) {
+                return !checker(validator.rule, input);
+            } else {
+                return checker(validator.rule, input);
+            }
+        }, errorMessage);
+    }
+    function createNomatcher(config) {
+        const invertMatcher = true;
+        return createMatcher(config, invertMatcher);
+    }
+
     return {
-        createValidator,
         check,
         checkRx,
         fieldMatch,
         checkFieldEmpty,
         checkFormEmpty,
+        createValidator,
+        createMatcher,
+        createNomatcher,
         fn: {
             getName,
             getValue,

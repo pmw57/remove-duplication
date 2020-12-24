@@ -175,4 +175,34 @@ describe("validate", function () {
             expect($firstnameError.html()).to.equal("First Name is Ok: Your data has been entered correctly");
         });
     });
+//    describe("creates a validator", function () {
+//        const abcConfig = {
+//            regex: /^[abc]/,
+//            error: "Must start with a, b, or c"
+//        };
+//        it("can match regex with matcher", function () {
+//            const abcValidator = validate.createMatcher(abcConfig);
+//            emailInput.value = "atest@example.com";
+//            expect(abcValidator(emailGroup)).to.equal(true);
+//            
+//        });
+//        it("doesn't match regex with matcher", function () {
+//            const abcValidator = validate.createMatcher(abcConfig);
+//            emailInput.value = "dtest@example.com";
+//            expect(abcValidator(emailGroup)).to.equal(false);
+//            
+//        });
+//        it("doesn't match regex with noMatcher", function () {
+//            const nonAbcValidator = validate.createNomatcher(abcConfig);
+//            emailInput.value = "atest@example.com";
+//            expect(nonAbcValidator(emailGroup)).to.equal(false);
+//            
+//        });
+//        it("matches regex with noMatcher", function () {
+//            const nonAbcValidator = validate.createNomatcher(abcConfig);
+//            emailInput.value = "dtest@example.com";
+//            expect(nonAbcValidator(emailGroup)).to.equal(true);
+//            
+//        });
+//    });
 });

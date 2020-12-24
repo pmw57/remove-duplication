@@ -79,74 +79,49 @@ const registration = (function() {
                 error: "Password doesn't match retyped pwd"
             }
         };
-        function createValidator(validatorName) {
+
+        function createMatcher(validatorName) {
             const validatorConfig = validators[validatorName];
-            const errorMessage = validatorConfig.error;
-            if (validatorConfig.regex) {
-                return validate.createValidator(function regexValidator(input) {
-                    return validate.checkRx(validatorConfig.regex, input);
-                }, errorMessage);
-            }
-            if (validatorConfig.fieldname) {
-                return validate.createValidator(function fieldnameValidator(input) {
-                    return validate.fieldMatch(validatorConfig.fieldname, input);
-                }, errorMessage);
-            }
+            return validate.createMatcher(validatorConfig);
         }
-        const checkDifferentThanFirstname = validate.createValidator(
-            function(input) {
-                return !validate.fieldMatch("First Name", input);
-            }, "Password shouldn't match first-name"
-        );
-        const checkDifferentThanLastname = validate.createValidator(
-            function(input) {
-                return !validate.fieldMatch("Last Name", input);
-            }, "Password shouldn't match last-name"
-        );
-        const checkDifferentThanCity = validate.createValidator(
-            function(input) {
-                return !validate.fieldMatch("Your City", input);
-            }, "Password shouldn't match city name"
-        );
-        const checkPasswordBelowThirteen = validate.createValidator(
-            function(input) {
-                var pswRegheigh = /^[a-zA-Z0-9]{1,12}$/;
-                return pswRegheigh.test(input.value);
-            }, "Please enter no more than 12 characters"
-        );
+        function createNomatcher(validatorName) {
+            const validatorConfig = validators[validatorName];
+            return validate.createNomatcher(validatorConfig);
+        }
 
         const $formGroup = $(this).closest(".form-group");
         return validate.check($formGroup, {
             "First Name": [
                 validate.fn.checkEmpty,
                 validate.fn.checkFake,
-                createValidator("lessThanTwentyChars"),
-                createValidator("moreThanOneChar"),
-                createValidator("onlyAlphaChars")
+                createMatcher("lessThanTwentyChars"),
+                createMatcher("moreThanOneChar"),
+                createMatcher("onlyAlphaChars")
             ],
             "Last Name": [
                 validate.fn.checkEmpty,
                 validate.fn.checkFake,
-                createValidator("lessThanTwentyChars"),
-                createValidator("moreThanOneChar"),           createValidator("onlyAlphaChars")
+                createMatcher("lessThanTwentyChars"),
+                createMatcher("moreThanOneChar"),
+                createMatcher("onlyAlphaChars")
 
             ],
             "Phone Number": [
                 validate.fn.checkEmpty,
-                createValidator("isPhoneNumber")
+                createMatcher("isPhoneNumber")
             ],
             "E-mail": [
                 validate.fn.checkEmpty,
                 validate.fn.checkFake,
-                createValidator("isEmail")
+                createMatcher("isEmail")
             ],
             "Postal Address": [
                 validate.fn.checkEmpty,
-                createValidator("postalAddress")
+                createMatcher("postalAddress")
             ],
             "zip code": [
                 validate.fn.checkEmpty,
-                createValidator("postcode")
+                createMatcher("postcode")
             ],
             "Your City": [
                 validate.fn.checkEmpty
@@ -154,15 +129,15 @@ const registration = (function() {
             "Password": [
                 validate.fn.checkEmpty,
                 validate.fn.checkFake,
-                checkDifferentThanFirstname,
-                checkDifferentThanLastname,
-                checkDifferentThanCity,
-                createValidator("passwordAtLeastSix"),
-                createValidator("passwordBelowThirteen")
+                createNomatcher("differentThanFirstname"),
+                createNomatcher("differentThanLastname"),
+                createNomatcher("differentThanCity"),
+                createMatcher("passwordAtLeastSix"),
+                createMatcher("passwordBelowThirteen")
             ],
             "Retype Password": [
                 validate.fn.checkEmpty,
-                createValidator("matchesPassword")
+                createMatcher("matchesPassword")
             ]
         });
     }
