@@ -1,19 +1,17 @@
 $(document).ready(function() {
-    $("#changepsw").on("click", function() {
-        $("#login").css("display", "none");
-        $("#changepw").css("display", "block");
-    });
-    $("#changepsw2").on("click", function() {
-        $("#login").css("display", "none");
-        $("#changepw").css("display", "block");
-    });
-    $("#login2").on("click", function() {
-        $("#login").css("display", "block");
-        $("#changepw").css("display", "none");
-    });
+    function showChangePassword() {
+        $("#login").hide();
+        $("#changepw").show();
+    }
+    function showLogin() {
+        $("#login").show();
+        $("#changepw").hide();
+    }
+    $("#changepsw").on("click", showChangePassword);
+    $("#changepsw2").on("click", showChangePassword);
+    $("#login2").on("click", showLogin);
 
-    $("#myBtn")
-        .click(function() {
-            $("#myModal").modal();
-        });
+    $("#myBtn").click(function() {
+        $("#myModal").modal();
+    });
 });
