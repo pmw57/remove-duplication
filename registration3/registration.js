@@ -56,14 +56,17 @@ const registration = (function() {
             },
             differentThanFirstname: {
                 fieldname: "First Name",
+                shouldMatch: false,
                 error: "Password shouldn't match first-name"
             },
             differentThanLastname: {
                 fieldname: "Last Name",
+                shouldMatch: false,
                 error: "Password shouldn't match last-name"
             },
             differentThanCity: {
                 fieldname: "Your City",
+                shouldMatch: false,
                 error: "Password shouldn't match city name"
             },
             passwordAtLeastSix: {
@@ -129,9 +132,9 @@ const registration = (function() {
             "Password": [
                 validate.fn.checkEmpty,
                 validate.fn.checkFake,
-                createNomatcher("differentThanFirstname"),
-                createNomatcher("differentThanLastname"),
-                createNomatcher("differentThanCity"),
+                createMatcher("differentThanFirstname"),
+                createMatcher("differentThanLastname"),
+                createMatcher("differentThanCity"),
                 createMatcher("passwordAtLeastSix"),
                 createMatcher("passwordBelowThirteen")
             ],

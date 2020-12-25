@@ -127,23 +127,18 @@ const validate = (function() {
             rule: config.fieldname
         };
     }
-    function createMatcher(config, invertMatcher) {
+    function createMatcher(config) {
         const validator = getValidator(config);
         const errorMessage = config.error;
         const checker = validator.checker;
         return createValidator(function regexValidator(input) {
-            if (invertMatcher) {
+            if (config.shouldMatch === false) {
                 return !checker(validator.rule, input);
             } else {
                 return checker(validator.rule, input);
             }
         }, errorMessage);
     }
-    function createNomatcher(config) {
-        const invertMatcher = true;
-        return createMatcher(config, invertMatcher);
-    }
-
     return {
         check,
         checkRx,
@@ -152,7 +147,6 @@ const validate = (function() {
         checkFormEmpty,
         createValidator,
         createMatcher,
-        createNomatcher,
         fn: {
             getName,
             getValue,
