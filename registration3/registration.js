@@ -93,6 +93,13 @@ const registration = (function() {
         }
 
         const $formGroup = $(this).closest(".form-group");
+        const nameValidationConfig = [
+            validate.fn.checkEmpty,
+            validate.fn.checkFake,
+            createMatcher("lessThanTwentyChars"),
+            createMatcher("moreThanOneChar"),
+            createMatcher("onlyAlphaChars")
+        ];
         return validate.check($formGroup, {
             "First Name": [
                 validate.fn.checkEmpty,
@@ -107,7 +114,6 @@ const registration = (function() {
                 createMatcher("lessThanTwentyChars"),
                 createMatcher("moreThanOneChar"),
                 createMatcher("onlyAlphaChars")
-
             ],
             "Phone Number": [
                 validate.fn.checkEmpty,
