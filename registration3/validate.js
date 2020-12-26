@@ -135,14 +135,13 @@ const validate = (function() {
         return checkInput;
     }
     function getValidator(config) {
-        return config.regex && {
+        return (config.regex && {
             checker: checkRx,
             rule: config.regex
-        }
-        || config.fieldname && {
+        }) || (config.fieldname && {
             checker: fieldMatch,
             rule: config.fieldname
-        };
+        });
     }
     function createMatcher(config) {
         const validator = getValidator(config);
