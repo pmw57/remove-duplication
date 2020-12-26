@@ -123,7 +123,7 @@ const validate = (function() {
         });
     }
     function createValidator(rule, errorMessage) {
-        return function check(inputGroup) {
+        function checkInput(inputGroup) {
             const input = $(inputGroup).find("input, textarea").get(0);
             if (!rule(input)) {
                 const msg = " is Incorrect: " + errorMessage;
@@ -132,6 +132,7 @@ const validate = (function() {
             }
             return true;
         }
+        return checkInput;
     }
     function getValidator(config) {
         return config.regex && {
