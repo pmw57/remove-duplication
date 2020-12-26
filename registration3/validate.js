@@ -116,8 +116,10 @@ const validate = (function() {
     }
 
     function checkFormEmpty(form) {
-        $(form).find(".form-group").has(".check").each(function validateGroup() {
-            checkFieldEmpty(this);
+        const $formGroups = $(form).find(".form-group").has(".check");
+        const formGroups = $formGroups.toArray();
+        formGroups.forEach(function validateGroup(formGroup) {
+            checkFieldEmpty(formGroup);
         });
     }
     function createValidator(rule, errorMessage) {
