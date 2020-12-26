@@ -1,4 +1,4 @@
-const validate = (function() {
+const validate = (function makeValidator() {
     function getName(inputGroup) {
         return $(inputGroup).find("input, textarea").attr("name");
     }
@@ -88,7 +88,7 @@ const validate = (function() {
             if (!types) {
                 return;
             }
-            return types.every(function(check) {
+            return types.every(function checkInput(check) {
                 return check(inputGroup);
             });
         }
