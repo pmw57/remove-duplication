@@ -1,9 +1,4 @@
 const validate = (function() {
-    const defaultValidators = {
-        "E-mail": [checkEmpty, checkFake, checkEmailReg],
-        "Password": [checkEmpty, checkFake, checkPasswordShort, checkPasswordLong]
-    };
-
     function getName(inputGroup) {
         return $(inputGroup).find("input, textarea").attr("name");
     }
@@ -14,7 +9,6 @@ const validate = (function() {
 
     function checkEmpty(inputGroup) {
         if (getValue(inputGroup) === "") {
-            inputStatus.warning(inputGroup, getName(inputGroup) + " is Empty: Please enter data into this input");
             return false;
         }
         return true;
@@ -25,6 +19,11 @@ const validate = (function() {
         const value = getValue(inputGroup);
         if (fakeReg.test(value)) {
             inputStatus.warning(inputGroup, getName(inputGroup) + " is Fake text: Please remove repetition");
+            const msg = "Please enter data into this input";
+            inputStatus.warning(
+                inputGroup,
+                getName(inputGroup) + " is Empty: " + msg
+            );
             return false;
         }
         return true;
@@ -34,7 +33,11 @@ const validate = (function() {
         const emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
         const value = getValue(inputGroup);
         if (!emailReg.test(value)) {
-            inputStatus.warning(inputGroup, getName(inputGroup) + " is Incorrect: Please enter it correctly");
+            const msg = "Please enter it correctly";
+            inputStatus.warning(
+                inputGroup,
+                getName(inputGroup) + " is Incorrect: " + msg
+            );
             return false;
         }
         return true;
@@ -44,7 +47,11 @@ const validate = (function() {
         const pswReglow = /^([a-zA-Z0-9]{0,5})$/;
         const value = getValue(inputGroup);
         if (pswReglow.test(value)) {
-            inputStatus.warning(inputGroup, getName(inputGroup) + " is Incorrect: Please enter at least 6 characters");
+            const msg = "Please enter at least 6 characters";
+            inputStatus.warning(
+                inputGroup,
+                getName(inputGroup) + " is Incorrect: " + msg
+            );
             return false;
         }
         return true;
@@ -54,15 +61,32 @@ const validate = (function() {
         const pswReghigh = /^([a-zA-Z0-9]{13,})$/;
         const value = getValue(inputGroup);
         if (pswReghigh.test(value)) {
-            inputStatus.warning(inputGroup, getName(inputGroup) + " is Incorrect: Please enter no more than 12 characters");
+            const msg = "Please enter no more than 12 characters";
+            inputStatus.warning(
+                inputGroup,
+                getName(inputGroup) + " is Incorrect: " + msg
+            );
             return false;
         }
         return true;
     }
 
     function showValid(inputGroup) {
-        inputStatus.ok(inputGroup, getName(inputGroup) + " is Ok: Your data has been entered correctly");
+        const msg = " is Ok: Your data has been entered correctly";
+        inputStatus.ok(inputGroup, getName(inputGroup) + msg);
     }
+
+    const defaultValidators = {
+        "E-mail": [
+            checkEmpty,
+            checkEmailReg
+        ],
+        "Password": [
+            checkEmpty,
+            checkPasswordShort,
+            checkPasswordLong
+        ]
+    };
 
     function check(inputGroup, validators) {
         const validationTypes = Object.create(defaultValidators);
@@ -111,7 +135,8 @@ const validate = (function() {
         return function check(inputGroup) {
             const input = $(inputGroup).find("input, textarea").get(0);
             if (!rule(input)) {
-                inputStatus.warning(inputGroup, getName(inputGroup) + " is Incorrect: " + errorMessage);
+                const msg = " is Incorrect: " + errorMessage;
+                inputStatus.warning(inputGroup, getName(inputGroup) + msg);
                 return false;
             }
             return true;
