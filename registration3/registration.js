@@ -97,33 +97,19 @@ const registration = (function() {
         const $formGroup = $(inputGroup).closest(".form-group");
         const nameValidationConfig = [
             validate.fn.checkEmpty,
-            validate.fn.checkFake,
             createMatcher("lessThanTwentyChars"),
             createMatcher("moreThanOneChar"),
             createMatcher("onlyAlphaChars")
         ];
         return validate.check($formGroup, {
-            "First Name": [
-                validate.fn.checkEmpty,
-                validate.fn.checkFake,
-                createMatcher("lessThanTwentyChars"),
-                createMatcher("moreThanOneChar"),
-                createMatcher("onlyAlphaChars")
-            ],
-            "Last Name": [
-                validate.fn.checkEmpty,
-                validate.fn.checkFake,
-                createMatcher("lessThanTwentyChars"),
-                createMatcher("moreThanOneChar"),
-                createMatcher("onlyAlphaChars")
-            ],
+            "First Name": nameValidationConfig,
+            "Last Name": nameValidationConfig,
             "Phone Number": [
                 validate.fn.checkEmpty,
                 createMatcher("isPhoneNumber")
             ],
             "E-mail": [
                 validate.fn.checkEmpty,
-                validate.fn.checkFake,
                 createMatcher("isEmail")
             ],
             "Postal Address": [
@@ -139,7 +125,6 @@ const registration = (function() {
             ],
             "Password": [
                 validate.fn.checkEmpty,
-                validate.fn.checkFake,
                 createMatcher("differentThanFirstname"),
                 createMatcher("differentThanLastname"),
                 createMatcher("differentThanCity"),

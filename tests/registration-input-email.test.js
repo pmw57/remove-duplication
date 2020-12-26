@@ -26,11 +26,6 @@ describe("registration-input email", function () {
         callRegistrationInputHandler($emailInputGroup);
         expect($emailError.html()).to.equal("E-mail is Empty: Please enter data into this input");
     });
-    it("has repetition", function () {
-        $emailInput.val("abbbc");
-        callRegistrationInputHandler($emailInputGroup);
-        expect($emailError.html()).to.equal("E-mail is Fake text: Please remove repetition");
-    });
     it("isn't valid", function () {
         $emailInput.val("test@example");
         callRegistrationInputHandler($emailInputGroup);

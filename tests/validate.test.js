@@ -12,11 +12,6 @@ describe("validate", function () {
             validate.check(emailGroup);
             expect($emailError.html()).to.equal("E-mail is Empty: Please enter data into this input");
         });
-        it("is fake text", function () {
-            emailInput.value = "aaabbb";
-            validate.check(emailGroup);
-            expect($emailError.html()).to.equal("E-mail is Fake text: Please remove repetition");
-        });
         it("is invalid email", function () {
             emailInput.value = "test.value";
             validate.check(emailGroup);
@@ -41,11 +36,6 @@ describe("validate", function () {
             input.value = "Password123";
             validate.check(passwordGroup);
             expect($passwordError.html()).to.contain("is Ok");
-        });
-        it("is fake text", function () {
-            input.value = "aaabbb";
-            validate.check(passwordGroup);
-            expect($passwordError.html()).to.equal("Password is Fake text: Please remove repetition");
         });
         it("isn't fake text", function () {
             input.value = "Password123";

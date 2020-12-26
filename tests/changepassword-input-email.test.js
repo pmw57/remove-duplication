@@ -19,11 +19,6 @@ describe("change-password input email", function () {
     after(function () {
         $("#changepw").trigger("reset");
     });
-    it("email is fake", function () {
-        $emailInput.val("aaabbb@example.com");
-        passwordInputHandler();
-        expect($emailError.html()).to.equal("E-mail is Fake text: Please remove repetition");
-    });
     it("email is real", function () {
         $emailInput.val("test@example.com");
         passwordInputHandler();

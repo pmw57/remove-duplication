@@ -29,11 +29,6 @@ describe("registration-input password", function () {
         callRegistrationInputHandler(passwordInputGroup);
         expect($passwordError.html()).to.equal("Password is Empty: Please enter data into this input");
     });
-    it("has repetition", function () {
-        $passwordInput.val("abbbc");
-        callRegistrationInputHandler(passwordInputGroup);
-        expect($passwordError.html()).to.equal("Password is Fake text: Please remove repetition");
-    });
     it("shouldn't match firstname", function () {
         $firstnameInput.val("John");
         $passwordInput.val("John");

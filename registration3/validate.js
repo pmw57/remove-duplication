@@ -9,16 +9,6 @@ const validate = (function() {
 
     function checkEmpty(inputGroup) {
         if (getValue(inputGroup) === "") {
-            return false;
-        }
-        return true;
-    }
-
-    function checkFake(inputGroup) {
-        const fakeReg = /(.)\1{2,}/;
-        const value = getValue(inputGroup);
-        if (fakeReg.test(value)) {
-            inputStatus.warning(inputGroup, getName(inputGroup) + " is Fake text: Please remove repetition");
             const msg = "Please enter data into this input";
             inputStatus.warning(
                 inputGroup,
@@ -174,8 +164,7 @@ const validate = (function() {
         fn: {
             getName,
             getValue,
-            checkEmpty,
-            checkFake
+            checkEmpty
         }
     };
 }());

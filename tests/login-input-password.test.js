@@ -18,12 +18,6 @@ describe("login input password", function () {
     after(function () {
         $("#login").trigger("reset");
     });
-    it("password is fake", function () {
-        $passwordInput.val("aaabbb");
-        $passwordError.html("");
-        loginInputHandler($passwordGroup);
-        expect($passwordError.html()).to.equal("Password is Fake text: Please remove repetition");
-    });
     it("password is too small", function () {
         $passwordInput.val("ab");
         $passwordError.html("");

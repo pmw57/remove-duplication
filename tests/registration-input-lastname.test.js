@@ -26,11 +26,6 @@ describe("registration-input last name", function () {
         callRegistrationInputHandler($lastnameInputGroup);
         expect($lastnameError.html()).to.equal("Last Name is Empty: Please enter data into this input");
     });
-    it("is fake", function () {
-        $lastnameInput.val("abbbc");
-        callRegistrationInputHandler($lastnameInputGroup);
-        expect($lastnameError.html()).to.equal("Last Name is Fake text: Please remove repetition");
-    });
     it("is too long", function () {
         $lastnameInput.val("Too much text in the input field");
         callRegistrationInputHandler($lastnameInputGroup);

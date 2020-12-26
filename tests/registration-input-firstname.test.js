@@ -26,11 +26,6 @@ describe("registration-input first name", function () {
         callRegistrationInputHandler($firstnameInputGroup);
         expect($firstnameError.html()).to.equal("First Name is Empty: Please enter data into this input");
     });
-    it("is fake", function () {
-        $firstnameInput.val("abbbc");
-        callRegistrationInputHandler($firstnameInputGroup);
-        expect($firstnameError.html()).to.equal("First Name is Fake text: Please remove repetition");
-    });
     it("is too long", function () {
         $firstnameInput.val("Too much text in the input field");
         callRegistrationInputHandler($firstnameInputGroup);

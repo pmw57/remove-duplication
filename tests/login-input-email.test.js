@@ -18,12 +18,6 @@ describe("login input email", function () {
     after(function () {
         $("#login").trigger("reset");
     });
-    it("email is fake", function () {
-        $emailInput.val("aaabbb@example.com");
-        $emailError.html("");
-        loginInputHandler();
-        expect($emailError.html()).to.equal("E-mail is Fake text: Please remove repetition");
-    });
     it("email is real", function () {
         $emailInput.val("test@example.com");
         $emailError.html("");
