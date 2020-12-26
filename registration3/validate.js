@@ -30,7 +30,7 @@ const validate = (function() {
     }
 
     function checkEmailReg(inputGroup) {
-        const emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        const emailReg = /^([\w\-.]+@([\w\-]+\.)+[\w\-]{2,4})?$/;
         const value = getValue(inputGroup);
         if (!emailReg.test(value)) {
             const msg = "Please enter it correctly";
