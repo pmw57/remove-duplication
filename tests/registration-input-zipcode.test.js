@@ -11,7 +11,8 @@ describe("registration input zipcode", function () {
     */
     function callRegistrationInputHandler(thisArg) {
         const registrationInputHandler = registration.eventHandler.registrationInput;
-        registrationInputHandler.call(thisArg);
+        const evt = {target: thisArg};
+        registrationInputHandler.call(thisArg, evt);
     }
     const $zipcodeGroup = $(".form-group").has("[name='zip code']");
     const $zipcodeInputGroup = $zipcodeGroup.find(".input-group");

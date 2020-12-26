@@ -11,7 +11,8 @@ describe("registration input phonenumber", function () {
     */
     function callRegistrationInputHandler(thisArg) {
         const registrationInputHandler = registration.eventHandler.registrationInput;
-        registrationInputHandler.call(thisArg);
+        const evt = {target: thisArg};
+        registrationInputHandler.call(thisArg, evt);
     }
     const $phoneGroup = $(".form-group").has("[name='Phone Number']");
     const $phoneInputGroup = $phoneGroup.find(".input-group");

@@ -11,7 +11,8 @@ describe("registration input postaladdress", function () {
     */
     function callRegistrationInputHandler(thisArg) {
         const registrationInputHandler = registration.eventHandler.registrationInput;
-        registrationInputHandler.call(thisArg);
+        const evt = {target: thisArg};
+        registrationInputHandler.call(thisArg, evt);
     }
     const $postalGroup = $(".form-group").has("[name='Postal Address']");
     const $postalInputGroup = $postalGroup.find(".input-group");

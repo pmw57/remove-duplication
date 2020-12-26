@@ -11,7 +11,8 @@ describe("registration input city", function () {
     */
     function callRegistrationInputHandler(thisArg) {
         const registrationInputHandler = registration.eventHandler.registrationInput;
-        registrationInputHandler.call(thisArg);
+        const evt = {target: thisArg};
+        registrationInputHandler.call(thisArg, evt);
     }
     const $cityGroup = $(".form-group").has("[name='Your City']");
     const $cityInputGroup = $cityGroup.find(".input-group");

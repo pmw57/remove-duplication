@@ -11,7 +11,8 @@ describe("registration-input email", function () {
     */
     function callRegistrationInputHandler(thisArg) {
         const registrationInputHandler = registration.eventHandler.registrationInput;
-        registrationInputHandler.call(thisArg);
+        const evt = {target: thisArg};
+        registrationInputHandler.call(thisArg, evt);
     }
     const $emailGroup = $(".form-group").has("[name='E-mail']");
     const $emailInputGroup = $emailGroup.find(".input-group");

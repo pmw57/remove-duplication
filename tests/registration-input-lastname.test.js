@@ -11,7 +11,8 @@ describe("registration-input last name", function () {
     */
     function callRegistrationInputHandler(thisArg) {
         const registrationInputHandler = registration.eventHandler.registrationInput;
-        registrationInputHandler.call(thisArg);
+        const evt = {target: thisArg};
+        registrationInputHandler.call(thisArg, evt);
     }
     const $lastnameGroup = $(".form-group").has("[name='Last Name']");
     const $lastnameInputGroup = $lastnameGroup.find(".input-group");

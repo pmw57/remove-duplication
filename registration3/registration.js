@@ -10,12 +10,13 @@ const registration = (function() {
         $("#myModal").modal();
     });
 
-    function citylistClickHandler() {
-        const $form = $(this).closest("form");
-        const $inputField = $form.find("[name='Your City']");
-        const $cityGroup = $inputField.closest(".form-group");
-        const value = $(this).text().trim();
-        $inputField.val(value);
+    function citylistClickHandler(evt) {
+        const listItem = evt.target;
+        const $form = $(listItem).closest("form");
+        const $cityField = $form.find("[name='Your City']");
+        const $cityGroup = $cityField.closest(".form-group");
+        const value = $(listItem).text().trim();
+        $cityField.val(value);
         $("#citylist").collapse("hide");
 
         validate.check($cityGroup, {
@@ -39,11 +40,11 @@ const registration = (function() {
                 error: "Please enter upper case and lower case only"
             },
             isPhoneNumber: {
-                regex: /^\(?([0-9]{4})\)?([ .-]?)([0-9]{3})\2([0-9]{4})$/,
+                regex: /^\(?([0-9]{4})\)?[\u0020.\-]?([0-9]{3})[\u0020.\-]?([0-9]{4})$/,
                 error: "Please enter Phone Number correctly"
             },
             isEmail: {
-                regex: /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/,
+                regex: /^([\w\-.]+@([\w\-]+\.)+[\w\-]{2,4})?$/,
                 error: "Please enter it correctly"
             },
             postalAddress: {
@@ -92,7 +93,8 @@ const registration = (function() {
             return validate.createNomatcher(validatorConfig);
         }
 
-        const $formGroup = $(this).closest(".form-group");
+        const inputGroup = evt.target;
+        const $formGroup = $(inputGroup).closest(".form-group");
         const nameValidationConfig = [
             validate.fn.checkEmpty,
             validate.fn.checkFake,
@@ -150,7 +152,7 @@ const registration = (function() {
             ]
         });
     }
-    $('.input-group').on('focusin focusout input', registrationInputHandler);
+    $(".input-group").on("focusin focusout input", registrationInputHandler);
 
     function updateTerms() {
         const $termsGroup = $(".form-group").has("#terms");
@@ -178,12 +180,12 @@ const registration = (function() {
     }
     $("#registration").on("submit", registrationSubmitHandler);
 
-    function resetMessages() {
-        const $error = $(this).find(".error");
-        const name = $(this).find(".check").attr("name");
-        inputStatus.errorOk(this, name);
-        inputStatus.feedbackNone(this);
-        inputStatus.requiredOk(this);
+    function resetMessages(i, formGroup) {
+        const $error = $(formGroup).find(".error");
+        const name = $(formGroup).find(".check").attr("name");
+        inputStatus.errorOk(formGroup, name);
+        inputStatus.feedbackNone(formGroup);
+        inputStatus.requiredOk(formGroup);
     }
 
     function removeTermWarning() {

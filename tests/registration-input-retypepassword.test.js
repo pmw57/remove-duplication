@@ -11,7 +11,8 @@ describe("registration-input retype password", function () {
     */
     function callRegistrationInputHandler(thisArg) {
         const registrationInputHandler = registration.eventHandler.registrationInput;
-        registrationInputHandler.call(thisArg);
+        const evt = {target: thisArg};
+        registrationInputHandler.call(thisArg, evt);
     }
     const $retypeGroup = $(".form-group").has("[name='Retype Password']");
     const $retypeInputGroup = $retypeGroup.find(".input-group");
