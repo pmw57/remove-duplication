@@ -96,7 +96,6 @@ const validate = (function() {
             const name = getName(inputGroup);
             const types = validationTypes[name];
             if (!types) {
-                console.log(name + " validation not yet implemented");
                 return;
             }
             return types.every(function(check) {
