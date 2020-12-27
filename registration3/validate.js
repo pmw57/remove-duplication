@@ -13,11 +13,11 @@ const validate = (function makeValidator() {
         const field = form.elements[fieldname];
         return field.value === input.value;
     }
-    function createValidator(rule, config) {
+    function createValidator(callback, config) {
         const errorMessage = config.error;
         function checkInput(inputGroup) {
             const input = $(inputGroup).find("input, textarea").get(0);
-            if (!rule(input)) {
+            if (!callback(input)) {
                 const msg = " is Incorrect: " + errorMessage;
                 inputStatus.warning(inputGroup, getName(inputGroup) + msg);
                 return false;
