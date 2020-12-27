@@ -150,7 +150,6 @@ const validate = (function makeValidator() {
     return {
         checkRx,
         fieldMatch,
-        createValidator,
         createMatcher,
         check,
         checkFieldEmpty,

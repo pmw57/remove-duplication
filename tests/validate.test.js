@@ -108,63 +108,6 @@ describe("validate", function () {
            expect(result).to.equal(false);
        });
     });
-    describe("uses custom validator", function () {
-        const firstnameGroup = $(".form-group").has("[name='First Name']").get(0);
-        it("can use a custom validator", function () {
-            const validatorFn = function () {};
-            const spy = chai.spy(validatorFn);
-            const customValidator = {
-                "First Name": [spy]
-            };
-            validate.check(firstnameGroup, customValidator);
-            expect(spy).to.have.been.called();
-        });
-        const $firstnameInput = $(firstnameGroup).find("input");
-        const $firstnameError = $(firstnameGroup).find(".error");
-        function isLessThanThree(inputGroup) {
-            const input = $(inputGroup).find("input");
-            if (input.val().length < 3) {
-                inputStatus.warning(inputGroup, "Shouldn't be less than three characters");
-                return false;
-            }
-            return true;
-        }
-        const customValidator = {
-            "First Name": [isLessThanThree]
-        }
-        it("name is less than 3 characters", function () {
-            $firstnameInput.val("Ma");
-            $firstnameError.html();
-            validate.check(firstnameGroup, customValidator);
-            expect($firstnameError.html()).to.contain("less than three");
-        });
-        it("name is 3 characters or more", function () {
-            $firstnameInput.val("Mat");
-            $firstnameError.html();
-            validate.check(firstnameGroup, customValidator);
-            expect($firstnameError.html()).to.contain("Ok");
-        });
-        it("createValidator finds invalid value", function () {
-            $firstnameInput.val("Ma");
-            const checkAtLeastThree = validate.createValidator(function (input) {
-                return input.value.length >= 3;
-            }, "Should be three or more characters");
-            validate.check(firstnameGroup, {
-                "First Name": [checkAtLeastThree]
-            });
-            expect($firstnameError.html()).to.equal("First Name is Incorrect: Should be three or more characters");
-        });
-        it("createCheck finds valid value", function () {
-            $firstnameInput.val("Max");
-            const checkAtLeastThree = validate.createValidator(function (input) {
-                return input.value.length >= 3;
-            }, "Should be three or more characters");
-            validate.check(firstnameGroup, {
-                "First Name": [checkAtLeastThree]
-            });
-            expect($firstnameError.html()).to.equal("First Name is Ok: Your data has been entered correctly");
-        });
-    });
     describe("creates a validator", function () {
         const abcConfig = {
             regex: /^[abc]/,
