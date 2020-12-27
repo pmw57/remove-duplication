@@ -13,7 +13,8 @@ const validate = (function makeValidator() {
         const field = form.elements[fieldname];
         return field.value === input.value;
     }
-    function createValidator(rule, errorMessage) {
+    function createValidator(rule, config) {
+        const errorMessage = config.error;
         function checkInput(inputGroup) {
             const input = $(inputGroup).find("input, textarea").get(0);
             if (!rule(input)) {
@@ -44,7 +45,7 @@ const validate = (function makeValidator() {
             } else {
                 return checker(validator.rule, input);
             }
-        }, errorMessage);
+        }, config);
     }
 
     function checkEmpty(inputGroup) {
@@ -58,6 +59,15 @@ const validate = (function makeValidator() {
         }
         return true;
     }
+    const validators = {
+        hasContent: {
+            regex: /\w/,
+            errorType: "Empty",
+            error: "Please enter data into this input"
+        }
+    };
+    const hasContent = createMatcher(validators.hasContent);
+    
     function checkEmailReg(inputGroup) {
         const emailReg = /^([\w\-.]+@([\w\-]+\.)+[\w\-]{2,4})?$/;
         const value = getValue(inputGroup);
