@@ -1,3 +1,4 @@
+// TODO: Clean up with JSLinst
 const changePassword = (function makeChangePassword() {
     function passwordsMatchRule(input) {
         return validate.fieldMatch("Password", input);
@@ -5,10 +6,10 @@ const changePassword = (function makeChangePassword() {
     const retypeValidator = {
         "Password Retype": [
             validate.fn.checkEmpty,
-            validate.createValidator(
-                passwordsMatchRule,
-                "Password doesn't match retyped password"
-            )
+            validate.createMatcher({
+                fieldname: "Password",
+                error: "Password doesn't match retyped password"
+            })
         ]
     };
 
