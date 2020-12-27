@@ -18,8 +18,9 @@ const validate = (function makeValidator() {
         function checkInput(inputGroup) {
             const input = $(inputGroup).find("input, textarea").get(0);
             if (!callback(input)) {
-                const msg = " is Incorrect: " + errorMessage;
-                inputStatus.warning(inputGroup, getName(inputGroup) + msg);
+                const type = config.errorType || "Incorrect";
+                const heading = getName(inputGroup) + " is " + type + ": ";
+                inputStatus.warning(inputGroup, heading + errorMessage);
                 return false;
             }
             return true;
