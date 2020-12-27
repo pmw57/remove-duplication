@@ -67,7 +67,6 @@ const validate = (function makeValidator() {
             error: "Please enter data into this input"
         }
     };
-    const hasContent = createMatcher(validators.hasContent);
     
     function checkEmailReg(inputGroup) {
         const emailReg = /^([\w\-.]+@([\w\-]+\.)+[\w\-]{2,4})?$/;
@@ -115,7 +114,7 @@ const validate = (function makeValidator() {
 
     const defaultValidators = {
         "E-mail": [
-            checkEmpty,
+            createMatcher(validators.hasContent),
             checkEmailReg
         ],
         "Password": [
