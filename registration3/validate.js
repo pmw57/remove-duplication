@@ -62,7 +62,7 @@ const validate = (function makeValidator() {
     }
     const validators = {
         hasContent: {
-            regex: /\w/,
+            regex: /\S/,
             errorType: "Empty",
             error: "Please enter data into this input"
         },
