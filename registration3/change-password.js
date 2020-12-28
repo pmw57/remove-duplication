@@ -1,4 +1,3 @@
-// TODO: Clean up with JSLinst
 const changePassword = (function makeChangePassword() {
     function passwordsMatchRule(input) {
         return validate.fieldMatch("Password", input);
