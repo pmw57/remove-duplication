@@ -136,7 +136,10 @@ const validate = (function makeValidator() {
         fn: {
             getName,
             getValue,
-            checkEmpty
+            checkEmpty,
+            isEmail: defaultValidators["E-mail"][1],
+            passwordAtLeastSix: defaultValidators.Password[1],
+            passwordBelowThirteen: defaultValidators.Password[2]
         }
     };
 }());

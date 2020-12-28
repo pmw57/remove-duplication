@@ -143,4 +143,67 @@ describe("validate", function () {
             
         });
     });
+    describe("makes matchers public", function () {
+        describe("matches with email", function () {
+            it("matches using public email matcher", function () {
+                emailInput.value = "email@example.com";
+                validate.check($(emailGroup), {
+                    "E-mail": [
+                        validate.fn.isEmail
+                    ]
+                });
+                expect($emailError.html()).to.contain("is Ok");
+            });
+            it("doesn't match using public email matcher", function () {
+                emailInput.value = "not an email";
+                validate.check($(emailGroup), {
+                    "E-mail": [
+                        validate.fn.isEmail
+                    ]
+                });
+                expect($emailError.html()).to.contain("is Incorrect");
+            });
+        });
+        describe("matches with password", function () {
+            const passwordGroup = $("#login .form-group").has("[name='Password']").get(0);
+            const passwordInput = $(passwordGroup).find("input").get(0);
+            const $passwordError = $(passwordGroup).find(".error");
+            it("is at least six characters", function () {
+                passwordInput.value = "abcdefg";
+                validate.check($(passwordGroup), {
+                    "Password": [
+                        validate.fn.passwordAtLeastSix
+                    ]
+                });
+                expect($passwordError.html()).to.contain("is Ok");
+            });
+            it("is less than six characters", function () {
+                passwordInput.value = "abcde";
+                validate.check($(passwordGroup), {
+                    "E-mail": [
+                        validate.fn.passwordAtLeastSix
+                    ]
+                });
+                expect($passwordError.html()).to.contain("is Incorrect");
+            });
+            it("is less than thirteen characters", function () {
+                passwordInput.value = "abcdefghijkl";
+                validate.check($(passwordGroup), {
+                    "Password": [
+                        validate.fn.passwordBelowThirteen
+                    ]
+                });
+                expect($passwordError.html()).to.contain("is Ok");
+            });
+            it("is less than six characters", function () {
+                passwordInput.value = "abcdefghijklm";
+                validate.check($(passwordGroup), {
+                    "E-mail": [
+                        validate.fn.passwordBelowThirteen
+                    ]
+                });
+                expect($passwordError.html()).to.contain("is Incorrect");
+            });
+        });
+    });
 });
