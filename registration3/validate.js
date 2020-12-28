@@ -79,10 +79,6 @@ const validate = (function makeValidator() {
             error: "Please enter no more than 12 characters"
         }
     };
-    function showValid(inputGroup) {
-        const msg = " is Ok: Your data has been entered correctly";
-        inputStatus.ok(inputGroup, getName(inputGroup) + msg);
-    }
 
     const defaultValidators = {
         "E-mail": [
@@ -111,7 +107,8 @@ const validate = (function makeValidator() {
         }
         const isValid = validateByTypes(inputGroup);
         if (isValid) {
-            showValid(inputGroup);
+            const msg = " is Ok: Your data has been entered correctly";
+            inputStatus.ok(inputGroup, getName(inputGroup) + msg);
         }
     }
     function checkFieldEmpty(formGroup) {
