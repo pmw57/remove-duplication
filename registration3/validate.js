@@ -49,17 +49,6 @@ const validate = (function makeValidator() {
         }, config);
     }
 
-    function checkEmpty(inputGroup) {
-        if (getValue(inputGroup) === "") {
-            const msg = "Please enter data into this input";
-            inputStatus.warning(
-                inputGroup,
-                getName(inputGroup) + " is Empty: " + msg
-            );
-            return false;
-        }
-        return true;
-    }
     const validators = {
         hasContent: {
             regex: /\S/,
@@ -114,7 +103,9 @@ const validate = (function makeValidator() {
     function checkFieldEmpty(formGroup) {
         const $inputField = $(formGroup).find("input, textarea");
         const name = $inputField.attr("name");
-        const validations = [checkEmpty];
+        const validations = [
+            createMatcher(validators.hasContent)
+        ];
         check(formGroup, Object.fromEntries([
             [name, validations]
         ]));
@@ -136,7 +127,7 @@ const validate = (function makeValidator() {
         fn: {
             getName,
             getValue,
-            checkEmpty,
+            hasContent: createMatcher(validators.hasContent),
             isEmail: defaultValidators["E-mail"][1],
             passwordAtLeastSix: defaultValidators.Password[1],
             passwordBelowThirteen: defaultValidators.Password[2]
