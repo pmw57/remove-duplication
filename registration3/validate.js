@@ -65,48 +65,20 @@ const validate = (function makeValidator() {
             regex: /\w/,
             errorType: "Empty",
             error: "Please enter data into this input"
+        },
+        isEmail: {
+            regex: /^([\w\-.]+@([\w\-]+\.)+[\w\-]{2,4})?$/,
+            error: "Please enter it correctly"
+        },
+        passwordAtLeastSix: {
+            regex: /^([a-zA-Z0-9]{6,})+$/,
+            error: "Please enter at least 6 characters"
+        },
+        passwordBelowThirteen: {
+            regex: /^[a-zA-Z0-9]{1,12}$/,
+            error: "Please enter no more than 12 characters"
         }
     };
-    
-    function checkEmailReg(inputGroup) {
-        const emailReg = /^([\w\-.]+@([\w\-]+\.)+[\w\-]{2,4})?$/;
-        const value = getValue(inputGroup);
-        if (!emailReg.test(value)) {
-            const msg = "Please enter it correctly";
-            inputStatus.warning(
-                inputGroup,
-                getName(inputGroup) + " is Incorrect: " + msg
-            );
-            return false;
-        }
-        return true;
-    }
-    function checkPasswordShort(inputGroup) {
-        const pswReglow = /^([a-zA-Z0-9]{0,5})$/;
-        const value = getValue(inputGroup);
-        if (pswReglow.test(value)) {
-            const msg = "Please enter at least 6 characters";
-            inputStatus.warning(
-                inputGroup,
-                getName(inputGroup) + " is Incorrect: " + msg
-            );
-            return false;
-        }
-        return true;
-    }
-    function checkPasswordLong(inputGroup) {
-        const pswReghigh = /^([a-zA-Z0-9]{13,})$/;
-        const value = getValue(inputGroup);
-        if (pswReghigh.test(value)) {
-            const msg = "Please enter no more than 12 characters";
-            inputStatus.warning(
-                inputGroup,
-                getName(inputGroup) + " is Incorrect: " + msg
-            );
-            return false;
-        }
-        return true;
-    }
     function showValid(inputGroup) {
         const msg = " is Ok: Your data has been entered correctly";
         inputStatus.ok(inputGroup, getName(inputGroup) + msg);
@@ -115,12 +87,12 @@ const validate = (function makeValidator() {
     const defaultValidators = {
         "E-mail": [
             createMatcher(validators.hasContent),
-            checkEmailReg
+            createMatcher(validators.isEmail)
         ],
         "Password": [
-            checkEmpty,
-            checkPasswordShort,
-            checkPasswordLong
+            createMatcher(validators.hasContent),
+            createMatcher(validators.passwordAtLeastSix),
+            createMatcher(validators.passwordBelowThirteen)
         ]
     };
     function check(inputGroup, validators) {
