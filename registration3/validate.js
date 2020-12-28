@@ -101,8 +101,8 @@ const validate = (function makeValidator() {
             if (!types) {
                 return;
             }
-            return types.every(function checkInput(check) {
-                return check(inputGroup);
+            return types.every(function checkInput(matcher) {
+                return matcher(inputGroup);
             });
         }
         const isValid = validateByTypes(inputGroup);
