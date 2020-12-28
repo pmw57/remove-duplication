@@ -41,7 +41,7 @@ describe("change password submit", function () {
         changePasswordSubmitHandler();
         expect($passwordError.html()).to.equal("Password is Ok: Your data has been entered correctly");
     });
-    it("Password is Empty: Please enter data into this input", function () {
+    it("Password is empty", function () {
         $passwordInput.val("");
         $passwordError.html("");
         changePasswordSubmitHandler();
