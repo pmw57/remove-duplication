@@ -20,7 +20,7 @@ const registration = (function() {
         $("#citylist").collapse("hide");
 
         validate.check($cityGroup, {
-            "Your City": [validate.fn.checkEmpty]
+            "Your City": [validate.fn.hasContent]
         });
     }
     $(".citylist li").click(citylistClickHandler);
@@ -88,7 +88,7 @@ const registration = (function() {
         const inputGroup = evt.target;
         const $formGroup = $(inputGroup).closest(".form-group");
         const nameValidationConfig = [
-            validate.fn.checkEmpty,
+            validate.fn.hasContent,
             createMatcher("lessThanTwentyChars"),
             createMatcher("moreThanOneChar"),
             createMatcher("onlyAlphaChars")
@@ -97,26 +97,26 @@ const registration = (function() {
             "First Name": nameValidationConfig,
             "Last Name": nameValidationConfig,
             "Phone Number": [
-                validate.fn.checkEmpty,
+                validate.fn.hasContent,
                 createMatcher("isPhoneNumber")
             ],
             "E-mail": [
-                validate.fn.checkEmpty,
+                validate.fn.hasContent,
                 createMatcher("isEmail")
             ],
             "Postal Address": [
-                validate.fn.checkEmpty,
+                validate.fn.hasContent,
                 createMatcher("postalAddress")
             ],
             "zip code": [
-                validate.fn.checkEmpty,
+                validate.fn.hasContent,
                 createMatcher("postcode")
             ],
             "Your City": [
-                validate.fn.checkEmpty
+                validate.fn.hasContent
             ],
             "Password": [
-                validate.fn.checkEmpty,
+                validate.fn.hasContent,
                 createMatcher("differentThanFirstname"),
                 createMatcher("differentThanLastname"),
                 createMatcher("differentThanCity"),
@@ -124,7 +124,7 @@ const registration = (function() {
                 validate.fn.passwordBelowThirteen
             ],
             "Retype Password": [
-                validate.fn.checkEmpty,
+                validate.fn.hasContent,
                 createMatcher("matchesPassword")
             ]
         });

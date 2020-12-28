@@ -5,7 +5,7 @@ const changePassword = (function makeChangePassword() {
     }
     const retypeValidator = {
         "Password Retype": [
-            validate.fn.checkEmpty,
+            validate.fn.hasContent,
             validate.createMatcher({
                 fieldname: "Password",
                 error: "Password doesn't match retyped password"
