@@ -70,14 +70,6 @@ const registration = (function() {
                 shouldMatch: false,
                 error: "Password shouldn't match city name"
             },
-            passwordAtLeastSix: {
-                regex: /^([a-zA-Z0-9]{6,})+$/,
-                error: "Please enter at least 6 characters"
-            },
-            passwordBelowThirteen: {
-                regex: /^[a-zA-Z0-9]{1,12}$/,
-                error: "Please enter no more than 12 characters"
-            },
             matchesPassword: {
                 fieldname: "Password",
                 error: "Password doesn't match retyped pwd"
@@ -128,8 +120,8 @@ const registration = (function() {
                 createMatcher("differentThanFirstname"),
                 createMatcher("differentThanLastname"),
                 createMatcher("differentThanCity"),
-                createMatcher("passwordAtLeastSix"),
-                createMatcher("passwordBelowThirteen")
+                validate.fn.passwordAtLeastSix,
+                validate.fn.passwordBelowThirteen
             ],
             "Retype Password": [
                 validate.fn.checkEmpty,
