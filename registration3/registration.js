@@ -69,10 +69,6 @@ const registration = (function makeRegistration() {
             const validatorConfig = validators[validatorName];
             return validate.createMatcher(validatorConfig);
         }
-        function createNomatcher(validatorName) {
-            const validatorConfig = validators[validatorName];
-            return validate.createNomatcher(validatorConfig);
-        }
 
         const inputGroup = evt.target;
         const $formGroup = $(inputGroup).closest(".form-group");
@@ -146,8 +142,7 @@ const registration = (function makeRegistration() {
     }
     $("#registration").on("submit", registrationSubmitHandler);
 
-    function resetMessages(i, formGroup) {
-        const $error = $(formGroup).find(".error");
+    function resetMessages(formGroup) {
         const name = $(formGroup).find(".check").attr("name");
         inputStatus.errorOk(formGroup, name);
         inputStatus.feedbackNone(formGroup);
@@ -161,8 +156,8 @@ const registration = (function makeRegistration() {
         inputStatus.requiredOk($termsGroup);
     }
 
-    function registrationResetHandler(evt) {
-        $(".form-group").each(resetMessages);
+    function registrationResetHandler() {
+        document.querySelectorAll(".form-group").forEach(resetMessages);
         removeTermWarning();
     }
     $("#registration").on("reset", registrationResetHandler);
