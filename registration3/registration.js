@@ -1,20 +1,5 @@
 const registration = (function makeRegistration() {
-    function citylistClickHandler(evt) {
-        const listItem = evt.target;
-        const $form = $(listItem).closest("form");
-        const $cityField = $form.find("[name='Your City']");
-        const $cityGroup = $cityField.closest(".form-group");
-        const value = $(listItem).text().trim();
-        $cityField.val(value);
-        $("#citylist").collapse("hide");
-
-        validate.check($cityGroup, {
-            "Your City": [validate.fn.hasContent]
-        });
-    }
-    $(".citylist li").click(citylistClickHandler);
-
-    function registrationInputHandler(evt) {
+    function validateFields(inputGroup) {
         const validators = {
             lessThanTwentyChars: {
                 regex: /^.{1,19}$/,
@@ -70,7 +55,6 @@ const registration = (function makeRegistration() {
             return validate.createMatcher(validatorConfig);
         }
 
-        const inputGroup = evt.target;
         const $formGroup = $(inputGroup).closest(".form-group");
         const nameValidationConfig = [
             validate.fn.hasContent,
@@ -114,7 +98,6 @@ const registration = (function makeRegistration() {
             ]
         });
     }
-    $(".input-group").on("focusin focusout input", registrationInputHandler);
 
     function updateTerms() {
         const $termsGroup = $(".form-group").has("#terms");
@@ -127,20 +110,6 @@ const registration = (function makeRegistration() {
             inputStatus.requiredWarning($termsGroup);
         }
     }
-
-    function termsClickHandler() {
-        updateTerms();
-    }
-    $("#terms").click(termsClickHandler);
-
-    function registrationSubmitHandler(evt) {
-        validate.checkFormEmpty("#registration");
-        updateTerms();
-        if ($("#registration .warning").length !== 0) {
-            evt.preventDefault();
-        }
-    }
-    $("#registration").on("submit", registrationSubmitHandler);
 
     function resetMessages(formGroup) {
         const name = $(formGroup).find(".check").attr("name");
@@ -156,10 +125,43 @@ const registration = (function makeRegistration() {
         inputStatus.requiredOk($termsGroup);
     }
 
+    function selectAndValidate(listItem) {
+        const $form = $(listItem).closest("form");
+        const $cityField = $form.find("[name='Your City']");
+        const $cityGroup = $cityField.closest(".form-group");
+        const value = $(listItem).text().trim();
+        $cityField.val(value);
+        $("#citylist").collapse("hide");
+
+        validate.check($cityGroup, {
+            "Your City": [validate.fn.hasContent]
+        });
+    }
+    function registrationInputHandler(evt) {
+        validateFields(evt.target);
+    }
+    function citylistClickHandler(evt) {
+        selectAndValidate(evt.target);
+    }
+    function termsClickHandler() {
+        updateTerms();
+    }
     function registrationResetHandler() {
         document.querySelectorAll(".form-group").forEach(resetMessages);
         removeTermWarning();
     }
+    function registrationSubmitHandler(evt) {
+        validate.checkFormEmpty("#registration");
+        updateTerms();
+        if ($("#registration .warning").length !== 0) {
+            evt.preventDefault();
+        }
+    }
+
+    $(".input-group").on("input", registrationInputHandler);
+    $(".citylist li").click(citylistClickHandler);
+    $("#terms").click(termsClickHandler);
+    $("#registration").on("submit", registrationSubmitHandler);
     $("#registration").on("reset", registrationResetHandler);
 
     return {
