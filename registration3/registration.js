@@ -112,7 +112,7 @@ const registration = (function makeRegistration() {
         }
     }
 
-    function resetMessages(formGroup) {
+    function resetMessages(ignore, formGroup) {
         const name = $(formGroup).find(".check").attr("name");
         inputStatus.errorOk(formGroup, name);
         inputStatus.feedbackNone(formGroup);
@@ -148,7 +148,7 @@ const registration = (function makeRegistration() {
         updateTerms();
     }
     function registrationResetHandler() {
-        document.querySelectorAll(".form-group").forEach(resetMessages);
+        $(".form-group").each(resetMessages);
         removeTermWarning();
     }
     function registrationSubmitHandler(evt) {

@@ -112,8 +112,7 @@ const validate = (function makeValidator() {
     }
     function checkFormEmpty(form) {
         const $formGroups = $(form).find(".form-group").has(".check");
-        const formGroups = $formGroups.toArray();
-        formGroups.forEach(function validateGroup(formGroup) {
+        $formGroups.each(function validateGroup(ignore, formGroup) {
             checkFieldEmpty(formGroup);
         });
     }
