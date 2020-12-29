@@ -61,7 +61,7 @@ const registration = (function makeRegistration() {
             createMatcher("moreThanOneChar"),
             createMatcher("onlyAlphaChars")
         ];
-        return validate.check($formGroup, {
+        const validators = {
             "First Name": nameValidationConfig,
             "Last Name": nameValidationConfig,
             "Phone Number": [
@@ -95,7 +95,8 @@ const registration = (function makeRegistration() {
                 validate.fn.hasContent,
                 createMatcher("matchesPassword")
             ]
-        });
+        };
+        return validate.check($formGroup, validators);
     }
 
     function updateTerms() {
