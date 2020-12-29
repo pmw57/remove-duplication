@@ -54,7 +54,6 @@ const registration = (function makeRegistration() {
             return validate.createMatcher(config);
         }
 
-        const $formGroup = $(inputGroup).closest(".form-group");
         const nameValidationConfig = [
             validate.fn.hasContent,
             createMatcher("lessThanTwentyChars"),
@@ -96,6 +95,8 @@ const registration = (function makeRegistration() {
                 createMatcher("matchesPassword")
             ]
         };
+
+        const $formGroup = $(inputGroup).closest(".form-group");
         return validate.check($formGroup, validators);
     }
 
