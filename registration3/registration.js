@@ -1,15 +1,4 @@
-const registration = (function() {
-    $(".icon").click(function() {
-        $(".bar1").toggleClass("blue");
-        $(".bar1").toggleClass("rotate45dg");
-        $(".bar2").toggleClass("opacity");
-        $(".bar3").toggleClass("rotate-45dg");
-    });
-
-    $("#myBtn").click(function() {
-        $("#myModal").modal();
-    });
-
+const registration = (function makeRegistration() {
     function citylistClickHandler(evt) {
         const listItem = evt.target;
         const $form = $(listItem).closest("form");
@@ -146,7 +135,7 @@ const registration = (function() {
     function termsClickHandler() {
         updateTerms();
     }
-    $('#terms').click(termsClickHandler);
+    $("#terms").click(termsClickHandler);
 
     function registrationSubmitHandler(evt) {
         validate.checkFormEmpty("#registration");
