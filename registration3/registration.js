@@ -1,58 +1,57 @@
 const registration = (function makeRegistration() {
+    const validatorConfig = {
+        lessThanTwentyChars: {
+            regex: /^.{1,19}$/,
+            error: "Please enter no more than 19 char"
+        },
+        moreThanOneChar: {
+            regex: /^.{2,}$/,
+            error: "Please enter 2 upper case or lower case at least"
+        },
+        onlyAlphaChars: {
+            regex: /^([a-zA-Z]{1,})+$/,
+            error: "Please enter upper case and lower case only"
+        },
+        isPhoneNumber: {
+            regex: /^\(?([0-9]{4})\)?[\u0020.\-]?([0-9]{3})[\u0020.\-]?([0-9]{4})$/,
+            error: "Please enter Phone Number correctly"
+        },
+        isEmail: {
+            regex: /^([\w\-.]+@([\w\-]+\.)+[\w\-]{2,4})?$/,
+            error: "Please enter it correctly"
+        },
+        postalAddress: {
+            regex: /^\d+\s[A-z]+\s[A-z]+/g,
+            error: "Please enter Address correctly"
+        },
+        postcode: {
+            regex: /^[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}$/,
+            error: "Please enter Post-code correctly"
+        },
+        differentThanFirstname: {
+            fieldname: "First Name",
+            shouldMatch: false,
+            error: "Password shouldn't match first-name"
+        },
+        differentThanLastname: {
+            fieldname: "Last Name",
+            shouldMatch: false,
+            error: "Password shouldn't match last-name"
+        },
+        differentThanCity: {
+            fieldname: "Your City",
+            shouldMatch: false,
+            error: "Password shouldn't match city name"
+        },
+        matchesPassword: {
+            fieldname: "Password",
+            error: "Password doesn't match retyped pwd"
+        }
+    };
     function validateFields(inputGroup) {
-        const validators = {
-            lessThanTwentyChars: {
-                regex: /^.{1,19}$/,
-                error: "Please enter no more than 19 char"
-            },
-            moreThanOneChar: {
-                regex: /^.{2,}$/,
-                error: "Please enter 2 upper case or lower case at least"
-            },
-            onlyAlphaChars: {
-                regex: /^([a-zA-Z]{1,})+$/,
-                error: "Please enter upper case and lower case only"
-            },
-            isPhoneNumber: {
-                regex: /^\(?([0-9]{4})\)?[\u0020.\-]?([0-9]{3})[\u0020.\-]?([0-9]{4})$/,
-                error: "Please enter Phone Number correctly"
-            },
-            isEmail: {
-                regex: /^([\w\-.]+@([\w\-]+\.)+[\w\-]{2,4})?$/,
-                error: "Please enter it correctly"
-            },
-            postalAddress: {
-                regex: /^\d+\s[A-z]+\s[A-z]+/g,
-                error: "Please enter Address correctly"
-            },
-            postcode: {
-                regex: /^[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}$/,
-                error: "Please enter Post-code correctly"
-            },
-            differentThanFirstname: {
-                fieldname: "First Name",
-                shouldMatch: false,
-                error: "Password shouldn't match first-name"
-            },
-            differentThanLastname: {
-                fieldname: "Last Name",
-                shouldMatch: false,
-                error: "Password shouldn't match last-name"
-            },
-            differentThanCity: {
-                fieldname: "Your City",
-                shouldMatch: false,
-                error: "Password shouldn't match city name"
-            },
-            matchesPassword: {
-                fieldname: "Password",
-                error: "Password doesn't match retyped pwd"
-            }
-        };
-
         function createMatcher(validatorName) {
-            const validatorConfig = validators[validatorName];
-            return validate.createMatcher(validatorConfig);
+            const config = validatorConfig[validatorName];
+            return validate.createMatcher(config);
         }
 
         const $formGroup = $(inputGroup).closest(".form-group");
