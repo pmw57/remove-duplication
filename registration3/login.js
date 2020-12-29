@@ -1,6 +1,6 @@
-const login = (function() {
-    function loginInputHandler() {
-        validate.check(this);
+const login = (function makeLogin() {
+    function loginInputHandler(evt) {
+        validate.check(evt.target);
     }
 
     function loginSubmitHandler(evt) {

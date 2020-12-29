@@ -9,7 +9,8 @@ describe("login reset", function () {
     */
     function loginResetHandler() {
         const resetHandler = login.eventHandler.loginReset;
-        resetHandler();
+        const evt = {target: undefined};
+        resetHandler(evt);
     }
     after(function () {
         $("#login").trigger("reset");

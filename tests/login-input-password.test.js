@@ -12,8 +12,8 @@ describe("login input password", function () {
     const $passwordError = $passwordGroup.find(".error");
     function loginInputHandler() {
         const inputHandler = login.eventHandler.loginInput;
-        const thisArg = $passwordGroup.get(0);
-        inputHandler.call(thisArg);
+        const evt = {target: $passwordGroup.get(0)};
+        inputHandler(evt);
     }
     after(function () {
         $("#login").trigger("reset");

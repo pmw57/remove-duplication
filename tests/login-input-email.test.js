@@ -12,8 +12,8 @@ describe("login input email", function () {
     const $emailError = $emailGroup.find(".error");
     function loginInputHandler() {
         const inputHandler = login.eventHandler.loginInput;
-        const thisArg = $emailGroup.get(0);
-        inputHandler.call(thisArg);
+        const evt = {target: $emailGroup.get(0)};
+        inputHandler(evt);
     }
     after(function () {
         $("#login").trigger("reset");
