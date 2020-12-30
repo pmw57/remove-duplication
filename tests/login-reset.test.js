@@ -21,12 +21,12 @@ describe("login reset", function () {
     it("uses reset event to reset the form", function () {
         $emailError.html("");
         $("#login").trigger("reset");
-        expect($emailError.html()).to.contain("Your E-mail");
+        expect($emailError.html()).to.equal("E-mail");
     });
     it("shows email message", function () {
         $emailError.html("");
         loginResetHandler();
-        expect($emailError.html()).to.equal("Your E-mail");
+        expect($emailError.html()).to.equal("E-mail");
     });
     it("shows password message", function () {
         const $passwordGroup = $("#login .form-group").has("[name=Password]");
@@ -35,6 +35,6 @@ describe("login reset", function () {
         $passwordInput.val("test value");
         $passwordError.html("");
         loginResetHandler();
-        expect($passwordError.html()).to.equal("Your Password");
+        expect($passwordError.html()).to.equal("Password");
     });
 });

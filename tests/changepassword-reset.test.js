@@ -14,6 +14,6 @@ describe("change-password reset", function () {
         const $emailError = $emailGroup.find(".error");
         $emailError.html("test content");
         passwordResetHandler(fakeEvt);
-        expect($emailError.html()).to.equal("Your E-mail");
+        expect($emailError.html()).to.equal("E-mail");
     });
 });

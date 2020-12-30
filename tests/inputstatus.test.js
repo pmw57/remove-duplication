@@ -164,7 +164,7 @@ describe("input status", function () {
         });
     });
     describe("warning", function () {
-            it("warning shows message", function () {
+        it("warning shows message", function () {
             $error.html();
             inputStatus.warning(inputGroup, "Test message");
             expect($error.html()).to.equal("Test message");
@@ -194,12 +194,12 @@ describe("input status", function () {
         it("resets one message", function () {
             $error1.find(".error").html("");
             inputStatus.resetForm($form);
-            expect($error1.html()).to.equal("Your " + $name1);
+            expect($error1.html()).to.equal($name1);
         });
         it("resets another message", function () {
             $error2.find(".error").html("");
             inputStatus.resetForm($form);
-            expect($error2.html()).to.equal("Your " + $name2);
+            expect($error2.html()).to.equal($name2);
         });
         it("resets one feedback", function () {
             $feedback1.addClass("warning");

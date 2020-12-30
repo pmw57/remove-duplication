@@ -114,7 +114,7 @@ const inputStatus = (function makeInputStatus() {
         const formGroups = $form.find(".form-group").toArray();
         formGroups.forEach(function resetGroup(formGroup) {
             var inputName = $(formGroup).find(".check").attr("name");
-            inputStatus.errorOk(formGroup, "Your " + inputName);
+            inputStatus.errorOk(formGroup, inputName);
             inputStatus.feedbackNone(formGroup);
         });
     }
