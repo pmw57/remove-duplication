@@ -18,4 +18,5 @@ $("#login2").on("click", showLogin);
 
 $("#myBtn").on("click", function loginClickHandler() {
     $("#myModal").modal();
+    $("#login").show();
 });
