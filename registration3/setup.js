@@ -12,11 +12,15 @@ function showLogin() {
     $("#login").show();
     $("#changepw").hide();
 }
-$("#changepsw").on("click", showChangePassword);
-$("#changepsw2").on("click", showChangePassword);
-$("#login2").on("click", showLogin);
+const $formChangepasswordLink = $("#changepsw");
+const $modalChangepasswordLink = $("#changepsw2");
+$formChangepasswordLink.on("click", showChangePassword);
+$modalChangepasswordLink.on("click", showChangePassword);
+const $loginLink = $("#login2");
+$loginLink.on("click", showLogin);
 
-$("#myBtn").on("click", function loginClickHandler() {
+const $loginButton = $("#myBtn");
+$loginButton.on("click", function loginClickHandler() {
     $("#myModal").modal();
     $("#login").show();
 });
