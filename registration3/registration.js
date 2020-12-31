@@ -112,13 +112,6 @@ const registration = (function makeRegistration() {
         }
     }
 
-    function resetMessages(ignore, formGroup) {
-        const name = $(formGroup).find(".check").attr("name");
-        inputStatus.errorOk(formGroup, name);
-        inputStatus.feedbackNone(formGroup);
-        inputStatus.requiredOk(formGroup);
-    }
-
     function removeTermWarning() {
         const $termsGroup = $("#terms").closest(".form-group");
         inputStatus.feedbackNone($termsGroup);
@@ -148,7 +141,7 @@ const registration = (function makeRegistration() {
         updateTerms();
     }
     function registrationResetHandler() {
-        $(".form-group").each(resetMessages);
+        inputStatus.resetForm($("#registration"), validate.fn.getName);
         removeTermWarning();
     }
     function registrationSubmitHandler(evt) {
