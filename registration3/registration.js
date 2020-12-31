@@ -155,8 +155,8 @@ const registration = (function makeRegistration() {
     $(".input-group").on("input", registrationInputHandler);
     $(".citylist li").click(citylistClickHandler);
     $("#terms").click(termsClickHandler);
-    $("#registration").on("submit", registrationSubmitHandler);
     $("#registration").on("reset", registrationResetHandler);
+    $("#registration").on("submit", registrationSubmitHandler);
 
     return {
         eventHandler: {
