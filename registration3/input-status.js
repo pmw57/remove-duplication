@@ -110,11 +110,11 @@ const inputStatus = (function makeInputStatus() {
         requiredWarning(inputGroup);
     }
 
-    function resetForm($form) {
+    function resetForm($form, messageCallback) {
         const formGroups = $form.find(".form-group").toArray();
         formGroups.forEach(function resetGroup(formGroup) {
-            var inputName = $(formGroup).find(".check").attr("name");
-            inputStatus.errorOk(formGroup, inputName);
+            var message = messageCallback(formGroup);
+            inputStatus.errorOk(formGroup, message);
             inputStatus.feedbackNone(formGroup);
         });
     }

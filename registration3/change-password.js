@@ -21,7 +21,7 @@ const changePassword = (function makeChangePassword() {
     }
 
     function passwordResetHandler() {
-        inputStatus.resetForm($("#changepw"));
+        inputStatus.resetForm($("#changepw"), validate.fn.getName);
     }
 
     $("#changepw .form-group").on(

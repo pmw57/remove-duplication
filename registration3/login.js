@@ -11,7 +11,7 @@ const login = (function makeLogin() {
     }
 
     function loginResetHandler() {
-        inputStatus.resetForm($("#login"));
+        inputStatus.resetForm($("#login"), validate.fn.getName);
     }
 
     $("#login .form-group").on("focusin focusout input", loginInputHandler);

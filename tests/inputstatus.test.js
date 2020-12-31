@@ -191,24 +191,27 @@ describe("input status", function () {
         $error2 = $group2.find(".error");
         $feedback1 = $group1.find(".feedback");
         $feedback2 = $group2.find(".feedback");
+        function messageCallback(formGroup) {
+            return "Test message";
+        }
         it("resets one message", function () {
             $error1.find(".error").html("");
-            inputStatus.resetForm($form);
-            expect($error1.html()).to.equal($name1);
+            inputStatus.resetForm($form, messageCallback);
+            expect($error1.html()).to.equal("Test message");
         });
         it("resets another message", function () {
             $error2.find(".error").html("");
-            inputStatus.resetForm($form);
-            expect($error2.html()).to.equal($name2);
+            inputStatus.resetForm($form, messageCallback);
+            expect($error2.html()).to.equal("Test message");
         });
         it("resets one feedback", function () {
             $feedback1.addClass("warning");
-            inputStatus.resetForm($form);
+            inputStatus.resetForm($form, messageCallback);
             expect($feedback1.attr("class")).to.not.contain("warning");
         });
         it("resets another feedback", function () {
             $feedback2.addClass("warning");
-            inputStatus.resetForm($form);
+            inputStatus.resetForm($form, messageCallback);
             expect($feedback2.attr("class")).to.not.contain("warning");
         });
     });
