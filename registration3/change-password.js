@@ -8,22 +8,18 @@ const changePassword = (function makeChangePassword() {
             })
         ]
     };
-
     function passwordInputHandler(evt) {
         validate.check(evt.target, retypeValidator);
     }
-
-    function passwordSubmitHandler(evt) {
-        validate.checkFormEmpty("#changepw");
-        if ($("#changepw .warning").length !== 0) {
-            evt.preventDefault();
-        }
-    }
-
     function passwordResetHandler() {
         inputStatus.resetForm($("#changepw"), validate.fn.getName);
     }
-
+    function passwordSubmitHandler(evt) {
+        validate.checkFormEmpty("#changepw");
+        if ($("#changepw .warning").length > 0) {
+            evt.preventDefault();
+        }
+    }
     $("#changepw .form-group").on(
         "focusin focusout input",
         passwordInputHandler
@@ -33,8 +29,8 @@ const changePassword = (function makeChangePassword() {
     return {
         eventHandler: {
             passwordInput: passwordInputHandler,
-            passwordSubmit: passwordSubmitHandler,
-            passwordReset: passwordResetHandler
+            passwordReset: passwordResetHandler,
+            passwordSubmit: passwordSubmitHandler
         }
     };
 }());
