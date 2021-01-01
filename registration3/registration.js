@@ -53,7 +53,6 @@ const registration = (function makeRegistration() {
             const config = validatorConfig[validatorName];
             return validate.createMatcher(config);
         }
-
         const nameValidationConfig = [
             validate.fn.hasContent,
             createMatcher("lessThanTwentyChars"),
@@ -99,7 +98,6 @@ const registration = (function makeRegistration() {
         const $formGroup = $(inputGroup).closest(".form-group");
         return validate.check($formGroup, validators);
     }
-
     function updateTerms() {
         const $termsGroup = $(".form-group").has("#terms");
         const $terms = $termsGroup.find("#terms");
@@ -111,14 +109,12 @@ const registration = (function makeRegistration() {
             inputStatus.requiredWarning($termsGroup);
         }
     }
-
     function removeTermWarning() {
         const $termsGroup = $("#terms").closest(".form-group");
         inputStatus.feedbackNone($termsGroup);
         inputStatus.setOk($termsGroup.find("#termcheck"));
         inputStatus.requiredOk($termsGroup);
     }
-
     function selectAndValidate(listItem) {
         const $form = $(listItem).closest("form");
         const $cityField = $form.find("[name='Your City']");
@@ -147,13 +143,13 @@ const registration = (function makeRegistration() {
     function registrationSubmitHandler(evt) {
         validate.checkFormEmpty("#registration");
         updateTerms();
-        if ($("#registration .warning").length !== 0) {
+        if ($("#registration .warning").length > 0) {
             evt.preventDefault();
         }
     }
 
     $(".input-group").on("input", registrationInputHandler);
-    $(".citylist li").click(citylistClickHandler);
+    $(".citylist").click(citylistClickHandler);
     $("#terms").click(termsClickHandler);
     $("#registration").on("reset", registrationResetHandler);
     $("#registration").on("submit", registrationSubmitHandler);
@@ -161,10 +157,10 @@ const registration = (function makeRegistration() {
     return {
         eventHandler: {
             registrationInput: registrationInputHandler,
-            registrationSubmit: registrationSubmitHandler,
-            registrationReset: registrationResetHandler,
             citylistClick: citylistClickHandler,
-            termsClick: termsClickHandler
+            termsClick: termsClickHandler,
+            registrationReset: registrationResetHandler,
+            registrationSubmit: registrationSubmitHandler
         }
     };
 }());
