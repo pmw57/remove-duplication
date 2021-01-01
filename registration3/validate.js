@@ -48,7 +48,6 @@ const validate = (function makeValidator() {
             }
         }, config);
     }
-
     const validators = {
         hasContent: {
             regex: /\S/,
@@ -68,7 +67,6 @@ const validate = (function makeValidator() {
             error: "Please enter no more than 12 characters"
         }
     };
-
     const defaultValidators = {
         "E-mail": [
             createMatcher(validators.hasContent),
@@ -117,17 +115,12 @@ const validate = (function makeValidator() {
         });
     }
     return {
-        checkRx,
-        fieldMatch,
         createMatcher,
         check,
-        checkFieldEmpty,
         checkFormEmpty,
         fn: {
             getName,
-            getValue,
             hasContent: createMatcher(validators.hasContent),
-            isEmail: defaultValidators["E-mail"][1],
             passwordAtLeastSix: defaultValidators.Password[1],
             passwordBelowThirteen: defaultValidators.Password[2]
         }

@@ -64,16 +64,17 @@ describe("validate", function () {
         });
     });
     describe("checks empty", function () {
+        const form = emailInput.form;
         it("checks a field is empty", function () {
             emailInput.value = "";
             $emailError.removeClass("warning");
-            validate.checkFieldEmpty(emailGroup);
+            validate.checkFormEmpty(form);
             expect($emailError.attr("class")).to.contain("warning");
         });
         it("checks a field is not empty", function () {
             emailInput.value = "test@example.com";
             $emailError.removeClass("ok");
-            validate.checkFieldEmpty(emailGroup);
+            validate.checkFormEmpty(form);
             expect($emailError.attr("class")).to.contain("ok");
         });
     });
@@ -81,32 +82,49 @@ describe("validate", function () {
         const form = $("#changepw").get(0);
         const passwordField = form.elements.Password;
         const retypeField = form.elements["Password Retype"];
-       it("checks that a field matches a value", function () {
-           passwordField.value = "test password";
-           retypeField.value = "test password";
-           const result = validate.fieldMatch("Password", retypeField);
-           expect(result).to.equal(true);
-       });
-       it("checks that a field doesn't match", function () {
-           passwordField.value = "test password";
-           retypeField.value = "bad password";
-           const result = validate.fieldMatch("Password", retypeField);
-           expect(result).to.equal(false);
-       });
+        const $retypeGroup = $(retypeField).closest(".form-group");
+        const $retypeError = $retypeGroup.find(".error");
+        const passwordMatcher = validate.createMatcher({
+            fieldname: "Password",
+            error: "Password doesn't match retyped password"
+        });
+        const testValidator = {
+            "Password Retype": [
+                passwordMatcher,
+                
+            ]
+        };
+        it("checks that a field matches a value", function () {
+            passwordField.value = "test password";
+            retypeField.value = "test password";
+            const result = validate.check($retypeGroup, testValidator);
+            expect($retypeError.html()).to.contain("is Ok");
+        });
+        it("checks that a field doesn't match", function () {
+            passwordField.value = "test password";
+            retypeField.value = "bad password";
+            const result = validate.check($retypeGroup, testValidator);
+            expect($retypeError.html()).to.contain("doesn't match");
+        });
     });
     describe("compares against a regular expression", function () {
-       it("checks that a field matches a regex", function () {
-           emailInput.value = "email@example.com";
-           const regex = /[a-z]@[a-z.]/;
-           const result = validate.checkRx(regex, emailInput);
-           expect(result).to.equal(true);
-       });
-       it("checks that a field doesn't match regex", function () {
-           emailInput.value = "";
-           const regex = /[a-z]@[a-z.]/;
-           const result = validate.checkRx(regex, emailInput);
-           expect(result).to.equal(false);
-       });
+        const regexMatcher = validate.createMatcher({
+            regex: /^[a-c]/,
+            error: "Test message"
+        });
+        const testValidator = {
+            "E-mail": [regexMatcher]
+        };
+        it("checks that a field matches a regex", function () {
+            emailInput.value = "anemail@example.com";
+            const result = validate.check(emailGroup, testValidator);
+            expect($emailError.html()).to.contain("entered correctly");
+        });
+        it("checks that a field doesn't match regex", function () {
+            emailInput.value = "email@example.com";
+            const result = validate.check(emailGroup, testValidator);
+            expect($emailError.html()).to.contain("Test message");
+        });
     });
     describe("creates a validator", function () {
         const abcConfig = {
@@ -147,20 +165,12 @@ describe("validate", function () {
         describe("matches with email", function () {
             it("matches using public email matcher", function () {
                 emailInput.value = "email@example.com";
-                validate.check($(emailGroup), {
-                    "E-mail": [
-                        validate.fn.isEmail
-                    ]
-                });
+                validate.check(emailGroup);
                 expect($emailError.html()).to.contain("is Ok");
             });
             it("doesn't match using public email matcher", function () {
                 emailInput.value = "not an email";
-                validate.check($(emailGroup), {
-                    "E-mail": [
-                        validate.fn.isEmail
-                    ]
-                });
+                validate.check(emailGroup);
                 expect($emailError.html()).to.contain("is Incorrect");
             });
         });

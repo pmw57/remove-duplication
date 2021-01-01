@@ -54,7 +54,7 @@ describe("registration submit", function () {
         });
         describe("terms", function () {
             const $termsGroup = $("#terms").closest(".form-group");
-            const $termsError = $termsGroup.find(".error2");
+            const $termsError = $termsGroup.find(".error");
             const $termsRequired = $termsGroup.find(".starrq");
             beforeEach(function () {
                 $("#terms").prop("checked", false);
@@ -98,7 +98,7 @@ describe("registration submit", function () {
     });
     describe("terms and conditions", function () {
         const $termsGroup = $("#terms").closest(".form-group");
-        const $termsError = $termsGroup.find(".error2");
+        const $termsError = $termsGroup.find(".error");
         const $termsRequired = $termsGroup.find(".starrq");
         describe("terms are checked", function () {
             beforeEach(function () {

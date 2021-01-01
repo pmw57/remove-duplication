@@ -102,18 +102,15 @@ const registration = (function makeRegistration() {
         const $termsGroup = $(".form-group").has("#terms");
         const $terms = $termsGroup.find("#terms");
         if ($terms.is(":checked")) {
-            inputStatus.setOk($termsGroup.find(".error2"));
-            inputStatus.requiredOk($termsGroup);
+            inputStatus.ok($termsGroup);
         } else {
-            inputStatus.setWarning($termsGroup.find(".error2"));
-            inputStatus.requiredWarning($termsGroup);
+            inputStatus.warning($termsGroup);
         }
     }
     function removeTermWarning() {
         const $termsGroup = $("#terms").closest(".form-group");
+        inputStatus.ok($termsGroup);
         inputStatus.feedbackNone($termsGroup);
-        inputStatus.setOk($termsGroup.find("#termcheck"));
-        inputStatus.requiredOk($termsGroup);
     }
     function selectAndValidate(listItem) {
         const $form = $(listItem).closest("form");
